@@ -1,14 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou');
-
-/* -- Navbar -- */
-.navbar {
-  font-family: 'ZCOOL QingKe HuangYou', cursive;
-  background: rgba(0,0,0,0.7);
-  position: absolute;
-  left: 0;
-  right: 0;
-}
-
 /* -- Banner Image -- */
 .hero-image {
     height: 316px;
