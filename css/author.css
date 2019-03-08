@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+/* -- Page Content -- */
+#text {
+    margin-top: 40px;
+    padding-bottom: 30px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.content {
+    padding: 20px;
+}
+
+.content h3 {
+    font-size: 180%;
+    text-decoration: underline;
+}
+
+.content .author-header {
+    text-align: center;
+}
+
+.content .author-header h1 {
+    font-size: 300%;
+    font-weight: bold;
+}
+
+.content .author-name {
+    text-align: left;
+}
+
+.even {
+    background-color: rgba(0,0,0,0.05);
+}
+
+.odd {
+    background-color: rgba(0,0,0,0.1)
+}
+
+p {
+    font-size: 110%;
+}
