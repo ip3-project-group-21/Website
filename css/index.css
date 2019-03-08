@@ -19,4 +19,9 @@
     left: 70%;
     transform: translate(-50%, -50%);
     color: white;
-  }
+  }        
+  #map {
+            height: 70%;
+            width: 70%;
+            position:inherit
+        }
