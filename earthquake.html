@@ -2,8 +2,8 @@
 <html>
 
 <head>
-    <style>
-       /* Set the size of the div element that contains the map */
+	<style>
+		/* Set the size of the div element that contains the map */
       #map {
         height: 400px;  /* The height is 400 pixels */
         width: 100%;  /* The width is the width of the web page */
@@ -43,20 +43,20 @@
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script type="text/javascript" src="js/footer.js"></script>
 	</div>
-        <div id="map" style="margin-top: 200px" class="container"></div>
-<script>
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 2,
-                center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-                mapTypeId: 'terrain' // can be any valid type
-            });
-            google.maps.event.trigger(map, 'resize');
-        }
-</script>
-    <!-- Need the following code for Google Maps. PLEASE INSERT YOUR OWN GOOGLE MAPS KEY BELOW -->
- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYmsRSnEUBTBaLIEfT64IZ1Gtnny-5wcs&callback=initMap">
-    </script>
+	<div id="map" style="margin-top: 200px" class="container"></div>
+	<script>
+		function initMap() {
+			map = new google.maps.Map(document.getElementById('map'), {
+				zoom: 2,
+				center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+				mapTypeId: 'terrain' // can be any valid type
+			});
+			google.maps.event.trigger(map, 'resize');
+		}
+	</script>
+	<!-- Need the following code for Google Maps. PLEASE INSERT YOUR OWN GOOGLE MAPS KEY BELOW -->
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYmsRSnEUBTBaLIEfT64IZ1Gtnny-5wcs&callback=initMap">
+	</script>
 </body>
 
 </html>
