@@ -33,8 +33,28 @@
   padding: 20px;
 }
 
+
+.content h3 {
+  font-size: 180%;
+  text-decoration: underline;
+}
+
+.content p {
+  font-size: 100%;
+}
+
 .content .overview {
   text-align: center;
+}
+
+.content .overview h1 {
+  font-size: 400%;
+  font-weight: bold;
+}
+
+.content .overview p {
+  padding-top: 20px;
+  font-size: 120%;
 }
 
 
