@@ -3,4 +3,7 @@
 .page-footer {
     font-family: 'ZCOOL QingKe HuangYou', cursive;
     background-color: rgba(0,0,0,0.15);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
