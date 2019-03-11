@@ -102,16 +102,21 @@
 
 						// Called when the data has succesfully loaded
 						success: function (data) {
-							$.each(data.features, function (key, val) {
+							i = 0;
+              var markers = [];
+						$.each(data.features, function (key, val) {
 								// Get the lat and lng data for use in the markers
 								var coords = val.geometry.coordinates;
 								var latLng = new google.maps.LatLng(coords[1], coords[0]);
 								// Now create a new marker on the map
 								var marker = new google.maps.Marker({
 									position: latLng,
-									map: map
+									map: map,
+									label: val.properties.mag.toString()
 								});
+								markers[i++] = marker;
 							});
+							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 						}
 					});
 				});
@@ -134,16 +139,21 @@
 
 						// Called when the data has succesfully loaded
 						success: function (data) {
-							$.each(data.features, function (key, val) {
+							i = 0;
+              var markers = [];
+						$.each(data.features, function (key, val) {
 								// Get the lat and lng data for use in the markers
 								var coords = val.geometry.coordinates;
 								var latLng = new google.maps.LatLng(coords[1], coords[0]);
 								// Now create a new marker on the map
 								var marker = new google.maps.Marker({
 									position: latLng,
-									map: map
+									map: map,
+									label: val.properties.mag.toString()
 								});
+								markers[i++] = marker;
 							});
+							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 						}
 					});
 				});
@@ -166,16 +176,21 @@
 
 						// Called when the data has succesfully loaded
 						success: function (data) {
-							$.each(data.features, function (key, val) {
+							i = 0;
+              var markers = [];
+						$.each(data.features, function (key, val) {
 								// Get the lat and lng data for use in the markers
 								var coords = val.geometry.coordinates;
 								var latLng = new google.maps.LatLng(coords[1], coords[0]);
 								// Now create a new marker on the map
 								var marker = new google.maps.Marker({
 									position: latLng,
-									map: map
+									map: map,
+									label: val.properties.mag.toString()
 								});
+								markers[i++] = marker;
 							});
+							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 						}
 					});
 				});
@@ -198,16 +213,21 @@
 
 						// Called when the data has succesfully loaded
 						success: function (data) {
-							$.each(data.features, function (key, val) {
+							i = 0;
+              var markers = [];
+						$.each(data.features, function (key, val) {
 								// Get the lat and lng data for use in the markers
 								var coords = val.geometry.coordinates;
 								var latLng = new google.maps.LatLng(coords[1], coords[0]);
 								// Now create a new marker on the map
 								var marker = new google.maps.Marker({
 									position: latLng,
-									map: map
+									map: map,
+									label: val.properties.mag.toString()
 								});
+								markers[i++] = marker;
 							});
+							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 						}
 					});
 				});
@@ -230,16 +250,21 @@
 
 						// Called when the data has succesfully loaded
 						success: function (data) {
-							$.each(data.features, function (key, val) {
+							i = 0;
+              var markers = [];
+						$.each(data.features, function (key, val) {
 								// Get the lat and lng data for use in the markers
 								var coords = val.geometry.coordinates;
 								var latLng = new google.maps.LatLng(coords[1], coords[0]);
 								// Now create a new marker on the map
 								var marker = new google.maps.Marker({
 									position: latLng,
-									map: map
+									map: map,
+									label: val.properties.mag.toString()
 								});
+								markers[i++] = marker;
 							});
+							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 						}
 					});
 				});
@@ -263,16 +288,21 @@
 
 						// Called when the data has succesfully loaded
 						success: function (data) {
-							$.each(data.features, function (key, val) {
+							i = 0;
+              var markers = [];
+						$.each(data.features, function (key, val) {
 								// Get the lat and lng data for use in the markers
 								var coords = val.geometry.coordinates;
 								var latLng = new google.maps.LatLng(coords[1], coords[0]);
 								// Now create a new marker on the map
 								var marker = new google.maps.Marker({
 									position: latLng,
-									map: map
+									map: map,
+									label: val.properties.mag.toString()
 								});
+								markers[i++] = marker;
 							});
+							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 						}
 					});
 				});
@@ -295,16 +325,21 @@
 
 						// Called when the data has succesfully loaded
 						success: function (data) {
-							$.each(data.features, function (key, val) {
+							i = 0;
+              var markers = [];
+						$.each(data.features, function (key, val) {
 								// Get the lat and lng data for use in the markers
 								var coords = val.geometry.coordinates;
 								var latLng = new google.maps.LatLng(coords[1], coords[0]);
 								// Now create a new marker on the map
 								var marker = new google.maps.Marker({
 									position: latLng,
-									map: map
+									map: map,
+									label: val.properties.mag.toString()
 								});
+								markers[i++] = marker;
 							});
+							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 						}
 					});
 				});
@@ -327,16 +362,21 @@
 
 						// Called when the data has succesfully loaded
 						success: function (data) {
-							$.each(data.features, function (key, val) {
+							i = 0;
+              var markers = [];
+						$.each(data.features, function (key, val) {
 								// Get the lat and lng data for use in the markers
 								var coords = val.geometry.coordinates;
 								var latLng = new google.maps.LatLng(coords[1], coords[0]);
 								// Now create a new marker on the map
 								var marker = new google.maps.Marker({
 									position: latLng,
-									map: map
+									map: map,
+									label: val.properties.mag.toString()
 								});
+								markers[i++] = marker;
 							});
+							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 						}
 					});
 				});
@@ -359,16 +399,21 @@
 
 						// Called when the data has succesfully loaded
 						success: function (data) {
-							$.each(data.features, function (key, val) {
+							i = 0;
+              var markers = [];
+						$.each(data.features, function (key, val) {
 								// Get the lat and lng data for use in the markers
 								var coords = val.geometry.coordinates;
 								var latLng = new google.maps.LatLng(coords[1], coords[0]);
 								// Now create a new marker on the map
 								var marker = new google.maps.Marker({
 									position: latLng,
-									map: map
+									map: map,
+									label: val.properties.mag.toString()
 								});
+								markers[i++] = marker;
 							});
+							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 						}
 					});
 				});
@@ -391,16 +436,21 @@
 
 						// Called when the data has succesfully loaded
 						success: function (data) {
-							$.each(data.features, function (key, val) {
+							i = 0;
+              var markers = [];
+						$.each(data.features, function (key, val) {
 								// Get the lat and lng data for use in the markers
 								var coords = val.geometry.coordinates;
 								var latLng = new google.maps.LatLng(coords[1], coords[0]);
 								// Now create a new marker on the map
 								var marker = new google.maps.Marker({
 									position: latLng,
-									map: map
+									map: map,
+									label: val.properties.mag.toString()
 								});
+								markers[i++] = marker;
 							});
+							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 						}
 					});
 				});
@@ -424,16 +474,21 @@
 
 						// Called when the data has succesfully loaded
 						success: function (data) {
-							$.each(data.features, function (key, val) {
+							i = 0;
+              var markers = [];
+						$.each(data.features, function (key, val) {
 								// Get the lat and lng data for use in the markers
 								var coords = val.geometry.coordinates;
 								var latLng = new google.maps.LatLng(coords[1], coords[0]);
 								// Now create a new marker on the map
 								var marker = new google.maps.Marker({
 									position: latLng,
-									map: map
+									map: map,
+									label: val.properties.mag.toString()
 								});
+								markers[i++] = marker;
 							});
+							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 						}
 					});
 				});
@@ -456,16 +511,21 @@
 
 						// Called when the data has succesfully loaded
 						success: function (data) {
-							$.each(data.features, function (key, val) {
+							i = 0;
+              var markers = [];
+						$.each(data.features, function (key, val) {
 								// Get the lat and lng data for use in the markers
 								var coords = val.geometry.coordinates;
 								var latLng = new google.maps.LatLng(coords[1], coords[0]);
 								// Now create a new marker on the map
 								var marker = new google.maps.Marker({
 									position: latLng,
-									map: map
+									map: map,
+									label: val.properties.mag.toString()
 								});
+								markers[i++] = marker;
 							});
+							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 						}
 					});
 				});
@@ -488,16 +548,21 @@
 
 						// Called when the data has succesfully loaded
 						success: function (data) {
-							$.each(data.features, function (key, val) {
+							i = 0;
+              var markers = [];
+						$.each(data.features, function (key, val) {
 								// Get the lat and lng data for use in the markers
 								var coords = val.geometry.coordinates;
 								var latLng = new google.maps.LatLng(coords[1], coords[0]);
 								// Now create a new marker on the map
 								var marker = new google.maps.Marker({
 									position: latLng,
-									map: map
+									map: map,
+									label: val.properties.mag.toString()
 								});
+								markers[i++] = marker;
 							});
+							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 						}
 					});
 				});
@@ -520,16 +585,21 @@
 
 						// Called when the data has succesfully loaded
 						success: function (data) {
-							$.each(data.features, function (key, val) {
+							i = 0;
+              var markers = [];
+						$.each(data.features, function (key, val) {
 								// Get the lat and lng data for use in the markers
 								var coords = val.geometry.coordinates;
 								var latLng = new google.maps.LatLng(coords[1], coords[0]);
 								// Now create a new marker on the map
 								var marker = new google.maps.Marker({
 									position: latLng,
-									map: map
+									map: map,
+									label: val.properties.mag.toString()
 								});
+								markers[i++] = marker;
 							});
+							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 						}
 					});
 				});
@@ -552,16 +622,21 @@
 
 						// Called when the data has succesfully loaded
 						success: function (data) {
-							$.each(data.features, function (key, val) {
+							i = 0;
+              var markers = [];
+						$.each(data.features, function (key, val) {
 								// Get the lat and lng data for use in the markers
 								var coords = val.geometry.coordinates;
 								var latLng = new google.maps.LatLng(coords[1], coords[0]);
 								// Now create a new marker on the map
 								var marker = new google.maps.Marker({
 									position: latLng,
-									map: map
+									map: map,
+									//label: val.properties.mag.toString()
 								});
+								markers[i++] = marker;
 							});
+							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 						}
 					});
 				});
@@ -585,16 +660,21 @@
 
 						// Called when the data has succesfully loaded
 						success: function (data) {
-							$.each(data.features, function (key, val) {
+							i = 0;
+              var markers = [];
+						$.each(data.features, function (key, val) {
 								// Get the lat and lng data for use in the markers
 								var coords = val.geometry.coordinates;
 								var latLng = new google.maps.LatLng(coords[1], coords[0]);
 								// Now create a new marker on the map
 								var marker = new google.maps.Marker({
 									position: latLng,
-									map: map
+									map: map,
+									label: val.properties.mag.toString()
 								});
+								markers[i++] = marker;
 							});
+							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 						}
 					});
 				});
@@ -617,16 +697,21 @@
 
 						// Called when the data has succesfully loaded
 						success: function (data) {
-							$.each(data.features, function (key, val) {
+							i = 0;
+              var markers = [];
+						$.each(data.features, function (key, val) {
 								// Get the lat and lng data for use in the markers
 								var coords = val.geometry.coordinates;
 								var latLng = new google.maps.LatLng(coords[1], coords[0]);
 								// Now create a new marker on the map
 								var marker = new google.maps.Marker({
 									position: latLng,
-									map: map
+									map: map,
+									label: val.properties.mag.toString()
 								});
+								markers[i++] = marker;
 							});
+							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 						}
 					});
 				});
@@ -649,16 +734,21 @@
 
 						// Called when the data has succesfully loaded
 						success: function (data) {
-							$.each(data.features, function (key, val) {
+							i = 0;
+              var markers = [];
+						$.each(data.features, function (key, val) {
 								// Get the lat and lng data for use in the markers
 								var coords = val.geometry.coordinates;
 								var latLng = new google.maps.LatLng(coords[1], coords[0]);
 								// Now create a new marker on the map
 								var marker = new google.maps.Marker({
 									position: latLng,
-									map: map
+									map: map,
+									label: val.properties.mag.toString()
 								});
+								markers[i++] = marker;
 							});
+							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 						}
 					});
 				});
@@ -681,16 +771,21 @@
 
 						// Called when the data has succesfully loaded
 						success: function (data) {
-							$.each(data.features, function (key, val) {
+							i = 0;
+              var markers = [];
+						$.each(data.features, function (key, val) {
 								// Get the lat and lng data for use in the markers
 								var coords = val.geometry.coordinates;
 								var latLng = new google.maps.LatLng(coords[1], coords[0]);
 								// Now create a new marker on the map
 								var marker = new google.maps.Marker({
 									position: latLng,
-									map: map
+									map: map,
+									label: val.properties.mag.toString()
 								});
+								markers[i++] = marker;
 							});
+							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 						}
 					});
 				});
@@ -713,16 +808,21 @@
 
 						// Called when the data has succesfully loaded
 						success: function (data) {
-							$.each(data.features, function (key, val) {
+							i = 0;
+              var markers = [];
+						$.each(data.features, function (key, val) {
 								// Get the lat and lng data for use in the markers
 								var coords = val.geometry.coordinates;
 								var latLng = new google.maps.LatLng(coords[1], coords[0]);
 								// Now create a new marker on the map
 								var marker = new google.maps.Marker({
 									position: latLng,
-									map: map
+									map: map,
+									//label: val.properties.mag.toString()
 								});
+								markers[i++] = marker;
 							});
+							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 						}
 					});
 				});
