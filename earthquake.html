@@ -41,32 +41,18 @@
 
 
 		<div id="Options" style="margin-top: 200px" class="container">
-			<br>Past Hour
-			<button type="button" id="HSignificant">Significant Earthquakes</button>
-			<button type="button" id="Hm45">M4.5+ Earthquakes</button>
-			<button type="button" id="Hm25">M2.0+ Earthquakes</button>
-			<button type="button" id="Hm10">M1.0+ Earthquakes</button>
-			<button type="button" id="HAll">All Earthquakes</button>
-			<br>Past Day
-			<button type="button" id="DSignificant">Significant Earthquakes</button>
-			<button type="button" id="Dm45">M4.5+ Earthquakes</button>
-			<button type="button" id="Dm25">M2.0+ Earthquakes</button>
-			<button type="button" id="Dm10">M1.0+ Earthquakes</button>
-			<button type="button" id="DAll">All Earthquakes</button>
-			<br>Past 7 Days
-			<button type="button" id="WSignificant">Significant Earthquakes</button>
-			<button type="button" id="Wm45">M4.5+ Earthquakes</button>
-			<button type="button" id="Wm25">M2.0+ Earthquakes</button>
-			<button type="button" id="Wm10">M1.0+ Earthquakes</button>
-			<button type="button" id="WAll">All Earthquakes</button>
-			<br>Past 30 Days
-			<button type="button" id="MSignificant">Significant Earthquakes</button>
-			<button type="button" id="Mm45">M4.5+ Earthquakes</button>
-			<button type="button" id="Mm25">M2.0+ Earthquakes</button>
-			<button type="button" id="Mm10">M1.0+ Earthquakes</button>
-			<button type="button" id="MAll">All Earthquakes</button>
+			<input type="radio" name="Past" id="Past_Hour" value="Past Hour" />Past Hour
+			<input type="radio" name="Past" id="Past_Day" value="Past Day" />Past Day
+			<input type="radio" name="Past" id="Past_Week" value="Past Week" />Past 7 Days
+			<input type="radio" name="Past" id="Past_Month" value="Past Month" />Past 30 Days
+			<br>
+			<button type="button" id="Significant">Significant Earthquakes</button>
+			<button type="button" id="m45">M4.5+ Earthquakes</button>
+			<button type="button" id="m25">M2.0+ Earthquakes</button>
+			<button type="button" id="m10">M1.0+ Earthquakes</button>
+			<button type="button" id="All">All Earthquakes</button>
 		</div>
-		<div id="map" style="margin-top: 200px" class="container"></div>
+		<div id="map" style="margin-top: 50px" class="container"></div>
 
 
 		<script>
@@ -82,753 +68,833 @@
 
 
 			$(document).ready(function () {
+				$('#Significant').click(function () {
+					if (document.getElementById('Past_Hour').checked) {
+						// Set Google map  to its start state
+						map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 2,
+							center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+							mapTypeId: 'terrain' // can be any valid type
+						});
+						// The following uses JQuery library
+						$.ajax({
+							// The URL of the specific data required
+							url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_hour.geojson",
 
-				$('#HSignificant').click(function () {
-					// Set Google map  to its start state
-					map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 2,
-						center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-						mapTypeId: 'terrain' // can be any valid type
-					});
-					// The following uses JQuery library
-					$.ajax({
-						// The URL of the specific data required
-						url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_hour.geojson",
+							// Called if there is a problem loading the data
+							error: function () {
+								$('#info').html('<p>An error has occurred</p>');
+							},
 
-						// Called if there is a problem loading the data
-						error: function () {
-							$('#info').html('<p>An error has occurred</p>');
-						},
-
-						// Called when the data has succesfully loaded
-						success: function (data) {
-							i = 0;
-              var markers = [];
-						$.each(data.features, function (key, val) {
-								// Get the lat and lng data for use in the markers
-								var coords = val.geometry.coordinates;
-								var latLng = new google.maps.LatLng(coords[1], coords[0]);
-								// Now create a new marker on the map
-								var marker = new google.maps.Marker({
-									position: latLng,
-									map: map,
-									label: val.properties.mag.toString()
+							// Called when the data has succesfully loaded
+							success: function (data) {
+								i = 0;
+								var markers = [];
+								$.each(data.features, function (key, val) {
+									// Get the lat and lng data for use in the markers
+									var coords = val.geometry.coordinates;
+									var latLng = new google.maps.LatLng(coords[1], coords[0]);
+									// Now create a new marker on the map
+									var marker = new google.maps.Marker({
+										position: latLng,
+										map: map,
+										label: val.properties.mag.toString()
+									});
+									markers[i++] = marker;
 								});
-								markers[i++] = marker;
-							});
-							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-						}
-					});
-				});
-				$('#Hm45').click(function () {
-					// Set Google map  to its start state
-					map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 2,
-						center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-						mapTypeId: 'terrain' // can be any valid type
-					});
-					// The following uses JQuery library
-					$.ajax({
-						// The URL of the specific data required
-						url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_hour.geojson",
-
-						// Called if there is a problem loading the data
-						error: function () {
-							$('#info').html('<p>An error has occurred</p>');
-						},
-
-						// Called when the data has succesfully loaded
-						success: function (data) {
-							i = 0;
-              var markers = [];
-						$.each(data.features, function (key, val) {
-								// Get the lat and lng data for use in the markers
-								var coords = val.geometry.coordinates;
-								var latLng = new google.maps.LatLng(coords[1], coords[0]);
-								// Now create a new marker on the map
-								var marker = new google.maps.Marker({
-									position: latLng,
-									map: map,
-									label: val.properties.mag.toString()
+								var markerCluster = new MarkerClusterer(map, markers, {
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
 								});
-								markers[i++] = marker;
-							});
-							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-						}
-					});
-				});
-				$('#Hm25').click(function () {
-					// Set Google map  to its start state
-					map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 2,
-						center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-						mapTypeId: 'terrain' // can be any valid type
-					});
-					// The following uses JQuery library
-					$.ajax({
-						// The URL of the specific data required
-						url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_hour.geojson",
+							}
+						});
+					};
+					if (document.getElementById('Past_Day').checked) {
+						// Set Google map  to its start state
+						map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 2,
+							center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+							mapTypeId: 'terrain' // can be any valid type
+						});
+						// The following uses JQuery library
+						$.ajax({
+							// The URL of the specific data required
+							url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_day.geojson",
 
-						// Called if there is a problem loading the data
-						error: function () {
-							$('#info').html('<p>An error has occurred</p>');
-						},
+							// Called if there is a problem loading the data
+							error: function () {
+								$('#info').html('<p>An error has occurred</p>');
+							},
 
-						// Called when the data has succesfully loaded
-						success: function (data) {
-							i = 0;
-              var markers = [];
-						$.each(data.features, function (key, val) {
-								// Get the lat and lng data for use in the markers
-								var coords = val.geometry.coordinates;
-								var latLng = new google.maps.LatLng(coords[1], coords[0]);
-								// Now create a new marker on the map
-								var marker = new google.maps.Marker({
-									position: latLng,
-									map: map,
-									label: val.properties.mag.toString()
+							// Called when the data has succesfully loaded
+							success: function (data) {
+								i = 0;
+								var markers = [];
+								$.each(data.features, function (key, val) {
+									// Get the lat and lng data for use in the markers
+									var coords = val.geometry.coordinates;
+									var latLng = new google.maps.LatLng(coords[1], coords[0]);
+									// Now create a new marker on the map
+									var marker = new google.maps.Marker({
+										position: latLng,
+										map: map,
+										label: val.properties.mag.toString()
+									});
+									markers[i++] = marker;
 								});
-								markers[i++] = marker;
-							});
-							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-						}
-					});
-				});
-				$('#Hm10').click(function () {
-					// Set Google map  to its start state
-					map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 2,
-						center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-						mapTypeId: 'terrain' // can be any valid type
-					});
-					// The following uses JQuery library
-					$.ajax({
-						// The URL of the specific data required
-						url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_hour.geojson",
-
-						// Called if there is a problem loading the data
-						error: function () {
-							$('#info').html('<p>An error has occurred</p>');
-						},
-
-						// Called when the data has succesfully loaded
-						success: function (data) {
-							i = 0;
-              var markers = [];
-						$.each(data.features, function (key, val) {
-								// Get the lat and lng data for use in the markers
-								var coords = val.geometry.coordinates;
-								var latLng = new google.maps.LatLng(coords[1], coords[0]);
-								// Now create a new marker on the map
-								var marker = new google.maps.Marker({
-									position: latLng,
-									map: map,
-									label: val.properties.mag.toString()
+								var markerCluster = new MarkerClusterer(map, markers, {
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
 								});
-								markers[i++] = marker;
-							});
-							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-						}
-					});
-				});
-				$('#HAll').click(function () {
-					// Set Google map  to its start state
-					map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 2,
-						center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-						mapTypeId: 'terrain' // can be any valid type
-					});
-					// The following uses JQuery library
-					$.ajax({
-						// The URL of the specific data required
-						url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson",
+							}
+						});
+					};
+					if (document.getElementById('Past_Week').checked) {
+						// Set Google map  to its start state
+						map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 2,
+							center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+							mapTypeId: 'terrain' // can be any valid type
+						});
+						// The following uses JQuery library
+						$.ajax({
+							// The URL of the specific data required
+							url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson",
 
-						// Called if there is a problem loading the data
-						error: function () {
-							$('#info').html('<p>An error has occurred</p>');
-						},
+							// Called if there is a problem loading the data
+							error: function () {
+								$('#info').html('<p>An error has occurred</p>');
+							},
 
-						// Called when the data has succesfully loaded
-						success: function (data) {
-							i = 0;
-              var markers = [];
-						$.each(data.features, function (key, val) {
-								// Get the lat and lng data for use in the markers
-								var coords = val.geometry.coordinates;
-								var latLng = new google.maps.LatLng(coords[1], coords[0]);
-								// Now create a new marker on the map
-								var marker = new google.maps.Marker({
-									position: latLng,
-									map: map,
-									label: val.properties.mag.toString()
+							// Called when the data has succesfully loaded
+							success: function (data) {
+								i = 0;
+								var markers = [];
+								$.each(data.features, function (key, val) {
+									// Get the lat and lng data for use in the markers
+									var coords = val.geometry.coordinates;
+									var latLng = new google.maps.LatLng(coords[1], coords[0]);
+									// Now create a new marker on the map
+									var marker = new google.maps.Marker({
+										position: latLng,
+										map: map,
+										label: val.properties.mag.toString()
+									});
+									markers[i++] = marker;
 								});
-								markers[i++] = marker;
-							});
-							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-						}
-					});
+								var markerCluster = new MarkerClusterer(map, markers, {
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+								});
+							}
+						});
+					};
+					if (document.getElementById('Past_Month').checked) {
+						// Set Google map  to its start state
+						map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 2,
+							center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+							mapTypeId: 'terrain' // can be any valid type
+						});
+						// The following uses JQuery library
+						$.ajax({
+							// The URL of the specific data required
+							url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson",
+
+							// Called if there is a problem loading the data
+							error: function () {
+								$('#info').html('<p>An error has occurred</p>');
+							},
+
+							// Called when the data has succesfully loaded
+							success: function (data) {
+								i = 0;
+								var markers = [];
+								$.each(data.features, function (key, val) {
+									// Get the lat and lng data for use in the markers
+									var coords = val.geometry.coordinates;
+									var latLng = new google.maps.LatLng(coords[1], coords[0]);
+									// Now create a new marker on the map
+									var marker = new google.maps.Marker({
+										position: latLng,
+										map: map,
+										label: val.properties.mag.toString()
+									});
+									markers[i++] = marker;
+								});
+								var markerCluster = new MarkerClusterer(map, markers, {
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+								});
+							}
+						});
+					};
 				});
 
-				$('#DSignificant').click(function () {
-					// Set Google map  to its start state
-					map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 2,
-						center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-						mapTypeId: 'terrain' // can be any valid type
-					});
-					// The following uses JQuery library
-					$.ajax({
-						// The URL of the specific data required
-						url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_day.geojson",
+				$('#m45').click(function () {
+					if (document.getElementById('Past_Hour').checked) {
+						// Set Google map  to its start state
+						map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 2,
+							center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+							mapTypeId: 'terrain' // can be any valid type
+						});
+						// The following uses JQuery library
+						$.ajax({
+							// The URL of the specific data required
+							url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_hour.geojson",
 
-						// Called if there is a problem loading the data
-						error: function () {
-							$('#info').html('<p>An error has occurred</p>');
-						},
+							// Called if there is a problem loading the data
+							error: function () {
+								$('#info').html('<p>An error has occurred</p>');
+							},
 
-						// Called when the data has succesfully loaded
-						success: function (data) {
-							i = 0;
-              var markers = [];
-						$.each(data.features, function (key, val) {
-								// Get the lat and lng data for use in the markers
-								var coords = val.geometry.coordinates;
-								var latLng = new google.maps.LatLng(coords[1], coords[0]);
-								// Now create a new marker on the map
-								var marker = new google.maps.Marker({
-									position: latLng,
-									map: map,
-									label: val.properties.mag.toString()
+							// Called when the data has succesfully loaded
+							success: function (data) {
+								i = 0;
+								var markers = [];
+								$.each(data.features, function (key, val) {
+									// Get the lat and lng data for use in the markers
+									var coords = val.geometry.coordinates;
+									var latLng = new google.maps.LatLng(coords[1], coords[0]);
+									// Now create a new marker on the map
+									var marker = new google.maps.Marker({
+										position: latLng,
+										map: map,
+										label: val.properties.mag.toString()
+									});
+									markers[i++] = marker;
 								});
-								markers[i++] = marker;
-							});
-							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-						}
-					});
-				});
-				$('#Dm45').click(function () {
-					// Set Google map  to its start state
-					map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 2,
-						center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-						mapTypeId: 'terrain' // can be any valid type
-					});
-					// The following uses JQuery library
-					$.ajax({
-						// The URL of the specific data required
-						url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
-
-						// Called if there is a problem loading the data
-						error: function () {
-							$('#info').html('<p>An error has occurred</p>');
-						},
-
-						// Called when the data has succesfully loaded
-						success: function (data) {
-							i = 0;
-              var markers = [];
-						$.each(data.features, function (key, val) {
-								// Get the lat and lng data for use in the markers
-								var coords = val.geometry.coordinates;
-								var latLng = new google.maps.LatLng(coords[1], coords[0]);
-								// Now create a new marker on the map
-								var marker = new google.maps.Marker({
-									position: latLng,
-									map: map,
-									label: val.properties.mag.toString()
+								var markerCluster = new MarkerClusterer(map, markers, {
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
 								});
-								markers[i++] = marker;
-							});
-							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-						}
-					});
-				});
-				$('#Dm25').click(function () {
-					// Set Google map  to its start state
-					map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 2,
-						center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-						mapTypeId: 'terrain' // can be any valid type
-					});
-					// The following uses JQuery library
-					$.ajax({
-						// The URL of the specific data required
-						url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
+							}
+						});
+					};
+					if (document.getElementById('Past_Day').checked) {
+						// Set Google map  to its start state
+						map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 2,
+							center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+							mapTypeId: 'terrain' // can be any valid type
+						});
+						// The following uses JQuery library
+						$.ajax({
+							// The URL of the specific data required
+							url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
 
-						// Called if there is a problem loading the data
-						error: function () {
-							$('#info').html('<p>An error has occurred</p>');
-						},
+							// Called if there is a problem loading the data
+							error: function () {
+								$('#info').html('<p>An error has occurred</p>');
+							},
 
-						// Called when the data has succesfully loaded
-						success: function (data) {
-							i = 0;
-              var markers = [];
-						$.each(data.features, function (key, val) {
-								// Get the lat and lng data for use in the markers
-								var coords = val.geometry.coordinates;
-								var latLng = new google.maps.LatLng(coords[1], coords[0]);
-								// Now create a new marker on the map
-								var marker = new google.maps.Marker({
-									position: latLng,
-									map: map,
-									label: val.properties.mag.toString()
+							// Called when the data has succesfully loaded
+							success: function (data) {
+								i = 0;
+								var markers = [];
+								$.each(data.features, function (key, val) {
+									// Get the lat and lng data for use in the markers
+									var coords = val.geometry.coordinates;
+									var latLng = new google.maps.LatLng(coords[1], coords[0]);
+									// Now create a new marker on the map
+									var marker = new google.maps.Marker({
+										position: latLng,
+										map: map,
+										label: val.properties.mag.toString()
+									});
+									markers[i++] = marker;
 								});
-								markers[i++] = marker;
-							});
-							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-						}
-					});
-				});
-				$('#Dm10').click(function () {
-					// Set Google map  to its start state
-					map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 2,
-						center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-						mapTypeId: 'terrain' // can be any valid type
-					});
-					// The following uses JQuery library
-					$.ajax({
-						// The URL of the specific data required
-						url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_day.geojson",
-
-						// Called if there is a problem loading the data
-						error: function () {
-							$('#info').html('<p>An error has occurred</p>');
-						},
-
-						// Called when the data has succesfully loaded
-						success: function (data) {
-							i = 0;
-              var markers = [];
-						$.each(data.features, function (key, val) {
-								// Get the lat and lng data for use in the markers
-								var coords = val.geometry.coordinates;
-								var latLng = new google.maps.LatLng(coords[1], coords[0]);
-								// Now create a new marker on the map
-								var marker = new google.maps.Marker({
-									position: latLng,
-									map: map,
-									label: val.properties.mag.toString()
+								var markerCluster = new MarkerClusterer(map, markers, {
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
 								});
-								markers[i++] = marker;
-							});
-							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-						}
-					});
-				});
-				$('#DAll').click(function () {
-					// Set Google map  to its start state
-					map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 2,
-						center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-						mapTypeId: 'terrain' // can be any valid type
-					});
-					// The following uses JQuery library
-					$.ajax({
-						// The URL of the specific data required
-						url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson",
+							}
+						});
+					};
+					if (document.getElementById('Past_Week').checked) {
+						// Set Google map  to its start state
+						map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 2,
+							center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+							mapTypeId: 'terrain' // can be any valid type
+						});
+						// The following uses JQuery library
+						$.ajax({
+							// The URL of the specific data required
+							url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson",
 
-						// Called if there is a problem loading the data
-						error: function () {
-							$('#info').html('<p>An error has occurred</p>');
-						},
+							// Called if there is a problem loading the data
+							error: function () {
+								$('#info').html('<p>An error has occurred</p>');
+							},
 
-						// Called when the data has succesfully loaded
-						success: function (data) {
-							i = 0;
-              var markers = [];
-						$.each(data.features, function (key, val) {
-								// Get the lat and lng data for use in the markers
-								var coords = val.geometry.coordinates;
-								var latLng = new google.maps.LatLng(coords[1], coords[0]);
-								// Now create a new marker on the map
-								var marker = new google.maps.Marker({
-									position: latLng,
-									map: map,
-									label: val.properties.mag.toString()
+							// Called when the data has succesfully loaded
+							success: function (data) {
+								i = 0;
+								var markers = [];
+								$.each(data.features, function (key, val) {
+									// Get the lat and lng data for use in the markers
+									var coords = val.geometry.coordinates;
+									var latLng = new google.maps.LatLng(coords[1], coords[0]);
+									// Now create a new marker on the map
+									var marker = new google.maps.Marker({
+										position: latLng,
+										map: map,
+										label: val.properties.mag.toString()
+									});
+									markers[i++] = marker;
 								});
-								markers[i++] = marker;
-							});
-							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-						}
-					});
+								var markerCluster = new MarkerClusterer(map, markers, {
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+								});
+							}
+						});
+					};
+					if (document.getElementById('Past_Month').checked) {
+						// Set Google map  to its start state
+						map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 2,
+							center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+							mapTypeId: 'terrain' // can be any valid type
+						});
+						// The following uses JQuery library
+						$.ajax({
+							// The URL of the specific data required
+							url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson",
+
+							// Called if there is a problem loading the data
+							error: function () {
+								$('#info').html('<p>An error has occurred</p>');
+							},
+
+							// Called when the data has succesfully loaded
+							success: function (data) {
+								i = 0;
+								var markers = [];
+								$.each(data.features, function (key, val) {
+									// Get the lat and lng data for use in the markers
+									var coords = val.geometry.coordinates;
+									var latLng = new google.maps.LatLng(coords[1], coords[0]);
+									// Now create a new marker on the map
+									var marker = new google.maps.Marker({
+										position: latLng,
+										map: map,
+										label: val.properties.mag.toString()
+									});
+									markers[i++] = marker;
+								});
+								var markerCluster = new MarkerClusterer(map, markers, {
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+								});
+							}
+						});
+					};
+
+
+
+
 				});
 
-				$('#WSignificant').click(function () {
-					// Set Google map  to its start state
-					map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 2,
-						center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-						mapTypeId: 'terrain' // can be any valid type
-					});
-					// The following uses JQuery library
-					$.ajax({
-						// The URL of the specific data required
-						url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson",
+				$('#m25').click(function () {
+					if (document.getElementById('Past_Hour').checked) {
+						// Set Google map  to its start state
+						map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 2,
+							center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+							mapTypeId: 'terrain' // can be any valid type
+						});
+						// The following uses JQuery library
+						$.ajax({
+							// The URL of the specific data required
+							url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_hour.geojson",
 
-						// Called if there is a problem loading the data
-						error: function () {
-							$('#info').html('<p>An error has occurred</p>');
-						},
+							// Called if there is a problem loading the data
+							error: function () {
+								$('#info').html('<p>An error has occurred</p>');
+							},
 
-						// Called when the data has succesfully loaded
-						success: function (data) {
-							i = 0;
-              var markers = [];
-						$.each(data.features, function (key, val) {
-								// Get the lat and lng data for use in the markers
-								var coords = val.geometry.coordinates;
-								var latLng = new google.maps.LatLng(coords[1], coords[0]);
-								// Now create a new marker on the map
-								var marker = new google.maps.Marker({
-									position: latLng,
-									map: map,
-									label: val.properties.mag.toString()
+							// Called when the data has succesfully loaded
+							success: function (data) {
+								i = 0;
+								var markers = [];
+								$.each(data.features, function (key, val) {
+									// Get the lat and lng data for use in the markers
+									var coords = val.geometry.coordinates;
+									var latLng = new google.maps.LatLng(coords[1], coords[0]);
+									// Now create a new marker on the map
+									var marker = new google.maps.Marker({
+										position: latLng,
+										map: map,
+										label: val.properties.mag.toString()
+									});
+									markers[i++] = marker;
 								});
-								markers[i++] = marker;
-							});
-							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-						}
-					});
-				});
-				$('#Wm45').click(function () {
-					// Set Google map  to its start state
-					map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 2,
-						center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-						mapTypeId: 'terrain' // can be any valid type
-					});
-					// The following uses JQuery library
-					$.ajax({
-						// The URL of the specific data required
-						url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson",
-
-						// Called if there is a problem loading the data
-						error: function () {
-							$('#info').html('<p>An error has occurred</p>');
-						},
-
-						// Called when the data has succesfully loaded
-						success: function (data) {
-							i = 0;
-              var markers = [];
-						$.each(data.features, function (key, val) {
-								// Get the lat and lng data for use in the markers
-								var coords = val.geometry.coordinates;
-								var latLng = new google.maps.LatLng(coords[1], coords[0]);
-								// Now create a new marker on the map
-								var marker = new google.maps.Marker({
-									position: latLng,
-									map: map,
-									label: val.properties.mag.toString()
+								var markerCluster = new MarkerClusterer(map, markers, {
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
 								});
-								markers[i++] = marker;
-							});
-							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-						}
-					});
-				});
-				$('#Wm25').click(function () {
-					// Set Google map  to its start state
-					map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 2,
-						center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-						mapTypeId: 'terrain' // can be any valid type
-					});
-					// The following uses JQuery library
-					$.ajax({
-						// The URL of the specific data required
-						url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson",
+							}
+						});
+					};
+					if (document.getElementById('Past_Day').checked) {
+						// Set Google map  to its start state
+						map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 2,
+							center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+							mapTypeId: 'terrain' // can be any valid type
+						});
+						// The following uses JQuery library
+						$.ajax({
+							// The URL of the specific data required
+							url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
 
-						// Called if there is a problem loading the data
-						error: function () {
-							$('#info').html('<p>An error has occurred</p>');
-						},
+							// Called if there is a problem loading the data
+							error: function () {
+								$('#info').html('<p>An error has occurred</p>');
+							},
 
-						// Called when the data has succesfully loaded
-						success: function (data) {
-							i = 0;
-              var markers = [];
-						$.each(data.features, function (key, val) {
-								// Get the lat and lng data for use in the markers
-								var coords = val.geometry.coordinates;
-								var latLng = new google.maps.LatLng(coords[1], coords[0]);
-								// Now create a new marker on the map
-								var marker = new google.maps.Marker({
-									position: latLng,
-									map: map,
-									label: val.properties.mag.toString()
+							// Called when the data has succesfully loaded
+							success: function (data) {
+								i = 0;
+								var markers = [];
+								$.each(data.features, function (key, val) {
+									// Get the lat and lng data for use in the markers
+									var coords = val.geometry.coordinates;
+									var latLng = new google.maps.LatLng(coords[1], coords[0]);
+									// Now create a new marker on the map
+									var marker = new google.maps.Marker({
+										position: latLng,
+										map: map,
+										label: val.properties.mag.toString()
+									});
+									markers[i++] = marker;
 								});
-								markers[i++] = marker;
-							});
-							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-						}
-					});
-				});
-				$('#Wm10').click(function () {
-					// Set Google map  to its start state
-					map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 2,
-						center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-						mapTypeId: 'terrain' // can be any valid type
-					});
-					// The following uses JQuery library
-					$.ajax({
-						// The URL of the specific data required
-						url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_week.geojson",
-
-						// Called if there is a problem loading the data
-						error: function () {
-							$('#info').html('<p>An error has occurred</p>');
-						},
-
-						// Called when the data has succesfully loaded
-						success: function (data) {
-							i = 0;
-              var markers = [];
-						$.each(data.features, function (key, val) {
-								// Get the lat and lng data for use in the markers
-								var coords = val.geometry.coordinates;
-								var latLng = new google.maps.LatLng(coords[1], coords[0]);
-								// Now create a new marker on the map
-								var marker = new google.maps.Marker({
-									position: latLng,
-									map: map,
-									label: val.properties.mag.toString()
+								var markerCluster = new MarkerClusterer(map, markers, {
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
 								});
-								markers[i++] = marker;
-							});
-							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-						}
-					});
-				});
-				$('#WAll').click(function () {
-					// Set Google map  to its start state
-					map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 2,
-						center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-						mapTypeId: 'terrain' // can be any valid type
-					});
-					// The following uses JQuery library
-					$.ajax({
-						// The URL of the specific data required
-						url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson",
+							}
+						});
+					};
+					if (document.getElementById('Past_Week').checked) {
+						// Set Google map  to its start state
+						map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 2,
+							center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+							mapTypeId: 'terrain' // can be any valid type
+						});
+						// The following uses JQuery library
+						$.ajax({
+							// The URL of the specific data required
+							url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson",
 
-						// Called if there is a problem loading the data
-						error: function () {
-							$('#info').html('<p>An error has occurred</p>');
-						},
+							// Called if there is a problem loading the data
+							error: function () {
+								$('#info').html('<p>An error has occurred</p>');
+							},
 
-						// Called when the data has succesfully loaded
-						success: function (data) {
-							i = 0;
-              var markers = [];
-						$.each(data.features, function (key, val) {
-								// Get the lat and lng data for use in the markers
-								var coords = val.geometry.coordinates;
-								var latLng = new google.maps.LatLng(coords[1], coords[0]);
-								// Now create a new marker on the map
-								var marker = new google.maps.Marker({
-									position: latLng,
-									map: map,
-									//label: val.properties.mag.toString()
+							// Called when the data has succesfully loaded
+							success: function (data) {
+								i = 0;
+								var markers = [];
+								$.each(data.features, function (key, val) {
+									// Get the lat and lng data for use in the markers
+									var coords = val.geometry.coordinates;
+									var latLng = new google.maps.LatLng(coords[1], coords[0]);
+									// Now create a new marker on the map
+									var marker = new google.maps.Marker({
+										position: latLng,
+										map: map,
+										label: val.properties.mag.toString()
+									});
+									markers[i++] = marker;
 								});
-								markers[i++] = marker;
-							});
-							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-						}
-					});
+								var markerCluster = new MarkerClusterer(map, markers, {
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+								});
+							}
+						});
+					};
+					if (document.getElementById('Past_Month').checked) {
+						// Set Google map  to its start state
+						map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 2,
+							center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+							mapTypeId: 'terrain' // can be any valid type
+						});
+						// The following uses JQuery library
+						$.ajax({
+							// The URL of the specific data required
+							url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson",
+
+							// Called if there is a problem loading the data
+							error: function () {
+								$('#info').html('<p>An error has occurred</p>');
+							},
+
+							// Called when the data has succesfully loaded
+							success: function (data) {
+								i = 0;
+								var markers = [];
+								$.each(data.features, function (key, val) {
+									// Get the lat and lng data for use in the markers
+									var coords = val.geometry.coordinates;
+									var latLng = new google.maps.LatLng(coords[1], coords[0]);
+									// Now create a new marker on the map
+									var marker = new google.maps.Marker({
+										position: latLng,
+										map: map,
+										label: val.properties.mag.toString()
+									});
+									markers[i++] = marker;
+								});
+								var markerCluster = new MarkerClusterer(map, markers, {
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+								});
+							}
+						});
+					};
 				});
 
-				$('#MSignificant').click(function () {
-					// Set Google map  to its start state
-					map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 2,
-						center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-						mapTypeId: 'terrain' // can be any valid type
-					});
-					// The following uses JQuery library
-					$.ajax({
-						// The URL of the specific data required
-						url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson",
+				$('#m10').click(function () {
+					if (document.getElementById('Past_Hour').checked) {
+						// Set Google map  to its start state
+						map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 2,
+							center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+							mapTypeId: 'terrain' // can be any valid type
+						});
+						// The following uses JQuery library
+						$.ajax({
+							// The URL of the specific data required
+							url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_hour.geojson",
 
-						// Called if there is a problem loading the data
-						error: function () {
-							$('#info').html('<p>An error has occurred</p>');
-						},
+							// Called if there is a problem loading the data
+							error: function () {
+								$('#info').html('<p>An error has occurred</p>');
+							},
 
-						// Called when the data has succesfully loaded
-						success: function (data) {
-							i = 0;
-              var markers = [];
-						$.each(data.features, function (key, val) {
-								// Get the lat and lng data for use in the markers
-								var coords = val.geometry.coordinates;
-								var latLng = new google.maps.LatLng(coords[1], coords[0]);
-								// Now create a new marker on the map
-								var marker = new google.maps.Marker({
-									position: latLng,
-									map: map,
-									label: val.properties.mag.toString()
+							// Called when the data has succesfully loaded
+							success: function (data) {
+								i = 0;
+								var markers = [];
+								$.each(data.features, function (key, val) {
+									// Get the lat and lng data for use in the markers
+									var coords = val.geometry.coordinates;
+									var latLng = new google.maps.LatLng(coords[1], coords[0]);
+									// Now create a new marker on the map
+									var marker = new google.maps.Marker({
+										position: latLng,
+										map: map,
+										label: val.properties.mag.toString()
+									});
+									markers[i++] = marker;
 								});
-								markers[i++] = marker;
-							});
-							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-						}
-					});
-				});
-				$('#Mm45').click(function () {
-					// Set Google map  to its start state
-					map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 2,
-						center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-						mapTypeId: 'terrain' // can be any valid type
-					});
-					// The following uses JQuery library
-					$.ajax({
-						// The URL of the specific data required
-						url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson",
-
-						// Called if there is a problem loading the data
-						error: function () {
-							$('#info').html('<p>An error has occurred</p>');
-						},
-
-						// Called when the data has succesfully loaded
-						success: function (data) {
-							i = 0;
-              var markers = [];
-						$.each(data.features, function (key, val) {
-								// Get the lat and lng data for use in the markers
-								var coords = val.geometry.coordinates;
-								var latLng = new google.maps.LatLng(coords[1], coords[0]);
-								// Now create a new marker on the map
-								var marker = new google.maps.Marker({
-									position: latLng,
-									map: map,
-									label: val.properties.mag.toString()
+								var markerCluster = new MarkerClusterer(map, markers, {
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
 								});
-								markers[i++] = marker;
-							});
-							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-						}
-					});
-				});
-				$('#Mm25').click(function () {
-					// Set Google map  to its start state
-					map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 2,
-						center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-						mapTypeId: 'terrain' // can be any valid type
-					});
-					// The following uses JQuery library
-					$.ajax({
-						// The URL of the specific data required
-						url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson",
+							}
+						});
+					}
+					if (document.getElementById('Past_Day').checked) {
+						// Set Google map  to its start state
+						map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 2,
+							center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+							mapTypeId: 'terrain' // can be any valid type
+						});
+						// The following uses JQuery library
+						$.ajax({
+							// The URL of the specific data required
+							url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_day.geojson",
 
-						// Called if there is a problem loading the data
-						error: function () {
-							$('#info').html('<p>An error has occurred</p>');
-						},
+							// Called if there is a problem loading the data
+							error: function () {
+								$('#info').html('<p>An error has occurred</p>');
+							},
 
-						// Called when the data has succesfully loaded
-						success: function (data) {
-							i = 0;
-              var markers = [];
-						$.each(data.features, function (key, val) {
-								// Get the lat and lng data for use in the markers
-								var coords = val.geometry.coordinates;
-								var latLng = new google.maps.LatLng(coords[1], coords[0]);
-								// Now create a new marker on the map
-								var marker = new google.maps.Marker({
-									position: latLng,
-									map: map,
-									label: val.properties.mag.toString()
+							// Called when the data has succesfully loaded
+							success: function (data) {
+								i = 0;
+								var markers = [];
+								$.each(data.features, function (key, val) {
+									// Get the lat and lng data for use in the markers
+									var coords = val.geometry.coordinates;
+									var latLng = new google.maps.LatLng(coords[1], coords[0]);
+									// Now create a new marker on the map
+									var marker = new google.maps.Marker({
+										position: latLng,
+										map: map,
+										label: val.properties.mag.toString()
+									});
+									markers[i++] = marker;
 								});
-								markers[i++] = marker;
-							});
-							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-						}
-					});
-				});
-				$('#Mm10').click(function () {
-					// Set Google map  to its start state
-					map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 2,
-						center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-						mapTypeId: 'terrain' // can be any valid type
-					});
-					// The following uses JQuery library
-					$.ajax({
-						// The URL of the specific data required
-						url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_month.geojson",
-
-						// Called if there is a problem loading the data
-						error: function () {
-							$('#info').html('<p>An error has occurred</p>');
-						},
-
-						// Called when the data has succesfully loaded
-						success: function (data) {
-							i = 0;
-              var markers = [];
-						$.each(data.features, function (key, val) {
-								// Get the lat and lng data for use in the markers
-								var coords = val.geometry.coordinates;
-								var latLng = new google.maps.LatLng(coords[1], coords[0]);
-								// Now create a new marker on the map
-								var marker = new google.maps.Marker({
-									position: latLng,
-									map: map,
-									label: val.properties.mag.toString()
+								var markerCluster = new MarkerClusterer(map, markers, {
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
 								});
-								markers[i++] = marker;
-							});
-							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-						}
-					});
-				});
-				$('#MAll').click(function () {
-					// Set Google map  to its start state
-					map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 2,
-						center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-						mapTypeId: 'terrain' // can be any valid type
-					});
-					// The following uses JQuery library
-					$.ajax({
-						// The URL of the specific data required
-						url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
+							}
+						});
+					}
+					if (document.getElementById('Past_Week').checked) {
+						// Set Google map  to its start state
+						map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 2,
+							center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+							mapTypeId: 'terrain' // can be any valid type
+						});
+						// The following uses JQuery library
+						$.ajax({
+							// The URL of the specific data required
+							url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_week.geojson",
 
-						// Called if there is a problem loading the data
-						error: function () {
-							$('#info').html('<p>An error has occurred</p>');
-						},
+							// Called if there is a problem loading the data
+							error: function () {
+								$('#info').html('<p>An error has occurred</p>');
+							},
 
-						// Called when the data has succesfully loaded
-						success: function (data) {
-							i = 0;
-              var markers = [];
-						$.each(data.features, function (key, val) {
-								// Get the lat and lng data for use in the markers
-								var coords = val.geometry.coordinates;
-								var latLng = new google.maps.LatLng(coords[1], coords[0]);
-								// Now create a new marker on the map
-								var marker = new google.maps.Marker({
-									position: latLng,
-									map: map,
-									//label: val.properties.mag.toString()
+							// Called when the data has succesfully loaded
+							success: function (data) {
+								i = 0;
+								var markers = [];
+								$.each(data.features, function (key, val) {
+									// Get the lat and lng data for use in the markers
+									var coords = val.geometry.coordinates;
+									var latLng = new google.maps.LatLng(coords[1], coords[0]);
+									// Now create a new marker on the map
+									var marker = new google.maps.Marker({
+										position: latLng,
+										map: map,
+										label: val.properties.mag.toString()
+									});
+									markers[i++] = marker;
 								});
-								markers[i++] = marker;
-							});
-							var markerCluster = new MarkerClusterer(map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-						}
-					});
+								var markerCluster = new MarkerClusterer(map, markers, {
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+								});
+							}
+						});
+					}
+					if (document.getElementById('Past_Month').checked) {
+						// Set Google map  to its start state
+						map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 2,
+							center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+							mapTypeId: 'terrain' // can be any valid type
+						});
+						// The following uses JQuery library
+						$.ajax({
+							// The URL of the specific data required
+							url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_month.geojson",
+
+							// Called if there is a problem loading the data
+							error: function () {
+								$('#info').html('<p>An error has occurred</p>');
+							},
+
+							// Called when the data has succesfully loaded
+							success: function (data) {
+								i = 0;
+								var markers = [];
+								$.each(data.features, function (key, val) {
+									// Get the lat and lng data for use in the markers
+									var coords = val.geometry.coordinates;
+									var latLng = new google.maps.LatLng(coords[1], coords[0]);
+									// Now create a new marker on the map
+									var marker = new google.maps.Marker({
+										position: latLng,
+										map: map,
+										label: val.properties.mag.toString()
+									});
+									markers[i++] = marker;
+								});
+								var markerCluster = new MarkerClusterer(map, markers, {
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+								});
+							}
+						});
+					}
+
+
 				});
 
+				$('#All').click(function () {
+					if (document.getElementById('Past_Hour').checked) {
+						// Set Google map  to its start state
+						map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 2,
+							center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+							mapTypeId: 'terrain' // can be any valid type
+						});
+						// The following uses JQuery library
+						$.ajax({
+							// The URL of the specific data required
+							url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson",
 
-				
+							// Called if there is a problem loading the data
+							error: function () {
+								$('#info').html('<p>An error has occurred</p>');
+							},
+
+							// Called when the data has succesfully loaded
+							success: function (data) {
+								i = 0;
+								var markers = [];
+								$.each(data.features, function (key, val) {
+									// Get the lat and lng data for use in the markers
+									var coords = val.geometry.coordinates;
+									var latLng = new google.maps.LatLng(coords[1], coords[0]);
+									// Now create a new marker on the map
+									var marker = new google.maps.Marker({
+										position: latLng,
+										map: map,
+										label: val.properties.mag.toString()
+									});
+									var infowindow = new google.maps.InfoWindow({
+										content: "Work in Progress"
+									});
+									marker.addListener('click', function (data) {
+										infowindow.open(map, marker); // Open the Google maps marker infoWindow
+									});
+									markers[i++] = marker;
+								});
+								var markerCluster = new MarkerClusterer(map, markers, {
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+								});
+							}
+						});
+					};
+					if (document.getElementById('Past_Day').checked) {
+						// Set Google map  to its start state
+						map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 2,
+							center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+							mapTypeId: 'terrain' // can be any valid type
+						});
+						// The following uses JQuery library
+						$.ajax({
+							// The URL of the specific data required
+							url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson",
+
+							// Called if there is a problem loading the data
+							error: function () {
+								$('#info').html('<p>An error has occurred</p>');
+							},
+
+							// Called when the data has succesfully loaded
+							success: function (data) {
+								i = 0;
+								var markers = [];
+								$.each(data.features, function (key, val) {
+									// Get the lat and lng data for use in the markers
+									var coords = val.geometry.coordinates;
+									var latLng = new google.maps.LatLng(coords[1], coords[0]);
+									// Now create a new marker on the map
+									var marker = new google.maps.Marker({
+										position: latLng,
+										map: map,
+										label: val.properties.mag.toString()
+									});
+									var infowindow = new google.maps.InfoWindow({
+										content: "Work in Progress"
+									});
+									marker.addListener('click', function (data) {
+										infowindow.open(map, marker); // Open the Google maps marker infoWindow
+									});
+									markers[i++] = marker;
+								});
+								var markerCluster = new MarkerClusterer(map, markers, {
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+								});
+							}
+						});
+					};
+					if (document.getElementById('Past_Week').checked) {
+						// Set Google map  to its start state
+						map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 2,
+							center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+							mapTypeId: 'terrain' // can be any valid type
+						});
+						// The following uses JQuery library
+						$.ajax({
+							// The URL of the specific data required
+							url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson",
+
+							// Called if there is a problem loading the data
+							error: function () {
+								$('#info').html('<p>An error has occurred</p>');
+							},
+
+							// Called when the data has succesfully loaded
+							success: function (data) {
+								i = 0;
+								var markers = [];
+								$.each(data.features, function (key, val) {
+									// Get the lat and lng data for use in the markers
+									var coords = val.geometry.coordinates;
+									var latLng = new google.maps.LatLng(coords[1], coords[0]);
+									// Now create a new marker on the map
+									var marker = new google.maps.Marker({
+										position: latLng,
+										map: map,
+										//label: val.properties.mag.toString()
+									});
+									var infowindow = new google.maps.InfoWindow({
+										content: "Work in Progress"
+									});
+									marker.addListener('click', function (data) {
+										infowindow.open(map, marker); // Open the Google maps marker infoWindow
+									});
+									markers[i++] = marker;
+								});
+								var markerCluster = new MarkerClusterer(map, markers, {
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+								});
+							}
+						});
+					};
+					if (document.getElementById('Past_Month').checked) {
+						// Set Google map  to its start state
+						map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 2,
+							center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+							mapTypeId: 'terrain' // can be any valid type
+						});
+						// The following uses JQuery library
+						$.ajax({
+							// The URL of the specific data required
+							url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
+
+							// Called if there is a problem loading the data
+							error: function () {
+								$('#info').html('<p>An error has occurred</p>');
+							},
+
+							// Called when the data has succesfully loaded
+							success: function (data) {
+								i = 0;
+								var markers = [];
+								$.each(data.features, function (key, val) {
+									// Get the lat and lng data for use in the markers
+									var coords = val.geometry.coordinates;
+									var latLng = new google.maps.LatLng(coords[1], coords[0]);
+									// Now create a new marker on the map
+									var marker = new google.maps.Marker({
+										position: latLng,
+										map: map,
+										//label: val.properties.mag.toString()
+									});
+									var infowindow = new google.maps.InfoWindow({
+										content: "Work in Progress"
+									});
+									marker.addListener('click', function (data) {
+										infowindow.open(map, marker); // Open the Google maps marker infoWindow
+									});
+									markers[i++] = marker;
+								});
+								var markerCluster = new MarkerClusterer(map, markers, {
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+								});
+							}
+						});
+					};
+
+
+				});
+
 			});
 		</script>
 		<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
