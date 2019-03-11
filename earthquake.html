@@ -54,27 +54,36 @@
 
 		<div class="api-content container">
 			<div id="options" class="container">
-				<div class="radio-options border border-dark rounded">
-					<input type="radio" name="Past" id="Past_Hour" value="Past Hour" />Past Hour
-					<br>
-					<input type="radio" name="Past" id="Past_Day" value="Past Day" />Past Day
-					<br>
-					<input type="radio" name="Past" id="Past_Week" value="Past Week" />Past 7 Days
-					<br>
-					<input type="radio" name="Past" id="Past_Month" value="Past Month" />Past 30 Days
+				<div class="btn-group border border-dark rounded d-flex justify-content-center">
+					<div style="padding-right:2%;">
+						<input type="radio" name="Past" id="Past_Hour" value="Past Hour">
+						<label for="Past Hour">Past Hour</label>
+					</div>
+
+					<div style="padding-right:2%;">
+						<input type="radio" name="Past" id="Past_Day" value="Past Day">
+						<label for="Past Day">Past Day</label>
+					</div>
+
+					<div style="padding-right:2%;">
+						<input type="radio" name="Past" id="Past_Week" value="Past Week">
+						<label for="Past Week">Past Week</label>
+					</div>
+
+					<div style="padding-right:2%;">
+						<input type="radio" name="Past" id="Past_Month" value="Past Month">
+						<label for="Past Month">Past Month</label>
+					</div>
+
 				</div>
 				<br>
-				<div class="button-options">
-					<button type="button" id="Significant" class="btn btn-sm btn-outline-dark">Significant Earthquakes</button>
-					<button type="button" id="m45" class="btn btn-sm btn-outline-dark">M4.5+ Earthquakes</button>
-					<button type="button" id="m25" class="btn btn-sm btn-outline-dark">M2.0+ Earthquakes</button>
-					<button type="button" id="m10" class="btn btn-sm btn-outline-dark">M1.0+ Earthquakes</button>
-					<button type="button" id="All" class="btn btn-sm btn-outline-dark">All Earthquakes</button>
+				<div id="earthquake-buttons" class="btn-group-vertical d-flex justify-content-center">
+
 				</div>
 			</div>
 
 			<!--Map Tag for import-->
-			<div id="map" style="margin-top: 100px" class="container"></div>
+			<div id="map" class="container"></div>
 
 		</div>
 	</div>

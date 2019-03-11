@@ -31,26 +31,12 @@
 }
 
 /*EARTHQUAKE PAGE MAP*/
-#map {
-    height: 600px;
-    /* The height is 400 pixels */
+ #map {
+    height: 375px;
     width: 100%;
-    /* The width is the width of the web page */
 }
 
-.radio-options {
-    width:12%;
-    margin-left:-1%;
-    padding: 6px;
-    position:absolute;
-}
-
-.button-options {
-    float:right;
-    margin-top:54px;
-    margin-right:-1%;
-}
-
-.button-options button {
-    margin-left:30px;
+#options {
+    padding: 5px 0;
+    height: auto;
 }

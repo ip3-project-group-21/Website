@@ -8,6 +8,47 @@ function initMap() {
 }
 
 
+$(document).ready(function generateButtons() {
+
+    var btnAll = $('<button/>', {
+        text: "All Earthquakes",
+        id: "All",
+        class: "btn btn-dark",
+    });
+
+    var btnOne = $('<button/>', {
+        text: "1.0+ Earthquakes",
+        id: "m10",
+        class: "btn btn-dark",
+    });
+
+    var btnTwoFive = $('<button/>', {
+        text: "2.5+ Earthquakes",
+        id: "m25",
+        class: "btn btn-dark",
+    });
+
+    var btnFourFive = $('<button/>', {
+        text: "4.5+ Earthquakes",
+        id: "m45",
+        class: "btn btn-dark",
+    });
+
+    var btnSig = $('<button/>', {
+        text: "Significant",
+        id: "Significant",
+        class: "btn btn-dark",
+    });
+
+    $("#earthquake-buttons").append(btnAll);
+    $("#earthquake-buttons").append(btnOne);
+    $("#earthquake-buttons").append(btnTwoFive);
+    $("#earthquake-buttons").append(btnFourFive);
+    $("#earthquake-buttons").append(btnSig);
+
+});
+
+
 
 $(document).ready(function () {
     $('#Significant').click(function () {
