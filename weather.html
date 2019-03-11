@@ -54,9 +54,43 @@
 		</div>
 
 		<div class="api-content container">
+			<div id="options">
+				<input type="radio" name="Area" id="LatANDLon" value="LatANDLon" />Latitude and Longitude
+				<input type="radio" name="Area" id="Location" value="Location" />Location
+				<br>
+				<input type="text" name="Latitude" id="Latitude" value="Latitude" />
+				<input type="text" name="Longitude" id="Longitude" value="Longitude" />
+				<input type="text" name="Location" id="LocationText" value="Location" />
+				<br>
+				<input type="button" name="Submit" id="Submit" value="Submit"/>
 
+			</div>
 		</div>
 	</div>
+
+	<script>
+		$(document).ready(function () {
+			$("#Latitude").attr("disabled","disabled");
+			$("#Longitude").attr("disabled","disabled");
+			$("#LocationText").attr("disabled","disabled");
+			$("#Submit").attr("disabled","disabled");
+
+		$("#LatANDLon").click(function(){
+			  $("#LocationText").attr("disabled","disabled");
+			  $("#Latitude").removeAttr('disabled');
+			  $("#Longitude").removeAttr('disabled');
+			  $("#Submit").removeAttr('disabled');
+		});
+
+		$("#Location").click(function(){
+			  $("#Latitude").attr("disabled","disabled");
+			  $("#Longitude").attr("disabled","disabled");
+			  $("#LocationText").removeAttr('disabled');
+			  $("#Submit").removeAttr('disabled');
+		});
+		
+	});
+	</script>
 
 	<div id="navbar">
 		<!--Import Navbar file onto page-->
