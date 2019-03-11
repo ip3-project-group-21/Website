@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+/* -- Page Content -- */
+#page {
+    margin-top: 70px;
+    padding-bottom: 30px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.page-title {
+    display:inline-block;
+}
+
+.back {
+    float:right;
+    margin-top:10px;
+    margin-right: 10%;
+}
+
+.page-title span {
+    font-size: 50%;
+}
+
+.content {
+    margin-top: 20px;
+}
+
+.link {
+    font-size: 120%;
+}
