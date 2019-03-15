@@ -62,37 +62,124 @@
 				<input type="text" name="Longitude" id="Longitude" value="Longitude" />
 				<input type="text" name="Location" id="LocationText" value="Location" />
 				<br>
-				<input type="button" name="Submit" id="Submit" value="Submit"/>
+				<input type="button" name="Submit" id="Submit" value="Submit" />
 
 			</div>
-			<div id="WeatherImage">
-				<img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
+			<div id="Weather">
+				<img id="WeathImage" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
+				<div id="WeathText">
+
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<script>
 		$(document).ready(function () {
-			$("#Latitude").attr("disabled","disabled");
-			$("#Longitude").attr("disabled","disabled");
-			$("#LocationText").attr("disabled","disabled");
-			$("#Submit").attr("disabled","disabled");
 
-		$("#LatANDLon").click(function(){
-			  $("#LocationText").attr("disabled","disabled");
-			  $("#Latitude").removeAttr('disabled');
-			  $("#Longitude").removeAttr('disabled');
-			  $("#Submit").removeAttr('disabled');
-		});
+			$("#Latitude").attr("disabled", "disabled");
+			$("#Longitude").attr("disabled", "disabled");
+			$("#LocationText").attr("disabled", "disabled");
+			$("#Submit").attr("disabled", "disabled");
 
-		$("#Location").click(function(){
-			  $("#Latitude").attr("disabled","disabled");
-			  $("#Longitude").attr("disabled","disabled");
-			  $("#LocationText").removeAttr('disabled');
-			  $("#Submit").removeAttr('disabled');
+			$("#LatANDLon").click(function () {
+				$("#LocationText").attr("disabled", "disabled");
+				$("#Latitude").removeAttr('disabled');
+				$("#Longitude").removeAttr('disabled');
+				$("#Submit").removeAttr('disabled');
+				document.getElementById("LocationText").value = "Location";
+			});
+
+			$("#Location").click(function () {
+				$("#Latitude").attr("disabled", "disabled");
+				$("#Longitude").attr("disabled", "disabled");
+				$("#LocationText").removeAttr('disabled');
+				$("#Submit").removeAttr('disabled');
+				document.getElementById("Latitude").value = "Latitude";
+				document.getElementById("Longitude").value = "Longitude";
+			});
+
+
+
+			$("#Submit").click(function () {
+				//$('#WeathImage').width(300)
+				//$('#WeathImage').height(300);
+				if (document.getElementById('Location').checked) {
+					var location = document.getElementById('LocationText').value;
+					$.ajax({
+						url: "http://api.apixu.com/v1/current.json?key=75fb86a2371f4abca12115412190403&q=" + location,
+						success: function (data) {
+							console.log(data);
+							image = new Image();
+							if (data.error) {
+								image.src = "http://via.placeholder.com/64x64?text=%20"; // Error, so we use blank image for weather. See 'error:' below for another way to include a small blank image
+							} else {
+								document.getElementById("WeathImage").src = "http:" + data.current.condition.icon;
+								//image.src = "http:" + data.current.condition.icon; // icon is specified within the data
+								$('#WeathText').html(
+									"<p> Last Updated: " + data.current.last_updated + "<br> Location: " + data.location.name 
+									+ "<br>Region: " + data.location.region + "<br>Country: " + data.location.country
+									+ "</p>"
+										
+										/***
+									+ data.location.name + " is " + data.current.condition.text + "<br> " + data.location
+									.region + " " + data.location.country + " " + data.location.lat + " " + data.location.lon + 
+									'</p>'
+									***/
+									); // current weather in text format
+
+							}
+						},
+						error: function () { // Weather service could not provide weather for requested lat,lon world location
+							image = new Image();
+							// A local 64*64 transparent image. Generated from the useful site: http://png-pixel.com/
+							image.src =
+								"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAAPElEQVR42u3OMQEAAAgDIJfc6BpjDyQgt1MVAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBgXbgARTAX8ECcrkoAAAAAElFTkSuQmCC";
+							image.onload = function () {
+								//set the image into the web page
+								$('#weatherImage').empty().append(image);
+							};
+						}
+					});
+				};
+
+
+				if (document.getElementById('LatANDLon').checked) {
+
+					var latitude = document.getElementById('Latitude').value;
+					var longitude = document.getElementById('Longitude').value;
+
+					$.ajax({
+						url: "http://api.apixu.com/v1/current.json?key=75fb86a2371f4abca12115412190403&q=" + latitude + "," +
+							longitude,
+						success: function (data) {
+							console.log(data);
+							image = new Image();
+							if (data.error) {
+								image.src = "http://via.placeholder.com/64x64?text=%20"; // Error, so we use blank image for weather. See 'error:' below for another way to include a small blank image
+							} else {
+								document.getElementById("WeathImage").src = "http:" + data.current.condition.icon;
+								//image.src = "http:" + data.current.condition.icon; // icon is specified within the data
+								$('#WeathText').html('<p> ' + data.current.condition.text + "<br> " + data.location.name + " " + data.location
+									.region + " " + data.location.country + '</p>'); // current weather in text format
+
+							}
+						},
+						error: function () { // Weather service could not provide weather for requested lat,lon world location
+							image = new Image();
+							// A local 64*64 transparent image. Generated from the useful site: http://png-pixel.com/
+							image.src =
+								"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAAPElEQVR42u3OMQEAAAgDIJfc6BpjDyQgt1MVAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBgXbgARTAX8ECcrkoAAAAAElFTkSuQmCC";
+							image.onload = function () {
+								//set the image into the web page
+								$('#weatherImage').empty().append(image);
+							};
+						}
+					});
+				};
+
+			});
 		});
-		
-	});
 	</script>
 
 	<div id="navbar">
