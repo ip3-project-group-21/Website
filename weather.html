@@ -117,8 +117,11 @@
 								document.getElementById("WeathImage").src = "http:" + data.current.condition.icon;
 								//image.src = "http:" + data.current.condition.icon; // icon is specified within the data
 								$('#WeathText').html(
-									"<p> Last Updated: " + data.current.last_updated + "<br> Location: " + data.location.name 
-									+ "<br>Region: " + data.location.region + "<br>Country: " + data.location.country
+									"<p>Last Updated: " + data.current.last_updated 
+									+ "<br>" 
+									+ "Location: " + data.location.name + "<br>Region: " + data.location.region + "<br>Country: " + data.location.country
+									+ "<br><br>"
+									+ "Weather: " + data.current.condition.text + "<br>" + data.current.temp_c + "<br>"
 									+ "</p>"
 										
 										/***
