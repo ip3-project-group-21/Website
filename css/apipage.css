@@ -8,8 +8,8 @@
 }
 
 .text {
-    display:inline-block;
-    font-size:80%;
+    display: inline-block;
+    font-size: 80%;
 }
 
 .desc {
@@ -17,14 +17,26 @@
 }
 
 .tut {
-    width:30%;
-    float:right;
+    width: 30%;
+    float: right;
 }
 
 
 /* API CONTENT */
 
 .api-content {
-    background-color:gray;
-    height:800px;
+    height: 800px;
+    padding-top:20px;
+    position:relative;
+}
+
+/*EARTHQUAKE PAGE MAP*/
+ #map {
+    height: 375px;
+    width: 100%;
+}
+
+#options {
+    padding: 5px 0;
+    height: auto;
 }

@@ -4,7 +4,13 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>{page title here}</title>
+	<title>GeoJSON - JavaScript</title>
+
+	<!--Stylesheet import for Tutorials page-->
+	<link rel="stylesheet" href="css/tutorials.css">
+
+	<!--Stylesheet import for footer-->
+	<link rel="stylesheet" href="css/footer.css">
 
 	<!--Stylesheet import for navbar-->
 	<link rel="stylesheet" href="css/navbar.css">
@@ -22,6 +28,11 @@
 </head>
 
 <body>
+	<div id="page">
+		<div class="container">
+			<h1>Tutorials Page</h1>
+		</div>
+	</div>
 
 	<div id="navbar">
 		<!--Import Navbar file onto page-->
@@ -29,13 +40,11 @@
 		<script type="text/javascript" src="js/navbar.js"></script>
 	</div>
 
-	<footer>
-		&copy; Copyright
-		<div class="content">
-			<a title="Privacy Policy" href="#">Privacy Policy</a>
-			<a title="Terms of service" href="#">Terms of service</a>
-		</div>
-	</footer>
+	<div id="footer">
+		<!--Import Footer file onto page-->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/footer.js"></script>
+	</div>
 </body>
 
 </html>
