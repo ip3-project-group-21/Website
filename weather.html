@@ -119,15 +119,14 @@
 								$('#WeathText').html(
 									"<p>Last Updated: " + data.current.last_updated 
 									+ "<br><br>" 
-									+ "Location: " + data.location.name + "<br>Region: " + data.location.region + "<br>Country: " + data.location.country
+									+ "Location: " + data.location.name + "<br>Region: " + data.location.region + "<br>Country: " + data.location.country + "<br><br>Latitude: " + data.location.lat + "<br>Longitude: " + data.location.lon 
 									+ "<br><br>"
-									+ "Weather: " + data.current.condition.text  + "<br>Visibility(Km):" + data.current.vis_km + "<br>Precipitation(mm):" + data.current.precip_mm
+									+ "Weather: " + data.current.condition.text  + "<br>Visibility(Km): " + data.current.vis_km + "<br>Precipitation(mm): " + data.current.precip_mm
 									+ "<br><br>"
-									+ "Temperature(C):" + data.current.temp_c + "<br>Feels like Temperature(C):" + data.current.feelslike_c + "<br>Temperature(F):" + data.current.temp_f   + "<br>Feels like Temperature(F):" + data.current.feelslike_f
+									+ "Temperature(C): " + data.current.temp_c + "<br>Feels like Temperature(C): " + data.current.feelslike_c + "<br>Temperature(F): " + data.current.temp_f   + "<br>Feels like Temperature(F): " + data.current.feelslike_f
 									+ "<br><br>"
 									+ "Wind(Mph): " + data.current.wind_mph + "<br>Wind(Kph): " + data.current.wind_kph + "<br>Gusts(Mph): " + data.current.gust_mph + "<br>Gusts(Kph): " + data.current.gust_kph
 									+ "</p>"
-										
 										/***
 									+ data.location.name + " is " + data.current.condition.text + "<br> " + data.location
 									.region + " " + data.location.country + " " + data.location.lat + " " + data.location.lon + 
@@ -167,8 +166,23 @@
 							} else {
 								document.getElementById("WeathImage").src = "http:" + data.current.condition.icon;
 								//image.src = "http:" + data.current.condition.icon; // icon is specified within the data
-								$('#WeathText').html('<p> ' + data.current.condition.text + "<br> " + data.location.name + " " + data.location
-									.region + " " + data.location.country + '</p>'); // current weather in text format
+								$('#WeathText').html(
+									"<p>Last Updated: " + data.current.last_updated 
+									+ "<br><br>" 
+									+ "Location: " + data.location.name + "<br>Region: " + data.location.region + "<br>Country: " + data.location.country
+									+ "<br><br>"
+									+ "Weather: " + data.current.condition.text  + "<br>Visibility(Km): " + data.current.vis_km + "<br>Precipitation(mm): " + data.current.precip_mm
+									+ "<br><br>"
+									+ "Temperature(C): " + data.current.temp_c + "<br>Feels like Temperature(C): " + data.current.feelslike_c + "<br>Temperature(F): " + data.current.temp_f   + "<br>Feels like Temperature(F): " + data.current.feelslike_f
+									+ "<br><br>"
+									+ "Wind(Mph): " + data.current.wind_mph + "<br>Wind(Kph): " + data.current.wind_kph + "<br>Gusts(Mph): " + data.current.gust_mph + "<br>Gusts(Kph): " + data.current.gust_kph
+									+ "</p>"
+										/***
+									+ data.location.name + " is " + data.current.condition.text + "<br> " + data.location
+									.region + " " + data.location.country + " " + data.location.lat + " " + data.location.lon + 
+									'</p>'
+									***/
+									); // current weather in text format // current weather in text format
 
 							}
 						},
