@@ -24,39 +24,114 @@
 	 crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	 crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 </head>
 
 <body>
 
-		<div id="page">
-				<div class="intro container">
-					<section class="page-title">
-						<h1>Life Expectancy Comparisor</h1>
-					</section>
-		
-					<aside class="text desc text-justify">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-							ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-							aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-							fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-							anim id est laborum.</p>
-		
-					</aside>
-					<aside class="text tut text-justify">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-							ut labore et dolore magna aliqua.</p>
-		
-						<a href="tutlifeexpectancy.html">
-							<button type="button" class="btn btn-sm btn-outline-dark">Link to Tutorial Page</button>
-						</a>
-					</aside>
-				</div>
-		
-				<div class="api-content container">
-		
-				</div>
-			</div>
+	<div id="page">
+		<div class="intro container">
+			<section class="page-title">
+				<h1>Life Expectancy Comparisor</h1>
+			</section>
+
+			<aside class="text desc text-justify">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+					anim id est laborum.</p>
+
+			</aside>
+			<aside class="text tut text-justify">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+					ut labore et dolore magna aliqua.</p>
+
+				<a href="tutlifeexpectancy.html">
+					<button type="button" class="btn btn-sm btn-outline-dark">Link to Tutorial Page</button>
+				</a>
+			</aside>
+		</div>
+
+		<div class="api-content container" style="position: relative; height:40; width:80">
+
+			<input type="checkbox" name="Gender" id="Male" value="Male">
+			<label for="Male">Male</label>
+
+			<input type="checkbox" name="Gender" id="Female" value="Female">
+			<label for="Female">Female</label>
+			<br>
+
+			<input type="checkbox" name="Country" id="Country1" value="Country1">
+			<label for="Country1">Country1</label>
+			<br>
+
+			<input type="checkbox" name="Country" id="Country2" value="Country2">
+			<label for="Country2">Country2</label>
+			<br>
+
+			<input type="checkbox" name="Country" id="Country3" value="Country3">
+			<label for="Country3">Country3</label>
+			<br>
+
+			<input type="checkbox" name="Country" id="Country4" value="Country4">
+			<label for="Country4">Country4</label>
+			<br>
+
+			<input type="checkbox" name="Country" id="Country5" value="Country5">
+			<label for="Country5">Country5</label>
+			<br>
+
+			<input type="checkbox" name="Country" id="Country6" value="Country6">
+			<label for="Country6">Country6</label>
+			<br>
+
+			<input type="checkbox" name="Country" id="Country7" value="Country7">
+			<label for="Country7">Country7</label>
+			<br>
+
+			<input type="checkbox" name="Country" id="Country8" value="Country8">
+			<label for="Country8">Country8</label>
+			<br>
+
+			<input type="checkbox" name="Country" id="Country9" value="Country9">
+			<label for="Country9">Country9</label>
+			<br>
+
+			<input type="checkbox" name="Country" id="Country10" value="Country10">
+			<label for="Country10">Country10</label>
+
+			<canvas id="myChart"></canvas>
+
+		</div>
+	</div>
+
+	<script>
+		var ctx = document.getElementById('myChart');
+		var myChart = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: ['Red', 'Blue', 'Yellow', 'Lime', 'Magenta', 'Orange'],
+				datasets: [{
+					label: '# of Votes',
+					data: [12, 19, 3, 5, 2, 3],
+					backgroundColor: ["#FF0000", "#0000FF", "#FFFF00", "#00FF00", "#FF00FF", "#FFA500"],
+				}]
+			},
+			options: {
+				responsive: true,
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: true
+						}
+					}]
+				}
+			}
+		});
+	</script>
+
 
 	<div class="wrapper">
 
