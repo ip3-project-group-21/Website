@@ -102,33 +102,41 @@
 			<input type="checkbox" name="Country" id="Country10" value="Country10">
 			<label for="Country10">Country10</label>
 
+			<div id="chart-container">
 			<canvas id="myChart"></canvas>
+			</div>
 
 		</div>
 	</div>
 
 	<script>
-		var ctx = document.getElementById('myChart');
-		var myChart = new Chart(ctx, {
-			type: 'bar',
-			data: {
-				labels: ['Red', 'Blue', 'Yellow', 'Lime', 'Magenta', 'Orange'],
-				datasets: [{
-					label: '# of Votes',
-					data: [12, 19, 3, 5, 2, 3],
-					backgroundColor: ["#FF0000", "#0000FF", "#FFFF00", "#00FF00", "#FF00FF", "#FFA500"],
-				}]
-			},
-			options: {
-				responsive: true,
-				scales: {
-					yAxes: [{
-						ticks: {
-							beginAtZero: true
+		$(document).ready(function () {
+			$("#myChart").remove(); // removing previous canvas element
+			$("#chart-container").append('<canvas id="myChart" class="myChart"></canvas>');
+			//$("#Submit").click(function () {
+				var ctx = document.getElementById('myChart');
+				var myChart = new Chart(ctx, {
+					type: 'bar',
+					data: {
+						labels: ['Red', 'Blue', 'Yellow', 'Lime', 'Magenta', 'Orange'],
+						datasets: [{
+							label: '# of Votes',
+							data: [12, 19, 3, 5, 2, 3],
+							backgroundColor: ["#FF0000", "#0000FF", "#FFFF00", "#00FF00", "#FF00FF", "#FFA500"],
+						}]
+					},
+					options: {
+						responsive: true,
+						scales: {
+							yAxes: [{
+								ticks: {
+									beginAtZero: true
+								}
+							}]
 						}
-					}]
-				}
-			}
+					}
+				});
+			//});
 		});
 	</script>
 

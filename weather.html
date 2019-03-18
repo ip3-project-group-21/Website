@@ -118,14 +118,14 @@
 								//image.src = "http:" + data.current.condition.icon; // icon is specified within the data
 								$('#WeathText').html(
 									"<p>Last Updated: " + data.current.last_updated 
-									+ "<br>" 
+									+ "<br><br>" 
 									+ "Location: " + data.location.name + "<br>Region: " + data.location.region + "<br>Country: " + data.location.country
 									+ "<br><br>"
-									+ "Weather: " + data.current.condition.text + "<br>Temperature(C):" + data.current.temp_c + "<br>Temperature(F):" + data.current.temp_f
+									+ "Weather: " + data.current.condition.text  + "<br>Visibility(Km):" + data.current.vis_km + "<br>Precipitation(mm):" + data.current.precip_mm
 									+ "<br><br>"
-									+ "Wind(Mph): " + data.current.wind_mph + "<br>Feels like Temperature(C):" + data.current.feelslike_c + "<br>Feels like Temperature(F):" + data.current.feelslike_f
+									+ "Temperature(C):" + data.current.temp_c + "<br>Feels like Temperature(C):" + data.current.feelslike_c + "<br>Temperature(F):" + data.current.temp_f   + "<br>Feels like Temperature(F):" + data.current.feelslike_f
 									+ "<br><br>"
-									+ "Gusts(Mph): " + data.current.gust_mph + "<br>Visibility(Km):" + data.current.vis_km + "<br>Precipitation(mm):" + data.current.precip_mm
+									+ "Wind(Mph): " + data.current.wind_mph + "<br>Wind(Kph): " + data.current.wind_kph + "<br>Gusts(Mph): " + data.current.gust_mph + "<br>Gusts(Kph): " + data.current.gust_kph
 									+ "</p>"
 										
 										/***
