@@ -40,3 +40,16 @@
     padding: 5px 0;
     height: auto;
 }
+
+.ui-datepicker-calendar {
+    display: none;
+ }
+ .ui-datepicker-month {
+    display: none;
+ }
+ .ui-datepicker-prev{
+    display: none;
+ }
+ .ui-datepicker-next{
+    display: none;
+ }
