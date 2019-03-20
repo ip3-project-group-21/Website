@@ -26,9 +26,9 @@
 
 .api-content {
     height: 800px;
-    padding-top:20px;
     position:relative;
 }
+
 
 /*EARTHQUAKE PAGE MAP*/
  #map {
@@ -39,4 +39,29 @@
 #options {
     padding: 5px 0;
     height: auto;
+}
+
+
+/*WEATHER PAGE*/
+
+
+.weathertextboxes {
+    background-color:white;
+    margin-top:5px;
+}
+
+#latlongoptions {
+    background-color:blue;
+    display:inline-block;
+}
+
+#locoptions {
+    background-color:red;
+    left:50%;
+    position:absolute;
+    display:inline-block;
+}
+
+#Submit {
+    display:inline-block;
 }
