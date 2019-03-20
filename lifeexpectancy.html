@@ -64,53 +64,58 @@
 
 		<div class="api-content container" style="position: relative; height:40; width:80">
 
-			<input class="date-own form-control" type="text">
+			<label for="date">Date of Birth</label>
+			<input id="date" class="date-own form-control" type="text">
 
-			<input type="checkbox" name="Gender" id="Male" value="Male">
+
+			<input type="radio" name="Gender" id="Male" value="Male">
 			<label for="Male">Male</label>
 
-			<input type="checkbox" name="Gender" id="Female" value="Female">
+			<input type="radio" name="Gender" id="Female" value="Female">
 			<label for="Female">Female</label>
 			<br>
 
-			<input type="checkbox" name="Country" id="Country1" value="Country1">
-			<label for="Country1">Country1</label>
+			<input type="checkbox" name="UnitedKingdom" id="UnitedKingdom" value="United Kingdom">
+			<label for="UnitedKingdom">United Kingdom</label>
 			<br>
 
-			<input type="checkbox" name="Country" id="Country2" value="Country2">
-			<label for="Country2">Country2</label>
+			<input type="checkbox" name="China" id="China" value="China">
+			<label for="China">China</label>
 			<br>
 
-			<input type="checkbox" name="Country" id="Country3" value="Country3">
-			<label for="Country3">Country3</label>
+			<input type="checkbox" name="Afghanistan" id="Afghanistan" value="Afghanistan">
+			<label for="Afghanistan">Afghanistan</label>
 			<br>
 
-			<input type="checkbox" name="Country" id="Country4" value="Country4">
-			<label for="Country4">Country4</label>
+			<input type="checkbox" name="UnitedStates" id="UnitedStates" value="United States">
+			<label for="UnitedStates">United States</label>
 			<br>
 
-			<input type="checkbox" name="Country" id="Country5" value="Country5">
-			<label for="Country5">Country5</label>
+			<input type="checkbox" name="Spain" id="Spain" value="Spain">
+			<label for="Spain">Spain</label>
 			<br>
 
-			<input type="checkbox" name="Country" id="Country6" value="Country6">
-			<label for="Country6">Country6</label>
+			<input type="checkbox" name="Sweden" id="Sweden" value="Sweden">
+			<label for="Sweden">Sweden</label>
 			<br>
 
-			<input type="checkbox" name="Country" id="Country7" value="Country7">
-			<label for="Country7">Country7</label>
+			<input type="checkbox" name="Norway" id="Norway" value="Norway">
+			<label for="Norway">Norway</label>
 			<br>
 
-			<input type="checkbox" name="Country" id="Country8" value="Country8">
-			<label for="Country8">Country8</label>
+			<input type="checkbox" name="Mexico" id="Mexico" value="Mexico">
+			<label for="Mexico">Mexico</label>
 			<br>
 
-			<input type="checkbox" name="Country" id="Country9" value="Country9">
-			<label for="Country9">Country9</label>
+			<input type="checkbox" name="Japan" id="Japan" value="Japan">
+			<label for="Japan">Japan</label>
 			<br>
 
-			<input type="checkbox" name="Country" id="Country10" value="Country10">
-			<label for="Country10">Country10</label>
+			<input type="checkbox" name="World" id="World" value="World">
+			<label for="World">World</label>
+
+			<input type="button" name="Submit" id="Submit" value="Submit" />
+
 
 			<div id="chart-container">
 				<canvas id="myChart"></canvas>
@@ -121,40 +126,337 @@
 
 	<script>
 		$('.date-own').datepicker({
-
 			minViewMode: 2,
-
 			format: 'yyyy'
-
 		});
-
 		$(document).ready(function () {
 			$("#myChart").remove(); // removing previous canvas element
 			$("#chart-container").append('<canvas id="myChart" class="myChart"></canvas>');
-			//$("#Submit").click(function () {
-			var ctx = document.getElementById('myChart');
-			var myChart = new Chart(ctx, {
-				type: 'bar',
-				data: {
-					labels: ['Red', 'Blue', 'Yellow', 'Lime', 'Magenta', 'Orange'],
-					datasets: [{
-						label: '# of Votes',
-						data: [12, 19, 3, 5, 2, 3],
-						backgroundColor: ["#FF0000", "#0000FF", "#FFFF00", "#00FF00", "#FF00FF", "#FFA500"],
-					}]
-				},
-				options: {
-					responsive: true,
-					scales: {
-						yAxes: [{
-							ticks: {
-								beginAtZero: true
+			$("#Submit").click(function () {
+
+				$("#myChart").remove(); // removing previous canvas element
+				$("#chart-container").append('<canvas id="myChart" class="myChart"></canvas>');
+				var dob = $('#date').val() + "-01-1";
+				console.log(dob)
+				if (document.getElementById('Male').checked) {
+					var ChartData = [];
+					var ChartTitle = [];
+					if (document.getElementById('UnitedKingdom').checked) {
+						$.ajax({
+							type: "GET",
+							url: "http://api.population.io:80/1.0/life-expectancy/total/male/United%20Kingdom/" + dob,
+							dataType: "json",
+							success: function (data) {
+								console.log(data)
+								var UnitedKingdom = data.total_life_expectancy;
+								ChartData.push(UnitedKingdom)
+								ChartTitle.push("United Kingdom")
 							}
-						}]
+						});
 					}
+					if (document.getElementById('China').checked) {
+						$.ajax({
+							type: "GET",
+							url: "http://api.population.io:80/1.0/life-expectancy/total/male/China/" + dob,
+							dataType: "json",
+							success: function (data) {
+								console.log(data)
+								var China = data.total_life_expectancy;
+								ChartData.push(China)
+								ChartTitle.push("China")
+							}
+						});
+					}
+					if (document.getElementById('Afghanistan').checked) {
+						$.ajax({
+							type: "GET",
+							url: "http://api.population.io:80/1.0/life-expectancy/total/male/Afghanistan/" + dob,
+							dataType: "json",
+							success: function (data) {
+								console.log(data)
+								var Afghanistan = data.total_life_expectancy;
+								ChartData.push(Afghanistan)
+								ChartTitle.push("Afghanistan")
+
+							}
+						});
+					}
+					if (document.getElementById('UnitedStates').checked) {
+						$.ajax({
+							type: "GET",
+							url: "http://api.population.io:80/1.0/life-expectancy/total/male/United%20States/" + dob,
+							dataType: "json",
+							success: function (data) {
+								console.log(data)
+								var UnitedStates = data.total_life_expectancy;
+								ChartData.push(UnitedStates)
+								ChartTitle.push("United States")
+
+							}
+						});
+					}
+					if (document.getElementById('Spain').checked) {
+						$.ajax({
+							type: "GET",
+							url: "http://api.population.io:80/1.0/life-expectancy/total/male/Spain/" + dob,
+							dataType: "json",
+							success: function (data) {
+								console.log(data)
+								var Spain = data.total_life_expectancy;
+								ChartData.push(Spain)
+								ChartTitle.push("Spain")
+
+							}
+						});
+					}
+					if (document.getElementById('Sweden').checked) {
+						$.ajax({
+							type: "GET",
+							url: "http://api.population.io:80/1.0/life-expectancy/total/male/Sweden/" + dob,
+							dataType: "json",
+							success: function (data) {
+								console.log(data)
+								var Sweden = data.total_life_expectancy;
+								ChartData.push(Sweden)
+								ChartTitle.push("Sweden")
+							}
+						});
+					}
+					if (document.getElementById('Norway').checked) {
+						$.ajax({
+							type: "GET",
+							url: "http://api.population.io:80/1.0/life-expectancy/total/male/Norway/" + dob,
+							dataType: "json",
+							success: function (data) {
+								console.log(data)
+								var Norway = data.total_life_expectancy;
+								ChartData.push(Norway)
+								ChartTitle.push("Norway")
+							}
+						});
+					}
+					if (document.getElementById('Mexico').checked) {
+						$.ajax({
+							type: "GET",
+							url: "http://api.population.io:80/1.0/life-expectancy/total/male/Mexico/" + dob,
+							dataType: "json",
+							success: function (data) {
+								console.log(data)
+								var Mexico = data.total_life_expectancy;
+								ChartData.push(Mexico)
+								ChartTitle.push("Mexico")
+							}
+						});
+					}
+					if (document.getElementById('Japan').checked) {
+						$.ajax({
+							type: "GET",
+							url: "http://api.population.io:80/1.0/life-expectancy/total/male/Japan/" + dob,
+							dataType: "json",
+							success: function (data) {
+								console.log(data)
+								var Japan = data.total_life_expectancy;
+								ChartData.push(Japan)
+								ChartTitle.push("Japan")
+							}
+						});
+					}
+					if (document.getElementById('World').checked) {
+						$.ajax({
+							type: "GET",
+							url: "http://api.population.io:80/1.0/life-expectancy/total/male/World/" + dob,
+							dataType: "json",
+							success: function (data) {
+								console.log(data)
+								var World = data.total_life_expectancy;
+								ChartData.push(World)
+								ChartTitle.push("World")
+							}
+						});
+					}
+					//console.log(ChartData);
+					//console.log(ChartTitle);
+				}
+
+				if (document.getElementById('Female').checked) {
+					if (document.getElementById('UnitedKingdom').checked) {
+						$.ajax({
+							type: "GET",
+							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/United%20Kingdom/" + dob,
+							dataType: "json",
+							success: function (data) {
+								console.log(data)
+								UnitedKingdom = data.total_life_expectancy;
+								ChartData.push(UnitedKingdom)
+								ChartTitle.push("United Kingdom")
+							}
+						});
+					}
+					if (document.getElementById('China').checked) {
+						$.ajax({
+							type: "GET",
+							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/China/" + dob,
+							dataType: "json",
+							success: function (data) {
+								console.log(data)
+								China = data.total_life_expectancy;
+								ChartData.push(China)
+								ChartTitle.push("China")
+							}
+						});
+					}
+					if (document.getElementById('Afghanistan').checked) {
+						$.ajax({
+							type: "GET",
+							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/Afghanistan/" + dob,
+							dataType: "json",
+							success: function (data) {
+								console.log(data)
+								Afghanistan = data.total_life_expectancy;
+								ChartData.push(Afghanistan)
+								ChartTitle.push("Afghanistan")
+							}
+						});
+					}
+					if (document.getElementById('UnitedStates').checked) {
+						$.ajax({
+							type: "GET",
+							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/United%20States/" + dob,
+							dataType: "json",
+							success: function (data) {
+								console.log(data)
+								UnitedStates = data.total_life_expectancy;
+								ChartData.push(UnitedStates)
+								ChartTitle.push("United States")
+							}
+						});
+					}
+					if (document.getElementById('Spain').checked) {
+						$.ajax({
+							type: "GET",
+							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/Spain/" + dob,
+							dataType: "json",
+							success: function (data) {
+								console.log(data)
+								Spain = data.total_life_expectancy;
+								ChartData.push(Spain)
+								ChartTitle.push("Spain")
+							}
+						});
+					}
+					if (document.getElementById('Sweden').checked) {
+						$.ajax({
+							type: "GET",
+							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/Sweden/" + dob,
+							dataType: "json",
+							success: function (data) {
+								console.log(data)
+								Sweden = data.total_life_expectancy;
+								ChartData.push(Sweden)
+								ChartTitle.push("Sweden")
+							}
+						});
+					}
+					if (document.getElementById('Norway').checked) {
+						$.ajax({
+							type: "GET",
+							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/Norway/" + dob,
+							dataType: "json",
+							success: function (data) {
+								console.log(data)
+								Norway = data.total_life_expectancy;
+								ChartData.push(Norway)
+								ChartTitle.push("Norway")
+							}
+						});
+					}
+					if (document.getElementById('Mexico').checked) {
+						$.ajax({
+							type: "GET",
+							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/Mexico/" + dob,
+							dataType: "json",
+							success: function (data) {
+								console.log(data)
+								Mexico = data.total_life_expectancy;
+								ChartData.push(Mexico)
+								ChartTitle.push("Mexico")
+							}
+						});
+					}
+					if (document.getElementById('Japan').checked) {
+						$.ajax({
+							type: "GET",
+							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/Japan/" + dob,
+							dataType: "json",
+							success: function (data) {
+								console.log(data)
+								Japan = data.total_life_expectancy;
+								ChartData.push(Japan)
+								ChartTitle.push("Japan")
+							}
+						});
+					}
+					if (document.getElementById('World').checked) {
+						$.ajax({
+							type: "GET",
+							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/World/" + dob,
+							dataType: "json",
+							success: function (data) {
+								console.log(data)
+								World = data.total_life_expectancy;
+								ChartData.push(World)
+								ChartTitle.push("World")
+							}
+						});
+					}
+					var ctx = document.getElementById('myChart');
+					var myChart = new Chart(ctx, {
+						type: 'bar',
+						data: {
+							labels: ChartTitle,
+							datasets: [{
+								label: '# of Votes',
+								data: ChartData,
+								backgroundColor: ["#FF0000", "#0000FF", "#FFFF00", "#00FF00", "#FF00FF", "#FFA500"],
+							}]
+						},
+						options: {
+							responsive: true,
+							scales: {
+								yAxes: [{
+									ticks: {
+										beginAtZero: true
+									}
+								}]
+							}
+						}
+					});
 				}
 			});
-			//});
+		});
+	</script>
+	<script>
+		var ctx = document.getElementById('myChart');
+		var myChart = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: ChartTitle,
+				datasets: [{
+					label: 'Total Life expectancy',
+					data: ChartData,
+					backgroundColor: ["#FF0000", "#0000FF", "#FFFF00", "#00FF00", "#FF00FF", "#FFA500"],
+				}]
+			},
+			options: {
+				responsive: true,
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: true
+						}
+					}]
+				}
+			}
 		});
 	</script>
 
