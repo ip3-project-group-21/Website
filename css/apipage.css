@@ -28,7 +28,6 @@
     height: 800px;
     padding-top:20px;
     position:relative;
-    background-color:pink;
 }
 
 /*EARTHQUAKE PAGE MAP*/
@@ -40,27 +39,4 @@
 #options {
     padding: 5px 0;
     height: auto;
-}
-
-
-/*WEATHER PAGE*/
-
-#options {
-    background-color:green;
-}
-
-#latlongoptions {
-    background-color:blue;
-    height: 200px;
-    width: 30%;
-    display:inline-block;
-}
-
-#locoptions {
-    background-color:red;
-    height: 200px;
-    width: 30%;
-    left:50%;
-    position:absolute;
-    display:inline-block;
 }

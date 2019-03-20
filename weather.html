@@ -56,46 +56,29 @@
 		<div class="api-content container">
 			<div id="options">
 
-				<!-- <div class="btn-group" role="group"></div> -->
 
-				<div id="latlongoptions">
-					<button type="button" class="btn btn-secondary btn-sm" name="Area" id="LatANDLon" value="LatANDLon">Latitude and
-						Longitude</button>
-					<div class="form-group">
-						<input class="form-control input-sm" id="Latitude" value="Latitude" type="text">
-						<input class="form-control input-sm" id="Longitude" value="Longitude" type="text">
-					</div>
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-secondary" name="Area" id="LatANDLon" value="LatANDLon">Latitude and Longitude</button>
+					<button type="button" class="btn btn-secondary" name="Area" id="Location" value="Location">Location</button>
 				</div>
 
 
+				<input type="text" name="Latitude" id="Latitude" value="Latitude" />
+				<input type="text" name="Longitude" id="Longitude" value="Longitude" />
+				<input type="text" name="Location" id="LocationText" value="Location" />
+				<br>
 
-				<div id="locoptions">
-					<button type="button" class="btn btn-secondary btn-sm" name="Area" id="Location" value="Location">Location</button>
-					<div class="form-group">
-						<input class="form-control input-sm" id="LocationText" value="LocationText" type="text">
-					</div>
+
+				<input type="button" name="Submit" id="Submit" value="Submit" />
+
+			</div>
+			<div id="Weather">
+				<img id="WeathImage" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
+				<div id="WeathText">
+
 				</div>
 			</div>
-
-
-
-			<br>
-
-
-
-
-
-			<br>
-
-			<input type="button" name="Submit" id="Submit" value="Submit" />
 		</div>
-		<div id="Weather">
-			<img id="WeathImage" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
-			<div id="WeathText">
-
-			</div>
-		</div>
-	</div>
 	</div>
 
 	<!--Link to local Javascript file-->
