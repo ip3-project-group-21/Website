@@ -133,7 +133,6 @@
 			$("#myChart").remove(); // removing previous canvas element
 			$("#chart-container").append('<canvas id="myChart" class="myChart"></canvas>');
 			$("#Submit").click(function () {
-
 				$("#myChart").remove(); // removing previous canvas element
 				$("#chart-container").append('<canvas id="myChart" class="myChart"></canvas>');
 				var dob = $('#date').val() + "-01-1";
@@ -276,6 +275,28 @@
 					}
 					//console.log(ChartData);
 					//console.log(ChartTitle);
+						var ctx = document.getElementById('myChart');
+						var myChart = new Chart(ctx, {
+							type: 'bar',
+							data: {
+								labels: ChartTitle,
+								datasets: [{
+									label: '# of Votes',
+									data: ChartData,
+									backgroundColor: ["#FF0000", "#0000FF", "#FFFF00", "#00FF00", "#FF00FF", "#FFA500"],
+								}]
+							},
+							options: {
+								responsive: true,
+								scales: {
+									yAxes: [{
+										ticks: {
+											beginAtZero: true
+										}
+									}]
+								}
+							}
+						});
 				}
 
 				if (document.getElementById('Female').checked) {
@@ -433,30 +454,6 @@
 					});
 				}
 			});
-		});
-	</script>
-	<script>
-		var ctx = document.getElementById('myChart');
-		var myChart = new Chart(ctx, {
-			type: 'bar',
-			data: {
-				labels: ChartTitle,
-				datasets: [{
-					label: 'Total Life expectancy',
-					data: ChartData,
-					backgroundColor: ["#FF0000", "#0000FF", "#FFFF00", "#00FF00", "#FF00FF", "#FFA500"],
-				}]
-			},
-			options: {
-				responsive: true,
-				scales: {
-					yAxes: [{
-						ticks: {
-							beginAtZero: true
-						}
-					}]
-				}
-			}
 		});
 	</script>
 
