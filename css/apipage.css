@@ -28,6 +28,7 @@
     height: 800px;
     padding-top:20px;
     position:relative;
+    background-color:pink;
 }
 
 /*EARTHQUAKE PAGE MAP*/
@@ -53,3 +54,25 @@
  .ui-datepicker-next{
     display: none;
  }
+
+/*WEATHER PAGE*/
+
+#options {
+    background-color:green;
+}
+
+#latlongoptions {
+    background-color:blue;
+    height: 200px;
+    width: 30%;
+    display:inline-block;
+}
+
+#locoptions {
+    background-color:red;
+    height: 200px;
+    width: 30%;
+    left:50%;
+    position:absolute;
+    display:inline-block;
+}
