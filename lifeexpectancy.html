@@ -16,22 +16,25 @@
 	<link rel="stylesheet" href="css/navbar.css">
 
 	<!--Bootstrap framework import-->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	 crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	 crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-	 crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-	 crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+	</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+	</script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
+		rel="stylesheet">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
-
-
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 <body>
@@ -44,9 +47,12 @@
 
 			<aside class="text desc text-justify">
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+					nisi ut
+					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu
+					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+					deserunt mollit
 					anim id est laborum.</p>
 
 			</aside>
@@ -118,7 +124,6 @@
 
 
 			<div id="chart-container">
-				<canvas id="myChart"></canvas>
 			</div>
 
 		</div>
@@ -129,340 +134,415 @@
 			minViewMode: 2,
 			format: 'yyyy'
 		});
+		var ChartData = [1];
+		var ChartTitle = ["d"];
+		google.load("visualization", "1", {
+			packages: ["corechart"],
+			"callback": drawVisualization
+		});
+		google.charts.setOnLoadCallback(drawVisualization);
+		var chart;
+
+		function drawVisualization() {
+			// Create and populate the data table.
+			//var years = ['2001', '2002', '2003', '2004', '2005'];
+			//var sales = [1, 2, 3, 4, 5];
+
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'Country');
+			data.addColumn('number', 'Life Expectancy');
+
+			for (i = 0; i < ChartTitle.length; i++)
+				data.addRow([ChartTitle[i], ChartData[i]]);
+
+
+			var options = {
+
+				chartArea: {
+					width: '100%',
+					height: '100%'
+				},
+
+				forceIFrame: 'false',
+
+				is3D: 'true',
+
+				pieSliceText: 'value',
+
+				sliceVisibilityThreshold: 1 / 20, // Only > 5% will be shown.
+
+				titlePosition: 'none'
+
+			};
+
+
+			chart = new google.visualization.BarChart(document.getElementById('chart-container'));
+
+			chart.draw(data, options);
+		}
 		$(document).ready(function () {
-			$("#myChart").remove(); // removing previous canvas element
-			$("#chart-container").append('<canvas id="myChart" class="myChart"></canvas>');
+			$("#chart-container").empty(); // removing previous canvas element
+			//$("#chart-container").append('<canvas id="myChart" class="myChart"></canvas>');
 			$("#Submit").click(function () {
-				$("#myChart").remove(); // removing previous canvas element
-				$("#chart-container").append('<canvas id="myChart" class="myChart"></canvas>');
+				var data = new google.visualization.DataTable();
+				data.addColumn('string', 'Country');
+				data.addColumn('number', 'Life Expectancy');
+
+				//for (i = 0; i < ChartTitle.length; i++)
+					//data.addRow([ChartTitle[i], ChartData[i]]);
+					data.addRow(["bob", 12]);
+
+				var options = {
+
+					chartArea: {
+						width: '100%',
+						height: '100%'
+					},
+
+					forceIFrame: 'false',
+
+					is3D: 'true',
+
+					pieSliceText: 'value',
+
+					sliceVisibilityThreshold: 1 / 20, // Only > 5% will be shown.
+
+					titlePosition: 'none'
+
+				};
+
+				// Create and draw the visualization.
+				//new google.visualization.BarChart(document.getElementById('chart-container')).
+				chart.draw(data, options);
+
+				$("#chart-container").empty(); // removing previous canvas element
+				ChartData = [];
+				ChartTitle = [];
+				var UnitedKingdom;
+				var China;
+				var Afghanistan;
+				var UnitedStates;
+				var Spain;
+				var Sweden;
+				var Norway;
+				var Mexico;
+				var Japan;
+				var World;
 				var dob = $('#date').val() + "-01-1";
 				console.log(dob)
 				if (document.getElementById('Male').checked) {
-					var ChartData = [];
-					var ChartTitle = [];
 					if (document.getElementById('UnitedKingdom').checked) {
 						$.ajax({
 							type: "GET",
-							url: "http://api.population.io:80/1.0/life-expectancy/total/male/United%20Kingdom/" + dob,
+							url: "http://api.population.io:80/1.0/life-expectancy/total/male/United%20Kingdom/" +
+								dob,
 							dataType: "json",
 							success: function (data) {
-								console.log(data)
-								var UnitedKingdom = data.total_life_expectancy;
-								ChartData.push(UnitedKingdom)
-								ChartTitle.push("United Kingdom")
+								console.log(data);
+								UnitedKingdom = data.total_life_expectancy;
+								ChartData.push(UnitedKingdom);
+								ChartTitle.push("United Kingdom");
 							}
 						});
-					}
+					};
 					if (document.getElementById('China').checked) {
 						$.ajax({
 							type: "GET",
-							url: "http://api.population.io:80/1.0/life-expectancy/total/male/China/" + dob,
+							url: "http://api.population.io:80/1.0/life-expectancy/total/male/China/" +
+								dob,
 							dataType: "json",
 							success: function (data) {
-								console.log(data)
-								var China = data.total_life_expectancy;
-								ChartData.push(China)
-								ChartTitle.push("China")
+								console.log(data);
+								China = data.total_life_expectancy;
+								ChartData.push(China);
+								ChartTitle.push("China");
 							}
 						});
-					}
+					};
 					if (document.getElementById('Afghanistan').checked) {
 						$.ajax({
 							type: "GET",
-							url: "http://api.population.io:80/1.0/life-expectancy/total/male/Afghanistan/" + dob,
+							url: "http://api.population.io:80/1.0/life-expectancy/total/male/Afghanistan/" +
+								dob,
 							dataType: "json",
 							success: function (data) {
-								console.log(data)
-								var Afghanistan = data.total_life_expectancy;
-								ChartData.push(Afghanistan)
-								ChartTitle.push("Afghanistan")
+								console.log(data);
+								Afghanistan = data.total_life_expectancy;
+								ChartData.push(Afghanistan);
+								ChartTitle.push("Afghanistan");
 
 							}
 						});
-					}
+					};
 					if (document.getElementById('UnitedStates').checked) {
 						$.ajax({
 							type: "GET",
-							url: "http://api.population.io:80/1.0/life-expectancy/total/male/United%20States/" + dob,
+							url: "http://api.population.io:80/1.0/life-expectancy/total/male/United%20States/" +
+								dob,
 							dataType: "json",
 							success: function (data) {
-								console.log(data)
-								var UnitedStates = data.total_life_expectancy;
-								ChartData.push(UnitedStates)
-								ChartTitle.push("United States")
+								console.log(data);
+								UnitedStates = data.total_life_expectancy;
+								ChartData.push(UnitedStates);
+								ChartTitle.push("United States");
 
 							}
 						});
-					}
+					};
 					if (document.getElementById('Spain').checked) {
 						$.ajax({
 							type: "GET",
-							url: "http://api.population.io:80/1.0/life-expectancy/total/male/Spain/" + dob,
+							url: "http://api.population.io:80/1.0/life-expectancy/total/male/Spain/" +
+								dob,
 							dataType: "json",
 							success: function (data) {
-								console.log(data)
-								var Spain = data.total_life_expectancy;
-								ChartData.push(Spain)
-								ChartTitle.push("Spain")
+								console.log(data);
+								Spain = data.total_life_expectancy;
+								ChartData.push(Spain);
+								ChartTitle.push("Spain");
 
 							}
 						});
-					}
+					};
 					if (document.getElementById('Sweden').checked) {
 						$.ajax({
 							type: "GET",
-							url: "http://api.population.io:80/1.0/life-expectancy/total/male/Sweden/" + dob,
+							url: "http://api.population.io:80/1.0/life-expectancy/total/male/Sweden/" +
+								dob,
 							dataType: "json",
 							success: function (data) {
-								console.log(data)
-								var Sweden = data.total_life_expectancy;
-								ChartData.push(Sweden)
-								ChartTitle.push("Sweden")
+								console.log(data);
+								Sweden = data.total_life_expectancy;
+								ChartData.push(Sweden);
+								ChartTitle.push("Sweden");
 							}
 						});
-					}
+					};
 					if (document.getElementById('Norway').checked) {
 						$.ajax({
 							type: "GET",
-							url: "http://api.population.io:80/1.0/life-expectancy/total/male/Norway/" + dob,
+							url: "http://api.population.io:80/1.0/life-expectancy/total/male/Norway/" +
+								dob,
 							dataType: "json",
 							success: function (data) {
-								console.log(data)
-								var Norway = data.total_life_expectancy;
-								ChartData.push(Norway)
-								ChartTitle.push("Norway")
+								console.log(data);
+								Norway = data.total_life_expectancy;
+								ChartData.push(Norway);
+								ChartTitle.push("Norway");
 							}
 						});
-					}
+					};
 					if (document.getElementById('Mexico').checked) {
 						$.ajax({
 							type: "GET",
-							url: "http://api.population.io:80/1.0/life-expectancy/total/male/Mexico/" + dob,
+							url: "http://api.population.io:80/1.0/life-expectancy/total/male/Mexico/" +
+								dob,
 							dataType: "json",
 							success: function (data) {
-								console.log(data)
-								var Mexico = data.total_life_expectancy;
-								ChartData.push(Mexico)
-								ChartTitle.push("Mexico")
+								console.log(data);
+								Mexico = data.total_life_expectancy;
+								ChartData.push(Mexico);
+								ChartTitle.push("Mexico");
 							}
 						});
-					}
+					};
 					if (document.getElementById('Japan').checked) {
 						$.ajax({
 							type: "GET",
-							url: "http://api.population.io:80/1.0/life-expectancy/total/male/Japan/" + dob,
+							url: "http://api.population.io:80/1.0/life-expectancy/total/male/Japan/" +
+								dob,
 							dataType: "json",
 							success: function (data) {
-								console.log(data)
-								var Japan = data.total_life_expectancy;
-								ChartData.push(Japan)
-								ChartTitle.push("Japan")
+								console.log(data);
+								Japan = data.total_life_expectancy;
+								ChartData.push(Japan);
+								ChartTitle.push("Japan");
 							}
 						});
-					}
+					};
 					if (document.getElementById('World').checked) {
 						$.ajax({
 							type: "GET",
-							url: "http://api.population.io:80/1.0/life-expectancy/total/male/World/" + dob,
+							url: "http://api.population.io:80/1.0/life-expectancy/total/male/World/" +
+								dob,
 							dataType: "json",
 							success: function (data) {
-								console.log(data)
-								var World = data.total_life_expectancy;
-								ChartData.push(World)
-								ChartTitle.push("World")
+								console.log(data);
+								World = data.total_life_expectancy;
+								ChartData.push(World);
+								ChartTitle.push("World");
 							}
 						});
-					}
+					};
 					//console.log(ChartData);
 					//console.log(ChartTitle);
-						var ctx = document.getElementById('myChart');
-						var myChart = new Chart(ctx, {
-							type: 'bar',
-							data: {
-								labels: ChartTitle,
-								datasets: [{
-									label: '# of Votes',
-									data: ChartData,
-									backgroundColor: ["#FF0000", "#0000FF", "#FFFF00", "#00FF00", "#FF00FF", "#FFA500"],
-								}]
-							},
-							options: {
-								responsive: true,
-								scales: {
-									yAxes: [{
-										ticks: {
-											beginAtZero: true
-										}
-									}]
-								}
-							}
-						});
-				}
+				};
 
 				if (document.getElementById('Female').checked) {
 					if (document.getElementById('UnitedKingdom').checked) {
 						$.ajax({
 							type: "GET",
-							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/United%20Kingdom/" + dob,
+							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/United%20Kingdom/" +
+								dob,
 							dataType: "json",
 							success: function (data) {
-								console.log(data)
+								console.log(data);
 								UnitedKingdom = data.total_life_expectancy;
-								ChartData.push(UnitedKingdom)
-								ChartTitle.push("United Kingdom")
+								ChartData.push(UnitedKingdom);
+								ChartTitle.push("United Kingdom");
 							}
 						});
 					}
 					if (document.getElementById('China').checked) {
 						$.ajax({
 							type: "GET",
-							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/China/" + dob,
+							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/China/" +
+								dob,
 							dataType: "json",
 							success: function (data) {
-								console.log(data)
+								console.log(data);
 								China = data.total_life_expectancy;
-								ChartData.push(China)
-								ChartTitle.push("China")
+								ChartData.push(China);
+								ChartTitle.push("China");
 							}
 						});
 					}
 					if (document.getElementById('Afghanistan').checked) {
 						$.ajax({
 							type: "GET",
-							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/Afghanistan/" + dob,
+							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/Afghanistan/" +
+								dob,
 							dataType: "json",
 							success: function (data) {
-								console.log(data)
+								console.log(data);
 								Afghanistan = data.total_life_expectancy;
-								ChartData.push(Afghanistan)
-								ChartTitle.push("Afghanistan")
+								ChartData.push(Afghanistan);
+								ChartTitle.push("Afghanistan");
 							}
 						});
 					}
 					if (document.getElementById('UnitedStates').checked) {
 						$.ajax({
 							type: "GET",
-							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/United%20States/" + dob,
+							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/United%20States/" +
+								dob,
 							dataType: "json",
 							success: function (data) {
-								console.log(data)
+								console.log(data);
 								UnitedStates = data.total_life_expectancy;
-								ChartData.push(UnitedStates)
-								ChartTitle.push("United States")
+								ChartData.push(UnitedStates);
+								ChartTitle.push("United States");
 							}
 						});
 					}
 					if (document.getElementById('Spain').checked) {
 						$.ajax({
 							type: "GET",
-							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/Spain/" + dob,
+							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/Spain/" +
+								dob,
 							dataType: "json",
 							success: function (data) {
-								console.log(data)
+								console.log(data);
 								Spain = data.total_life_expectancy;
-								ChartData.push(Spain)
-								ChartTitle.push("Spain")
+								ChartData.push(Spain);
+								ChartTitle.push("Spain");
 							}
 						});
 					}
 					if (document.getElementById('Sweden').checked) {
 						$.ajax({
 							type: "GET",
-							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/Sweden/" + dob,
+							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/Sweden/" +
+								dob,
 							dataType: "json",
 							success: function (data) {
-								console.log(data)
+								console.log(data);
 								Sweden = data.total_life_expectancy;
-								ChartData.push(Sweden)
-								ChartTitle.push("Sweden")
+								ChartData.push(Sweden);
+								ChartTitle.push("Sweden");
 							}
 						});
 					}
 					if (document.getElementById('Norway').checked) {
 						$.ajax({
 							type: "GET",
-							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/Norway/" + dob,
+							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/Norway/" +
+								dob,
 							dataType: "json",
 							success: function (data) {
-								console.log(data)
+								console.log(data);
 								Norway = data.total_life_expectancy;
-								ChartData.push(Norway)
-								ChartTitle.push("Norway")
+								ChartData.push(Norway);
+								ChartTitle.push("Norway");
 							}
 						});
 					}
 					if (document.getElementById('Mexico').checked) {
 						$.ajax({
 							type: "GET",
-							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/Mexico/" + dob,
+							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/Mexico/" +
+								dob,
 							dataType: "json",
 							success: function (data) {
-								console.log(data)
+								console.log(data);
 								Mexico = data.total_life_expectancy;
-								ChartData.push(Mexico)
-								ChartTitle.push("Mexico")
+								ChartData.push(Mexico);
+								ChartTitle.push("Mexico");
 							}
 						});
 					}
 					if (document.getElementById('Japan').checked) {
 						$.ajax({
 							type: "GET",
-							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/Japan/" + dob,
+							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/Japan/" +
+								dob,
 							dataType: "json",
 							success: function (data) {
-								console.log(data)
+								console.log(data);
 								Japan = data.total_life_expectancy;
-								ChartData.push(Japan)
-								ChartTitle.push("Japan")
+								ChartData.push(Japan);
+								ChartTitle.push("Japan");
 							}
 						});
 					}
 					if (document.getElementById('World').checked) {
 						$.ajax({
 							type: "GET",
-							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/World/" + dob,
+							url: "http://api.population.io:80/1.0/life-expectancy/total/Female/World/" +
+								dob,
 							dataType: "json",
 							success: function (data) {
-								console.log(data)
+								console.log(data);
 								World = data.total_life_expectancy;
 								ChartData.push(World)
-								ChartTitle.push("World")
+								ChartTitle.push("World");
 							}
 						});
 					}
-					var ctx = document.getElementById('myChart');
-					var myChart = new Chart(ctx, {
-						type: 'bar',
-						data: {
-							labels: ChartTitle,
-							datasets: [{
-								label: '# of Votes',
-								data: ChartData,
-								backgroundColor: ["#FF0000", "#0000FF", "#FFFF00", "#00FF00", "#FF00FF", "#FFA500"],
-							}]
-						},
-						options: {
-							responsive: true,
-							scales: {
-								yAxes: [{
-									ticks: {
-										beginAtZero: true
-									}
-								}]
-							}
-						}
-					});
 				}
+
+				//google.charts.load('current', {
+				//	'packages': ['corechart']
+				//});
+
+				// Set a callback to run when the Google Visualization API is loaded.
+				//google.charts.setOnLoadCallback(drawChart);
+				//$("#chart-container").html(""); // removing previous canvas element
+
+
+
 			});
+
+
 		});
 	</script>
-
 
 	<div class="wrapper">
 
 		<div id="navbar">
 			<!--Import Navbar file onto page-->
-			<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+			<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+			</script>
 			<script type="text/javascript" src="js/navbar.js"></script>
 		</div>
 
