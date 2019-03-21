@@ -66,7 +66,7 @@ $(document).ready(function () {
                     });
 
                     var vis = $("<li />", {
-                        text: "Current Visibiility: " + data.current.vis_km + " km"
+                        text: "Current Visibility: " + data.current.vis_km + " km"
                     });
 
                     var perc = $("<li />", {
