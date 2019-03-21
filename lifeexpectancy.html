@@ -34,7 +34,7 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
 
 <body>
@@ -120,10 +120,12 @@
 			<input type="checkbox" name="World" id="World" value="World">
 			<label for="World">World</label>
 
+			<br>
 			<input type="button" name="Submit" id="Submit" value="Submit" />
 
 
 			<div id="chart-container">
+				<canvas id="myChart"></canvas>
 			</div>
 
 		</div>
@@ -134,90 +136,53 @@
 			minViewMode: 2,
 			format: 'yyyy'
 		});
-		var ChartData = [1];
-		var ChartTitle = ["d"];
-		google.load("visualization", "1", {
-			packages: ["corechart"],
-			"callback": drawVisualization
-		});
-		google.charts.setOnLoadCallback(drawVisualization);
-		var chart;
 
-		function drawVisualization() {
-			// Create and populate the data table.
-			//var years = ['2001', '2002', '2003', '2004', '2005'];
-			//var sales = [1, 2, 3, 4, 5];
-
-			var data = new google.visualization.DataTable();
-			data.addColumn('string', 'Country');
-			data.addColumn('number', 'Life Expectancy');
-
-			for (i = 0; i < ChartTitle.length; i++)
-				data.addRow([ChartTitle[i], ChartData[i]]);
-
-
-			var options = {
-
-				chartArea: {
-					width: '100%',
-					height: '100%'
-				},
-
-				forceIFrame: 'false',
-
-				is3D: 'true',
-
-				pieSliceText: 'value',
-
-				sliceVisibilityThreshold: 1 / 20, // Only > 5% will be shown.
-
-				titlePosition: 'none'
-
-			};
-
-
-			chart = new google.visualization.BarChart(document.getElementById('chart-container'));
-
-			chart.draw(data, options);
-		}
 		$(document).ready(function () {
-			$("#chart-container").empty(); // removing previous canvas element
+			//$("#chart-container").empty(); // removing previous canvas element
 			//$("#chart-container").append('<canvas id="myChart" class="myChart"></canvas>');
+			var ChartData = [];
+			var ChartTitle = [];
+			var ctx = document.getElementById('myChart');
+			myChart = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: ChartTitle,
+					datasets: [{
+						label: '# of Votes',
+						data: ChartData,
+						backgroundColor: [
+							'rgba(255, 99, 132, 0.2)',
+							'rgba(54, 162, 235, 0.2)',
+							'rgba(255, 206, 86, 0.2)',
+							'rgba(75, 192, 192, 0.2)',
+							'rgba(153, 102, 255, 0.2)',
+							'rgba(255, 159, 64, 0.2)'
+						],
+						borderColor: [
+							'rgba(255, 99, 132, 1)',
+							'rgba(54, 162, 235, 1)',
+							'rgba(255, 206, 86, 1)',
+							'rgba(75, 192, 192, 1)',
+							'rgba(153, 102, 255, 1)',
+							'rgba(255, 159, 64, 1)'
+						],
+						borderWidth: 1
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: true
+							}
+						}]
+					}
+				}
+			});
 			$("#Submit").click(function () {
-				var data = new google.visualization.DataTable();
-				data.addColumn('string', 'Country');
-				data.addColumn('number', 'Life Expectancy');
-
-				//for (i = 0; i < ChartTitle.length; i++)
-					//data.addRow([ChartTitle[i], ChartData[i]]);
-					data.addRow(["bob", 12]);
-
-				var options = {
-
-					chartArea: {
-						width: '100%',
-						height: '100%'
-					},
-
-					forceIFrame: 'false',
-
-					is3D: 'true',
-
-					pieSliceText: 'value',
-
-					sliceVisibilityThreshold: 1 / 20, // Only > 5% will be shown.
-
-					titlePosition: 'none'
-
-				};
-
-				// Create and draw the visualization.
-				//new google.visualization.BarChart(document.getElementById('chart-container')).
-				chart.draw(data, options);
-
-				$("#chart-container").empty(); // removing previous canvas element
-				ChartData = [];
-				ChartTitle = [];
+				//$("#chart-container").empty(); // removing previous canvas element
+				var ChartData = [];
+				var ChartTitle = [];
 				var UnitedKingdom;
 				var China;
 				var Afghanistan;
@@ -521,21 +486,15 @@
 					}
 				}
 
-				//google.charts.load('current', {
-				//	'packages': ['corechart']
-				//});
-
-				// Set a callback to run when the Google Visualization API is loaded.
-				//google.charts.setOnLoadCallback(drawChart);
-				//$("#chart-container").html(""); // removing previous canvas element
-
-
-
+				var chart = myChart.config.data;
+				chart.datasets[0].data = ChartData;
+				chart.labels = ChartTitle;
+				myChart.update();
 			});
-
-
 		});
 	</script>
+	<!--Link to local Javascript file-->
+	<script type="text/javascript" src="js/lifeExpectancy.js"></script>
 
 	<div class="wrapper">
 
