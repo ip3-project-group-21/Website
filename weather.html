@@ -34,29 +34,43 @@
 
 	<div id="page">
 		<div class="intro container">
-			<section class="page-title">
-				<h1>Global Weather Viewer</h1>
-			</section>
+			<div class="row">
+				<div class="col-12">
+					<h1 class="page-title text-center">Global Weather Viewer</h1>
+				</div>
+			</div>
 
-			<aside class="text desc text-justify">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-					nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-					deserunt mollit
-					anim id est laborum.</p>
+			<div class="row">
+				<div class="col-sm-12 col-md-6">
+					<aside class="">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+							ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+							laboris
+							nisi ut
+							aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+							esse
+							cillum dolore eu
+							fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+							officia
+							deserunt mollit
+							anim id est laborum.</p>
 
-			</aside>
-			<aside class="text tut text-justify">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua.</p>
+					</aside>
+				</div>
 
-				<a href="tutweather.html">
-					<button type="button" class="btn btn-sm btn-outline-dark">Link to Tutorial Page</button>
-				</a>
-			</aside>
+				<div class="col-sm-12 col-md-6">
+					<aside class="">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+							ut labore et dolore magna aliqua.</p>
+
+						<a href="tutweather.html">
+							<button type="button" class="btn btn-sm btn-outline-dark">Link to Tutorial Page</button>
+						</a>
+
+						<br><br>
+					</aside>
+				</div>
+			</div>
 		</div>
 
 		<div class="api-content container">
@@ -71,15 +85,17 @@
 								<button type="button" class="btn btn-secondary btn-sm" name="Area" id="LatANDLon"
 									value="LatANDLon">Latitude and
 									Longitude</button>
+
+								<br><br>
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="col-sm-12 col-md-6">
-								<input class="form-control input-sm" id="Latitude" value="Latitude" type="text">
+								<input class="form-control input-sm" id="Latitude" placeholder="Latitude" type="text">
 							</div>
 							<div class="col-sm-12 col-md-6">
-								<input class="form-control input-sm" id="Longitude" value="Longitude" type="text">
+								<input class="form-control input-sm" id="Longitude" placeholder="Longitude" type="text">
 							</div>
 						</div>
 
@@ -96,17 +112,20 @@
 							<div class="col-12">
 								<button type="button" class="btn btn-secondary btn-sm" name="Area" id="Location"
 									value="Location">Location</button>
+
+								<br><br>
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="col-sm-12 col-md-6">
-								<input class="form-control input-sm" id="LocationText" value="Location" type="text">
+								<input class="form-control input-sm" id="LocationText" placeholder="Location"
+									type="text">
 							</div>
 
 							<br><br><br>
 							<div class="col-sm-12 col-md-6">
-								<button type="button" name="Submit" id="Submit" value="Submit"
+								<button type="button" name="Submit" id="submitBtn" value="Submit"
 									class="btn btn-outline-success">Submit</button>
 							</div>
 						</div>
@@ -115,10 +134,12 @@
 
 
 			</div>
-			<div id="Weather">
+			<div id="Weather" style="text-align:center;">
 				<img id="WeathImage" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
 
 				<div id="WeathText">
+
+					<ul id="weathTextList" style="list-style:none;"></ul>
 
 				</div>
 			</div>

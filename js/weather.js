@@ -10,7 +10,6 @@ $(document).ready(function () {
         $("#Latitude").removeAttr('disabled');
         $("#Longitude").removeAttr('disabled');
         $("#Submit").removeAttr('disabled');
-        document.getElementById("LocationText").value = "Location";
     });
 
     $("#Location").click(function () {
@@ -18,108 +17,230 @@ $(document).ready(function () {
         $("#Longitude").attr("disabled", "disabled");
         $("#LocationText").removeAttr('disabled');
         $("#Submit").removeAttr('disabled');
-        document.getElementById("Latitude").value = "Latitude";
-        document.getElementById("Longitude").value = "Longitude";
     });
 
+    $("#submitBtn").click(function () {
 
+        $("#weathTextList").empty(); // Clears the li elements under the UL when button clicked. Otherwise data gets muddled together. Source - https://stackoverflow.com/questions/6941489/how-does-one-remove-all-li-tags-from-a-parent-ul-tag
 
-    $("#Submit").click(function () {
-        //$('#WeathImage').width(300)
-        //$('#WeathImage').height(300);
+        // Additional source to check if the text box was disabled to help program decide which if statement to execute - https://stackoverflow.com/questions/8963781/find-if-a-textbox-is-disabled-or-not-using-jquery
 
-        var location = document.getElementById('LocationText').value;
-        $.ajax({
-            url: "http://api.apixu.com/v1/current.json?key=75fb86a2371f4abca12115412190403&q=" + location,
-            success: function (data) {
-                console.log(data);
-                image = new Image();
-                if (data.error) {
-                    image.src = "http://via.placeholder.com/64x64?text=%20"; // Error, so we use blank image for weather. See 'error:' below for another way to include a small blank image
-                } else {
+        if ($("#LocationText").prop('disabled') == false) {
+
+            var location = document.getElementById('LocationText').value;
+
+            console.log(location);
+
+            $.ajax({
+
+                url: "http://api.apixu.com/v1/current.json?key=75fb86a2371f4abca12115412190403&q=" + location,
+
+                error: function () {
+
+                    alert("Issue obtaining API data. Please enter a proper location.");
+
+                },
+
+                success: function (data) {
+
                     document.getElementById("WeathImage").src = "http:" + data.current.condition.icon;
-                    //image.src = "http:" + data.current.condition.icon; // icon is specified within the data
-                    
-                    var arrayLength = data.length;
+
+                    var lastUpdated = $("<li />", {
+                        text: "Last Updated: " + data.current.last_updated
+                    });
+
+                    var loc = $("<li />", {
+                        text: "Location Name: " + data.location.name
+                    });
+
+                    var reg = $("<li />", {
+                        text: "Region: " + data.location.region
+                    });
+
+                    var country = $("<li />", {
+                        text: "Country: " + data.location.country
+                    });
+
+                    var weathCond = $("<li />", {
+                        text: "Current Condition: " + data.current.condition.text
+                    });
+
+                    var vis = $("<li />", {
+                        text: "Current Visibility: " + data.current.vis_km + " km"
+                    });
+
+                    var perc = $("<li />", {
+                        text: "Current Precipitation: " + data.current.precip_mm + " mm"
+                    });
+
+                    var tempC = $("<li />", {
+                        text: "Current Temparature (C): " + data.current.temp_c + " C"
+                    });
+
+                    var feelsLikeC = $("<li />", {
+                        text: "Feels Like: " + data.current.feelslike_c + " C"
+                    });
+
+                    var tempF = $("<li />", {
+                        text: "Current Temparature (F): " + data.current.temp_f + " F"
+                    });
+
+                    var feelsLikeF = $("<li />", {
+                        text: "Feels Like: " + data.current.feelslike_f + " F"
+                    });
+
+                    var windMPH = $("<li />", {
+                        text: "Wind (MPH): " + data.current.wind_mph + " mph"
+                    });
+
+                    var windKPH = $("<li />", {
+                        text: "Wind (KPH): " + data.current.wind_kph + " kph"
+                    });
+
+                    var gustMPH = $("<li />", {
+                        text: "Gusts (MPH): " + data.current.gust_mph + " mph"
+                    });
+
+                    var gustKPH = $("<li />", {
+                        text: "Gusts (KPH): " + data.current.gust_kph + " kph"
+                    });
 
 
-                        var lastUpdated = $("<li />", {
-                            text: data.current.last_updated
-                        });
+                    /*data.location.name + " is " + data.current.condition.text + "<br> " + data.location
+                        .region + " " + data.location.country + " " + data.location.lat + " " + data.location.lon +
+                        '</p>'*/
 
-                        var uList = $("<ul />");
+                    /** this code above was in ryans code twice not sure if you need it. Only thing not above is the lat & lon vars
+                     *  ALSO RYAN ALL YOU HAD TO DO WAS LOOK AT OUR WORK FROM WEB LAST SEMESTER!!!!!
+                     */
 
-                        uList.append(lastUpdated);
-
-                        $("WeathText").append(uList);
-                    
-                    /* $('#WeathText').html(
-                        "<p>Last Updated: " + data.current.last_updated +
-                        "<br><br>" +
-                        "Location: " + data.location.name + "<br>Region: " + data.location.region + "<br>Country: " + data.location.country +
-                        "<br><br>" +
-                        "Weather: " + data.current.condition.text + "<br>Visibility(Km): " + data.current.vis_km + "<br>Precipitation(mm): " + data.current.precip_mm +
-                        "<br><br>" +
-                        "Temperature(C): " + data.current.temp_c + "<br>Feels like Temperature(C):" + data.current.feelslike_c + "<br>Temperature(F):" + data.current.temp_f + "<br>Feels like Temperature(F):" + data.current.feelslike_f +
-                        "<br><br>" +
-                        "Wind(Mph): " + data.current.wind_mph + "<br>Wind(Kph): " + data.current.wind_kph + "<br>Gusts(Mph): " + data.current.gust_mph + "<br>Gusts(Kph): " + data.current.gust_kph +
-                        "</p>" */
-
-
-
-                        /***
-                            + data.location.name + " is " + data.current.condition.text + "<br> " + data.location
-                            .region + " " + data.location.country + " " + data.location.lat + " " + data.location.lon + 
-                            '</p>'
-                            ***/
-                   // ); // current weather in text format
+                    $("#weathTextList").append(lastUpdated);
+                    $("#weathTextList").append(loc);
+                    $("#weathTextList").append(reg);
+                    $("#weathTextList").append(country);
+                    $("#weathTextList").append(weathCond);
+                    $("#weathTextList").append(vis);
+                    $("#weathTextList").append(perc);
+                    $("#weathTextList").append(tempC);
+                    $("#weathTextList").append(feelsLikeC);
+                    $("#weathTextList").append(tempF);
+                    $("#weathTextList").append(feelsLikeF);
+                    $("#weathTextList").append(windMPH);
+                    $("#weathTextList").append(windKPH);
+                    $("#weathTextList").append(gustMPH);
+                    $("#weathTextList").append(gustKPH);
 
                 }
-            },
-             error: function () { // Weather service could not provide weather for requested lat,lon world location
-                image = new Image();
-                // A local 64*64 transparent image. Generated from the useful site: http://png-pixel.com/
-                image.src =
-                    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAAPElEQVR42u3OMQEAAAgDIJfc6BpjDyQgt1MVAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBgXbgARTAX8ECcrkoAAAAAElFTkSuQmCC";
-                image.onload = function () {
-                    //set the image into the web page
-                    $('#weatherImage').empty().append(image);
-                };
-            } 
-        });
 
+            });
+        }
 
+        if ($("#Longitude").prop('disabled') == false && $("#Latitude").prop('disabled') == false) {
 
-        var latitude = document.getElementById('Latitude').value;
-        var longitude = document.getElementById('Longitude').value;
+            var longitude = document.getElementById('Longitude').value;
+            var latitude = document.getElementById('Latitude').value;
 
-        /* $.ajax({
-            url: "http://api.apixu.com/v1/current.json?key=75fb86a2371f4abca12115412190403&q=" + latitude + "," +
-                longitude,
-            success: function (data) {
-                console.log(data);
-                image = new Image();
-                if (data.error) {
-                    image.src = "http://via.placeholder.com/64x64?text=%20"; // Error, so we use blank image for weather. See 'error:' below for another way to include a small blank image
-                } else {
+            $.ajax({
+
+                url: "http://api.apixu.com/v1/current.json?key=75fb86a2371f4abca12115412190403&q=" + latitude + "," +
+                    longitude,
+
+                error: function () {
+
+                    alert("Issue obtaining API data. Please enter a proper Longitude and Latitude.");
+
+                },
+
+                success: function (data) {
+
                     document.getElementById("WeathImage").src = "http:" + data.current.condition.icon;
-                    //image.src = "http:" + data.current.condition.icon; // icon is specified within the data
-                    $('#WeathText').html('<p> ' + data.current.condition.text + "<br> " + data.location.name + " " + data.location
-                        .region + " " + data.location.country + '</p>'); // current weather in text format
+
+
+                    var lastUpdated = $("<li />", {
+                        text: "Last Updated: " + data.current.last_updated
+                    });
+
+                    var loc = $("<li />", {
+                        text: "Location Name: " + data.location.name
+                    });
+
+                    var reg = $("<li />", {
+                        text: "Region: " + data.location.region
+                    });
+
+                    var country = $("<li />", {
+                        text: "Country: " + data.location.country
+                    });
+
+                    var weathCond = $("<li />", {
+                        text: "Current Condition: " + data.current.condition.text
+                    });
+
+                    var vis = $("<li />", {
+                        text: "Current Visibiility: " + data.current.vis_km + " km"
+                    });
+
+                    var perc = $("<li />", {
+                        text: "Current Precipitation: " + data.current.precip_mm + " mm"
+                    });
+
+                    var tempC = $("<li />", {
+                        text: "Current Temparature (C): " + data.current.temp_c + " C"
+                    });
+
+                    var feelsLikeC = $("<li />", {
+                        text: "Feels Like: " + data.current.feelslike_c + " C"
+                    });
+
+                    var tempF = $("<li />", {
+                        text: "Current Temparature (F): " + data.current.temp_f + " F"
+                    });
+
+                    var feelsLikeF = $("<li />", {
+                        text: "Feels Like: " + data.current.feelslike_f + " F"
+                    });
+
+                    var windMPH = $("<li />", {
+                        text: "Wind (MPH): " + data.current.wind_mph + " mph"
+                    });
+
+                    var windKPH = $("<li />", {
+                        text: "Wind (KPH): " + data.current.wind_kph + " kph"
+                    });
+
+                    var gustMPH = $("<li />", {
+                        text: "Gusts (MPH): " + data.current.gust_mph + " mph"
+                    });
+
+                    var gustKPH = $("<li />", {
+                        text: "Gusts (KPH): " + data.current.gust_kph + " kph"
+                    });
+
+                    $("#weathTextList").append(lastUpdated);
+                    $("#weathTextList").append(loc);
+                    $("#weathTextList").append(reg);
+                    $("#weathTextList").append(country);
+                    $("#weathTextList").append(weathCond);
+                    $("#weathTextList").append(vis);
+                    $("#weathTextList").append(perc);
+                    $("#weathTextList").append(tempC);
+                    $("#weathTextList").append(feelsLikeC);
+                    $("#weathTextList").append(tempF);
+                    $("#weathTextList").append(feelsLikeF);
+                    $("#weathTextList").append(windMPH);
+                    $("#weathTextList").append(windKPH);
+                    $("#weathTextList").append(gustMPH);
+                    $("#weathTextList").append(gustKPH);
+
+                    // RYAN YOU DIDNT EVEN FINISH THIS ONLY HAD THE FIRST 4 VARIABLES. THIS AJAX CALL SHOULD BE SAME AS THE ONE FOR LOCATION, ONLY DIFF IS THIS ONE USES LAT AND LONG.
 
                 }
-            },
-            error: function () { // Weather service could not provide weather for requested lat,lon world location
-                image = new Image();
-                // A local 64*64 transparent image. Generated from the useful site: http://png-pixel.com/
-                image.src =
-                    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAAPElEQVR42u3OMQEAAAgDIJfc6BpjDyQgt1MVAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBgXbgARTAX8ECcrkoAAAAAElFTkSuQmCC";
-                image.onload = function () {
-                    //set the image into the web page
-                    $('#weatherImage').empty().append(image);
-                };
-            }
-        }); */
+
+            });
+
+        }
 
     });
+
 });
+
