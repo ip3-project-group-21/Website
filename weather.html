@@ -62,84 +62,46 @@
 		<div class="api-content container">
 			<div id="options">
 
-				<div class="row">
+					<!-- <button type="button" class="btn btn-secondary" name="Area" id="LatANDLon"
+						value="LatANDLon">Latitude and Longitude</button>
+					<button type="button" class="btn btn-secondary" name="Area" id="Location"
+						value="Location">Location</button> -->
 
-					<div class="col-md-5 col-sm-12">
+				<button type="button" name="Area" id="LatANDLon" value="LatANDLon">Latitude and Longitude</button>
+				<button type="button" name="Area" id="Location" value="Location">Location</button>
 
-						<div class="row">
-							<div class="col-12">
-								<button type="button" class="btn btn-secondary btn-sm" name="Area" id="LatANDLon"
-									value="LatANDLon">Latitude and
-									Longitude</button>
-							</div>
-						</div>
 
-						<div class="row">
-							<div class="col-sm-12 col-md-6">
-								<input class="form-control input-sm" id="Latitude" value="Latitude" type="text">
-							</div>
-							<div class="col-sm-12 col-md-6">
-								<input class="form-control input-sm" id="Longitude" value="Longitude" type="text">
-							</div>
-						</div>
-
-						<br><br>
-
-					</div>
-
-					<div class="col-md-2">
-					</div>
-
-					<div class="col-md-5 col-sm-12">
-
-						<div class="row">
-							<div class="col-12">
-								<button type="button" class="btn btn-secondary btn-sm" name="Area" id="Location"
-									value="Location">Location</button>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-sm-12 col-md-6">
-								<input class="form-control input-sm" id="LocationText" value="Location" type="text">
-							</div>
-
-							<br><br><br>
-							<div class="col-sm-12 col-md-6">
-								<button type="button" name="Submit" id="Submit" value="Submit"
-									class="btn btn-outline-success">Submit</button>
-							</div>
-						</div>
-					</div>
-				</div>
-
+				<br>
+				<input type="text" name="Latitude" id="Latitude" value="Latitude" />
+				<input type="text" name="Longitude" id="Longitude" value="Longitude" />
+				<input type="text" name="Location" id="LocationText" value="Location" />
+				<br>
+				<button type="button" name="Submit" id="Submit" value="Submit">Submit</button>
 
 			</div>
 			<div id="Weather">
 				<img id="WeathImage" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
-
 				<div id="WeathText">
 
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<!--Link to local Javascript file-->
-		<script type="text/javascript" src="js/weather.js"></script>
+	<!--Link to local Javascript file-->
+	<script type="text/javascript" src="js/weather.js"></script>
 
-		<div id="navbar">
-			<!--Import Navbar file onto page-->
-			<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-			</script>
-			<script type="text/javascript" src="js/navbar.js"></script>
-		</div>
+	<div id="navbar">
+		<!--Import Navbar file onto page-->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/navbar.js"></script>
+	</div>
 
-		<div id="footer">
-			<!--Import Footer file onto page-->
-			<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-			</script>
-			<script type="text/javascript" src="js/footer.js"></script>
-		</div>
+	<div id="footer">
+		<!--Import Footer file onto page-->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/footer.js"></script>
+	</div>
 </body>
 
 </html>
