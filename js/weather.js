@@ -43,6 +43,7 @@ $(document).ready(function () {
 
                 success: function (data) {
 
+<<<<<<< HEAD
                     document.getElementById("WeathImage").src = "http:" + data.current.condition.icon;
 
                     var lastUpdated = $("<li />", {
@@ -129,8 +130,55 @@ $(document).ready(function () {
                     $("#weathTextList").append(windKPH);
                     $("#weathTextList").append(gustMPH);
                     $("#weathTextList").append(gustKPH);
+=======
+    $("#Submit").click(function () {
+        //$('#WeathImage').width(300)
+        //$('#WeathImage').height(300);
+        if (document.getElementById('Location').checked) {
+            var location = document.getElementById('LocationText').value;
+            $.ajax({
+                url: "http://api.apixu.com/v1/current.json?key=75fb86a2371f4abca12115412190403&q=" + location,
+                success: function (data) {
+                    console.log(data);
+                    image = new Image();
+                    if (data.error) {
+                        image.src = "http://via.placeholder.com/64x64?text=%20"; // Error, so we use blank image for weather. See 'error:' below for another way to include a small blank image
+                    } else {
+                        document.getElementById("WeathImage").src = "http:" + data.current.condition.icon;
+                        //image.src = "http:" + data.current.condition.icon; // icon is specified within the data
+                        $('#WeathText').html(
+                            "<p>Last Updated: " + data.current.last_updated 
+                            + "<br><br>" 
+                            + "Location: " + data.location.name + "<br>Region: " + data.location.region + "<br>Country: " + data.location.country
+                            + "<br><br>"
+                            + "Weather: " + data.current.condition.text  + "<br>Visibility(Km):" + data.current.vis_km + "<br>Precipitation(mm):" + data.current.precip_mm
+                            + "<br><br>"
+                            + "Temperature(C):" + data.current.temp_c + "<br>Feels like Temperature(C):" + data.current.feelslike_c + "<br>Temperature(F):" + data.current.temp_f   + "<br>Feels like Temperature(F):" + data.current.feelslike_f
+                            + "<br><br>"
+                            + "Wind(Mph): " + data.current.wind_mph + "<br>Wind(Kph): " + data.current.wind_kph + "<br>Gusts(Mph): " + data.current.gust_mph + "<br>Gusts(Kph): " + data.current.gust_kph
+                            + "</p>"
+                                
+                                /***
+                            + data.location.name + " is " + data.current.condition.text + "<br> " + data.location
+                            .region + " " + data.location.country + " " + data.location.lat + " " + data.location.lon + 
+                            '</p>'
+                            ***/
+                            ); // current weather in text format
+>>>>>>> parent of 0031166... Had to change js for better design
 
+                    }
+                },
+                error: function () { // Weather service could not provide weather for requested lat,lon world location
+                    image = new Image();
+                    // A local 64*64 transparent image. Generated from the useful site: http://png-pixel.com/
+                    image.src =
+                        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAAPElEQVR42u3OMQEAAAgDIJfc6BpjDyQgt1MVAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBgXbgARTAX8ECcrkoAAAAAElFTkSuQmCC";
+                    image.onload = function () {
+                        //set the image into the web page
+                        $('#weatherImage').empty().append(image);
+                    };
                 }
+<<<<<<< HEAD
 
             });
         }
@@ -233,12 +281,52 @@ $(document).ready(function () {
                     $("#weathTextList").append(gustKPH);
 
                     // RYAN YOU DIDNT EVEN FINISH THIS ONLY HAD THE FIRST 4 VARIABLES. THIS AJAX CALL SHOULD BE SAME AS THE ONE FOR LOCATION, ONLY DIFF IS THIS ONE USES LAT AND LONG.
+=======
+            });
+        };
 
+
+        if (document.getElementById('LatANDLon').checked) {
+
+            var latitude = document.getElementById('Latitude').value;
+            var longitude = document.getElementById('Longitude').value;
+
+            $.ajax({
+                url: "http://api.apixu.com/v1/current.json?key=75fb86a2371f4abca12115412190403&q=" + latitude + "," +
+                    longitude,
+                success: function (data) {
+                    console.log(data);
+                    image = new Image();
+                    if (data.error) {
+                        image.src = "http://via.placeholder.com/64x64?text=%20"; // Error, so we use blank image for weather. See 'error:' below for another way to include a small blank image
+                    } else {
+                        document.getElementById("WeathImage").src = "http:" + data.current.condition.icon;
+                        //image.src = "http:" + data.current.condition.icon; // icon is specified within the data
+                        $('#WeathText').html('<p> ' + data.current.condition.text + "<br> " + data.location.name + " " + data.location
+                            .region + " " + data.location.country + '</p>'); // current weather in text format
+>>>>>>> parent of 0031166... Had to change js for better design
+
+                    }
+                },
+                error: function () { // Weather service could not provide weather for requested lat,lon world location
+                    image = new Image();
+                    // A local 64*64 transparent image. Generated from the useful site: http://png-pixel.com/
+                    image.src =
+                        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAAPElEQVR42u3OMQEAAAgDIJfc6BpjDyQgt1MVAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBgXbgARTAX8ECcrkoAAAAAElFTkSuQmCC";
+                    image.onload = function () {
+                        //set the image into the web page
+                        $('#weatherImage').empty().append(image);
+                    };
                 }
+<<<<<<< HEAD
 
             });
 
         }
+=======
+            });
+        };
+>>>>>>> parent of 0031166... Had to change js for better design
 
     });
 
