@@ -60,7 +60,8 @@
 		</div>
 		<div id="chart" class="api-content container">
 		</div>
-
+		<div id="bubble" class="api-content container">
+		</div>
 	</div>
 
 	<script>
@@ -71,7 +72,7 @@
 				dataType: "json",
 				success: function (data) {
 					//console.log(data);
-					//var Chartdata = data;
+					var Chartdata = data;
 					console.log(data);
 
 					var arrayLength = data.length;
@@ -90,20 +91,30 @@
 				}
 			});
 
-			/* 			(function () {
-							var width = 500
-							var height = 500
+			(function () {
+				var width = 500
+				var height = 500
 
-							var svg = d3.select("#chart")
-								.append("svg")
-								.attr("height", height)
-								.attr("width", width)
-								.append("g")
-								.attr("transform", "translate(0,0)")
+				var svg = d3.select("#bubble")
+					.append("svg")
+					.attr("height", height)
+					.attr("width", width)
+					.append("g")
+					.attr("transform", "translate(0,0)")
 
-							d3.queue()
-								.defer(d3.json, Chartdata)
-						}); */
+				d3.queue()
+					.defer(d3.json, Chartdata)
+					.await(ready)
+
+				function ready(error, datapoints) {
+					var circles = svg.selectAll(".artist")
+						.data(datapoints)
+						.enter().append("circle")
+						.attr("class", "artist")
+						.attr("r", 10)
+						.attr("fill", "lightblue")
+				}
+			});
 		});
 	</script>
 
