@@ -67,28 +67,43 @@
 		$(document).ready(function () {
 			$.ajax({
 				type: "GET",
-				url: "",
+				url: "https://restcountries.eu/rest/v2/all",
 				dataType: "json",
 				success: function (data) {
+					//console.log(data);
+					//var Chartdata = data;
 					console.log(data);
-					var Chartdata = data;
+
+					var arrayLength = data.length;
+					console.log(arrayLength);
+
+					for (var i = 0; i < arrayLength; i++) {
+
+						var CountryName = data[i].name;
+						var CountryPopulation = "		" + data[i].population + "<br>";
+
+
+						var Information = $("<p />");
+						Information.append(CountryName).append(CountryPopulation);
+						$("#chart").append(Information);
+					}
 				}
-			})
-		
-		(function(){
-			var width = 500
-			var height = 500
+			});
 
-			var svg = d3.select("#chart")
-				.append("svg")
-				.attr("height", height)
-				.attr("width", width)
-				.append("g")
-				.attr("transform", "translate(0,0)")
+			/* 			(function () {
+							var width = 500
+							var height = 500
 
-				d3.queue()
-				.defer(d3.json, Chartdata)
-		});
+							var svg = d3.select("#chart")
+								.append("svg")
+								.attr("height", height)
+								.attr("width", width)
+								.append("g")
+								.attr("transform", "translate(0,0)")
+
+							d3.queue()
+								.defer(d3.json, Chartdata)
+						}); */
 		});
 	</script>
 

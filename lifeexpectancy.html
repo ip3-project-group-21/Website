@@ -28,8 +28,8 @@
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
 	</script>
 
-	
-	 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">-->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
 		rel="stylesheet">
@@ -70,7 +70,7 @@
 
 
 
-	<div class="api-content container">
+		<div class="api-content container">
 
 			<label for="date">Date of Birth</label>
 			<input id="date" class="date-own form-control" type="text">
@@ -488,10 +488,13 @@
 					}
 				}
 
-				var chart = myChart.config.data;
-				chart.datasets[0].data = ChartData;
-				chart.labels = ChartTitle;
-				myChart.update();
+				function updateConfigByMutating(chart) {
+					chart.config.data;
+					chart.datasets[0].data = ChartData;
+					chart.labels = ChartTitle;
+					chart.update();
+				}
+
 			});
 		});
 	</script>
@@ -510,7 +513,6 @@
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script type="text/javascript" src="js/footer.js"></script>
 	</div>
-</div>
 
 </body>
 
