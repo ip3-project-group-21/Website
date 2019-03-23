@@ -23,7 +23,9 @@ $(document).ready(function () {
             console.log(CourseName);
 
             for (var i = 0; i < arrayLength; i++) {
+                if (CourseID[i] != "A4") {
                 $('#CourseDropdown').append('<option value="' + CourseID[i] + '">' + CourseName[i] + '</option>');
+                }
             }
         }
     });

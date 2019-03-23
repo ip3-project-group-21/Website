@@ -1,5 +1,16 @@
 $(document).ready(function () {
 
+    function titleCase(str) {
+        var splitStr = str.toLowerCase().split(' ');
+        for (var i = 0; i < splitStr.length; i++) {
+            // You do not need to check if i is larger than splitStr length, as your for does that for you
+            // Assign it back to the array
+            splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+        }
+        // Directly return the joined string
+        return splitStr.join(' ');
+    }
+
     $("#Latitude").attr("disabled", "disabled");
     $("#Longitude").attr("disabled", "disabled");
     $("#LocationText").attr("disabled", "disabled");
@@ -43,93 +54,103 @@ $(document).ready(function () {
 
                 success: function (data) {
 
-                    document.getElementById("WeathImage").src = "http:" + data.current.condition.icon;
-
-                    var lastUpdated = $("<li />", {
-                        text: "Last Updated: " + data.current.last_updated
-                    });
-
-                    var loc = $("<li />", {
-                        text: "Location Name: " + data.location.name
-                    });
-
-                    var reg = $("<li />", {
-                        text: "Region: " + data.location.region
-                    });
-
-                    var country = $("<li />", {
-                        text: "Country: " + data.location.country
-                    });
-
-                    var weathCond = $("<li />", {
-                        text: "Current Condition: " + data.current.condition.text
-                    });
-
-                    var vis = $("<li />", {
-                        text: "Current Visibility: " + data.current.vis_km + " km"
-                    });
-
-                    var perc = $("<li />", {
-                        text: "Current Precipitation: " + data.current.precip_mm + " mm"
-                    });
-
-                    var tempC = $("<li />", {
-                        text: "Current Temparature (C): " + data.current.temp_c + " C"
-                    });
-
-                    var feelsLikeC = $("<li />", {
-                        text: "Feels Like: " + data.current.feelslike_c + " C"
-                    });
-
-                    var tempF = $("<li />", {
-                        text: "Current Temparature (F): " + data.current.temp_f + " F"
-                    });
-
-                    var feelsLikeF = $("<li />", {
-                        text: "Feels Like: " + data.current.feelslike_f + " F"
-                    });
-
-                    var windMPH = $("<li />", {
-                        text: "Wind (MPH): " + data.current.wind_mph + " mph"
-                    });
-
-                    var windKPH = $("<li />", {
-                        text: "Wind (KPH): " + data.current.wind_kph + " kph"
-                    });
-
-                    var gustMPH = $("<li />", {
-                        text: "Gusts (MPH): " + data.current.gust_mph + " mph"
-                    });
-
-                    var gustKPH = $("<li />", {
-                        text: "Gusts (KPH): " + data.current.gust_kph + " kph"
-                    });
+                    if (data.location.name == titleCase(location) || data.location.region == titleCase(location) || data.location.country == titleCase(location)) {
 
 
-                    /*data.location.name + " is " + data.current.condition.text + "<br> " + data.location
-                        .region + " " + data.location.country + " " + data.location.lat + " " + data.location.lon +
-                        '</p>'*/
+                        document.getElementById("WeathImage").src = "http:" + data.current.condition.icon;
 
-                    /** this code above was in ryans code twice not sure if you need it. Only thing not above is the lat & lon vars
-                     *  ALSO RYAN ALL YOU HAD TO DO WAS LOOK AT OUR WORK FROM WEB LAST SEMESTER!!!!!
-                     */
+                        var lastUpdated = $("<li />", {
+                            text: "Last Updated: " + data.current.last_updated
+                        });
 
-                    $("#weathTextList").append(lastUpdated);
-                    $("#weathTextList").append(loc);
-                    $("#weathTextList").append(reg);
-                    $("#weathTextList").append(country);
-                    $("#weathTextList").append(weathCond);
-                    $("#weathTextList").append(vis);
-                    $("#weathTextList").append(perc);
-                    $("#weathTextList").append(tempC);
-                    $("#weathTextList").append(feelsLikeC);
-                    $("#weathTextList").append(tempF);
-                    $("#weathTextList").append(feelsLikeF);
-                    $("#weathTextList").append(windMPH);
-                    $("#weathTextList").append(windKPH);
-                    $("#weathTextList").append(gustMPH);
-                    $("#weathTextList").append(gustKPH);
+                        var loc = $("<li />", {
+                            text: "Location Name: " + data.location.name
+                        });
 
+                        var reg = $("<li />", {
+                            text: "Region: " + data.location.region
+                        });
+
+                        var country = $("<li />", {
+                            text: "Country: " + data.location.country
+                        });
+
+                        var weathCond = $("<li />", {
+                            text: "Current Condition: " + data.current.condition.text
+                        });
+
+                        var vis = $("<li />", {
+                            text: "Current Visibility: " + data.current.vis_km + " km"
+                        });
+
+                        var perc = $("<li />", {
+                            text: "Current Precipitation: " + data.current.precip_mm + " mm"
+                        });
+
+                        var tempC = $("<li />", {
+                            text: "Current Temparature (C): " + data.current.temp_c + " C"
+                        });
+
+                        var feelsLikeC = $("<li />", {
+                            text: "Feels Like: " + data.current.feelslike_c + " C"
+                        });
+
+                        var tempF = $("<li />", {
+                            text: "Current Temparature (F): " + data.current.temp_f + " F"
+                        });
+
+                        var feelsLikeF = $("<li />", {
+                            text: "Feels Like: " + data.current.feelslike_f + " F"
+                        });
+
+                        var windMPH = $("<li />", {
+                            text: "Wind (MPH): " + data.current.wind_mph + " mph"
+                        });
+
+                        var windKPH = $("<li />", {
+                            text: "Wind (KPH): " + data.current.wind_kph + " kph"
+                        });
+
+                        var gustMPH = $("<li />", {
+                            text: "Gusts (MPH): " + data.current.gust_mph + " mph"
+                        });
+
+                        var gustKPH = $("<li />", {
+                            text: "Gusts (KPH): " + data.current.gust_kph + " kph"
+                        });
+
+
+                        /*data.location.name + " is " + data.current.condition.text + "<br> " + data.location
+                            .region + " " + data.location.country + " " + data.location.lat + " " + data.location.lon +
+                            '</p>'*/
+
+                        /** this code above was in ryans code twice not sure if you need it. Only thing not above is the lat & lon vars
+                         *  ALSO RYAN ALL YOU HAD TO DO WAS LOOK AT OUR WORK FROM WEB LAST SEMESTER!!!!!
+                         */
+
+                        $("#weathTextList").append(lastUpdated);
+                        $("#weathTextList").append(loc);
+                        $("#weathTextList").append(reg);
+                        $("#weathTextList").append(country);
+                        $("#weathTextList").append(weathCond);
+                        $("#weathTextList").append(vis);
+                        $("#weathTextList").append(perc);
+                        $("#weathTextList").append(tempC);
+                        $("#weathTextList").append(feelsLikeC);
+                        $("#weathTextList").append(tempF);
+                        $("#weathTextList").append(feelsLikeF);
+                        $("#weathTextList").append(windMPH);
+                        $("#weathTextList").append(windKPH);
+                        $("#weathTextList").append(gustMPH);
+                        $("#weathTextList").append(gustKPH);
+
+                    } else {
+                        var unsuccessful = $("<li />", {
+                            text: "THIS HAS WORKED, BUT NOT FOUND A SIMILAR CO-ORD"
+                        });
+
+                        $("#weathTextList").append(unsuccessful);
+                    }
                 }
 
             });
@@ -139,6 +160,7 @@ $(document).ready(function () {
 
             var longitude = document.getElementById('Longitude').value;
             var latitude = document.getElementById('Latitude').value;
+
 
             $.ajax({
 
@@ -153,88 +175,113 @@ $(document).ready(function () {
 
                 success: function (data) {
 
-                    document.getElementById("WeathImage").src = "http:" + data.current.condition.icon;
+
+                    if (data.location.lon == longitude || data.location.lat == latitude) {
 
 
-                    var lastUpdated = $("<li />", {
-                        text: "Last Updated: " + data.current.last_updated
-                    });
 
-                    var loc = $("<li />", {
-                        text: "Location Name: " + data.location.name
-                    });
+                        document.getElementById("WeathImage").src = "http:" + data.current.condition.icon;
 
-                    var reg = $("<li />", {
-                        text: "Region: " + data.location.region
-                    });
 
-                    var country = $("<li />", {
-                        text: "Country: " + data.location.country
-                    });
+                        var lastUpdated = $("<li />", {
+                            text: "Last Updated: " + data.current.last_updated
+                        });
 
-                    var weathCond = $("<li />", {
-                        text: "Current Condition: " + data.current.condition.text
-                    });
+                        var loc = $("<li />", {
+                            text: "Location Name: " + data.location.name
+                        });
 
-                    var vis = $("<li />", {
-                        text: "Current Visibiility: " + data.current.vis_km + " km"
-                    });
+                        var reg = $("<li />", {
+                            text: "Region: " + data.location.region
+                        });
 
-                    var perc = $("<li />", {
-                        text: "Current Precipitation: " + data.current.precip_mm + " mm"
-                    });
+                        var lon = $("<li />", {
+                            text: "Longitude: " + data.location.lon
+                        });
 
-                    var tempC = $("<li />", {
-                        text: "Current Temparature (C): " + data.current.temp_c + " C"
-                    });
+                        var lat = $("<li />", {
+                            text: "Latitude: " + data.location.lat
+                        });
 
-                    var feelsLikeC = $("<li />", {
-                        text: "Feels Like: " + data.current.feelslike_c + " C"
-                    });
+                        var country = $("<li />", {
+                            text: "Country: " + data.location.country
+                        });
 
-                    var tempF = $("<li />", {
-                        text: "Current Temparature (F): " + data.current.temp_f + " F"
-                    });
+                        var weathCond = $("<li />", {
+                            text: "Current Condition: " + data.current.condition.text
+                        });
 
-                    var feelsLikeF = $("<li />", {
-                        text: "Feels Like: " + data.current.feelslike_f + " F"
-                    });
+                        var vis = $("<li />", {
+                            text: "Current Visibiility: " + data.current.vis_km + " km"
+                        });
 
-                    var windMPH = $("<li />", {
-                        text: "Wind (MPH): " + data.current.wind_mph + " mph"
-                    });
+                        var perc = $("<li />", {
+                            text: "Current Precipitation: " + data.current.precip_mm + " mm"
+                        });
 
-                    var windKPH = $("<li />", {
-                        text: "Wind (KPH): " + data.current.wind_kph + " kph"
-                    });
+                        var tempC = $("<li />", {
+                            text: "Current Temparature (C): " + data.current.temp_c + " C"
+                        });
 
-                    var gustMPH = $("<li />", {
-                        text: "Gusts (MPH): " + data.current.gust_mph + " mph"
-                    });
+                        var feelsLikeC = $("<li />", {
+                            text: "Feels Like: " + data.current.feelslike_c + " C"
+                        });
 
-                    var gustKPH = $("<li />", {
-                        text: "Gusts (KPH): " + data.current.gust_kph + " kph"
-                    });
+                        var tempF = $("<li />", {
+                            text: "Current Temparature (F): " + data.current.temp_f + " F"
+                        });
 
-                    $("#weathTextList").append(lastUpdated);
-                    $("#weathTextList").append(loc);
-                    $("#weathTextList").append(reg);
-                    $("#weathTextList").append(country);
-                    $("#weathTextList").append(weathCond);
-                    $("#weathTextList").append(vis);
-                    $("#weathTextList").append(perc);
-                    $("#weathTextList").append(tempC);
-                    $("#weathTextList").append(feelsLikeC);
-                    $("#weathTextList").append(tempF);
-                    $("#weathTextList").append(feelsLikeF);
-                    $("#weathTextList").append(windMPH);
-                    $("#weathTextList").append(windKPH);
-                    $("#weathTextList").append(gustMPH);
-                    $("#weathTextList").append(gustKPH);
+                        var feelsLikeF = $("<li />", {
+                            text: "Feels Like: " + data.current.feelslike_f + " F"
+                        });
 
-                    // RYAN YOU DIDNT EVEN FINISH THIS ONLY HAD THE FIRST 4 VARIABLES. THIS AJAX CALL SHOULD BE SAME AS THE ONE FOR LOCATION, ONLY DIFF IS THIS ONE USES LAT AND LONG.
+                        var windMPH = $("<li />", {
+                            text: "Wind (MPH): " + data.current.wind_mph + " mph"
+                        });
 
+                        var windKPH = $("<li />", {
+                            text: "Wind (KPH): " + data.current.wind_kph + " kph"
+                        });
+
+                        var gustMPH = $("<li />", {
+                            text: "Gusts (MPH): " + data.current.gust_mph + " mph"
+                        });
+
+                        var gustKPH = $("<li />", {
+                            text: "Gusts (KPH): " + data.current.gust_kph + " kph"
+                        });
+
+                        $("#weathTextList").append(lastUpdated);
+                        $("#weathTextList").append(loc);
+                        $("#weathTextList").append(reg);
+
+                        $("#weathTextList").append(lon);
+                        $("#weathTextList").append(lat);
+
+                        $("#weathTextList").append(country);
+                        $("#weathTextList").append(weathCond);
+                        $("#weathTextList").append(vis);
+                        $("#weathTextList").append(perc);
+                        $("#weathTextList").append(tempC);
+                        $("#weathTextList").append(feelsLikeC);
+                        $("#weathTextList").append(tempF);
+                        $("#weathTextList").append(feelsLikeF);
+                        $("#weathTextList").append(windMPH);
+                        $("#weathTextList").append(windKPH);
+                        $("#weathTextList").append(gustMPH);
+                        $("#weathTextList").append(gustKPH);
+
+                        // RYAN YOU DIDNT EVEN FINISH THIS ONLY HAD THE FIRST 4 VARIABLES. THIS AJAX CALL SHOULD BE SAME AS THE ONE FOR LOCATION, ONLY DIFF IS THIS ONE USES LAT AND LONG.
+
+                    } else {
+                        var unsuccessful = $("<li />", {
+                            text: "THIS HAS WORKED, BUT NOT FOUND A SIMILAR CO-ORD"
+                        });
+
+                        $("#weathTextList").append(unsuccessful);
+                    }
                 }
+
 
             });
 
@@ -243,4 +290,3 @@ $(document).ready(function () {
     });
 
 });
-
