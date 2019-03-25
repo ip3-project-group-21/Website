@@ -146,7 +146,7 @@ $(document).ready(function () {
 
                     } else {
                         var unsuccessful = $("<li />", {
-                            text: "THIS HAS WORKED, BUT NOT FOUND A SIMILAR CO-ORD"
+                            text: "No matching data - please ensure the data you entered is the location, region or country."
                         });
 
                         $("#weathTextList").append(unsuccessful);
@@ -275,7 +275,7 @@ $(document).ready(function () {
 
                     } else {
                         var unsuccessful = $("<li />", {
-                            text: "THIS HAS WORKED, BUT NOT FOUND A SIMILAR CO-ORD"
+                            text: "No matching data - please ensure the co-ordinates you enter are numerical."
                         });
 
                         $("#weathTextList").append(unsuccessful);
