@@ -195,13 +195,13 @@ $(document).ready(function () {
                             text: "Region: " + data.location.region
                         });
 
-                        var lon = $("<li />", {
+                        /* var lon = $("<li />", {
                             text: "Longitude: " + data.location.lon
                         });
 
                         var lat = $("<li />", {
                             text: "Latitude: " + data.location.lat
-                        });
+                        }); */
 
                         var country = $("<li />", {
                             text: "Country: " + data.location.country
@@ -255,8 +255,8 @@ $(document).ready(function () {
                         $("#weathTextList").append(loc);
                         $("#weathTextList").append(reg);
 
-                        $("#weathTextList").append(lon);
-                        $("#weathTextList").append(lat);
+                        /* $("#weathTextList").append(lon);
+                        $("#weathTextList").append(lat); */
 
                         $("#weathTextList").append(country);
                         $("#weathTextList").append(weathCond);
