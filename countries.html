@@ -27,7 +27,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
 	</script>
-	<script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 <body>
@@ -60,61 +60,61 @@
 		</div>
 		<div id="chart" class="api-content container">
 		</div>
-		<div id="bubble" class="api-content container">
-		</div>
+		<svg width="960" height="960" font-family="sans-serif" font-size="10" text-anchor="middle"></svg>
 	</div>
 
 	<script>
 		$(document).ready(function () {
+			var CountryName = [];
+			var CountryPopulation = [];
 			$.ajax({
 				type: "GET",
 				url: "https://restcountries.eu/rest/v2/all",
 				dataType: "json",
 				success: function (data) {
-					//console.log(data);
-					var Chartdata = data;
 					console.log(data);
-
 					var arrayLength = data.length;
 					console.log(arrayLength);
 
 					for (var i = 0; i < arrayLength; i++) {
 
-						var CountryName = data[i].name;
-						var CountryPopulation = "		" + data[i].population + "<br>";
+						CountryName[i] = data[i].alpha2Code;
+						CountryPopulation[i] = data[i].population;
 
 
-						var Information = $("<p />");
-						Information.append(CountryName).append(CountryPopulation);
-						$("#chart").append(Information);
+						/* 	var Information = $("<div />");
+							Information.append(CountryName).append(CountryPopulation);
+							$("#chart").append(Information); */
 					}
 				}
 			});
 
-			(function () {
-				var width = 500
-				var height = 500
-
-				var svg = d3.select("#bubble")
-					.append("svg")
-					.attr("height", height)
-					.attr("width", width)
-					.append("g")
-					.attr("transform", "translate(0,0)")
-
-				d3.queue()
-					.defer(d3.json, Chartdata)
-					.await(ready)
-
-				function ready(error, datapoints) {
-					var circles = svg.selectAll(".artist")
-						.data(datapoints)
-						.enter().append("circle")
-						.attr("class", "artist")
-						.attr("r", 10)
-						.attr("fill", "lightblue")
-				}
+			google.charts.load('current', {
+				'packages': ['geochart'],
+				// Note: you will need to get a mapsApiKey for your project.
+				// See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+				'mapsApiKey': 'AIzaSyAYmsRSnEUBTBaLIEfT64IZ1Gtnny-5wcs'
 			});
+			google.charts.setOnLoadCallback(drawRegionsMap);
+
+			function drawRegionsMap() {
+				var data = new google.visualization.DataTable();
+				data.addColumn('string', 'Country');
+				data.addColumn('number', 'Population');
+
+				for (i = 0; i < CountryName.length; i++) {
+				data.addRow([CountryName[i], CountryPopulation[i]]);
+				}
+				var options = {
+					colorAxis: {minValue: 100000, maxValue: 50000000,  colors: ['#FFA07A','#DC143C']}
+
+				};
+
+				var chart = new google.visualization.GeoChart(document.getElementById('chart'));
+
+				chart.draw(data, options);
+			}
+
 		});
 	</script>
 
