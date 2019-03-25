@@ -60,17 +60,38 @@
 		</div>
 
 		<div class="api-content container">
-			<!-- <div id="MindMap" style="width:800px; height:800px; background-color: #DAE4E4;">
-			</div> -->
-
-			<input class="form-control input-sm" id="searchword" placeholder="Enter word here sir" type="text">
-			<button type="button" name="Submit" id="submitBtn" value="Submit"
-				class="btn btn-outline-success">Submit</button>
+			<input type="text" name="word" id="Word Input">
+			<input type="button" name="Submit" id="Submit" value="Submit" />
+			<div id="MindMap" style="width:800px; height:800px; background-color: #DAE4E4;">
+			</div>
 		</div>
 	</div>
 
-	<!--Link to local Javascript file-->
-	<script type="text/javascript" src="js/words.js"></script>
+	<script>
+		$(document).ready(function () {
+			$("#Submit").click(function () {
+				var word = document.getElementById('Submit').value;
+				var check = "https://wordsapiv1.p.rapidapi.com/words/" + word + "/synonyms";
+				$.ajax({
+					url: check, // The URL to the API. You can get this in the API page of the API you intend to consume
+					type: 'GET', // The HTTP Method, can be GET POST PUT DELETE etc
+					data: {}, // Additional parameters here
+					dataType: 'json',
+					success: function (data) {
+						console.log(data);
+					},
+					error: function (err) {
+						wrong(word)
+					},
+					beforeSend: function (xhr) {
+						console.log(check);
+						XMLHttpRequest("X-RapidAPI-Key", "0c07449ca1mshce30974d17125b0p1525bdjsne8ca6678f9c1");
+					}
+				});
+			});
+		});
+		
+	</script>
 
 
 	<div id="navbar">
