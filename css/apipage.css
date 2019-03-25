@@ -85,3 +85,76 @@
 #Submit {
     display:inline-block;
 }
+
+/*WORDS PAGE*/
+.link {
+    fill: none;
+    stroke: #666;
+    stroke-width: 1.5px;
+  }
+  
+  .node rect {
+    fill: #ddddff;
+    stroke: #000;
+    stroke-width: 1.5px;
+    cursor: pointer;
+  }
+  
+  .triggernode rect {
+    fill: #fff;
+    stroke: #000;
+    stroke-width: 1.5px;
+    cursor: text;
+  }
+  
+  .selectedtrigger rect {
+    fill: #fff;
+    stroke: #000;
+    stroke-width: 1.5px;
+  }
+  
+  .selectedtrigger input[type="text"] {
+      width: 70;
+  }
+  
+  text {
+    font: 14px sans-serif;
+    text-anchor: middle;
+    pointer-events: None;
+  }
+  
+  .sourcewordtext {
+    text-anchor: middle;
+    pointer-events: auto;
+  }
+
+  .wikdemo {
+    margin: auto;
+    width: 60%;
+}
+
+a.apilink {
+    text-decoration: none;
+    font-size: 1.0rem;
+}
+
+a:link.apilink {
+    text-shadow: none;
+    background: none;
+}
+
+.metricstable {
+    font-size: 15px;
+    clear: both;
+}
+
+#logo {
+    height: 95px;
+    overflow: hidden;
+    margin: auto
+}
+
+#logotext {
+    font-size: 1.5em;
+}
+  

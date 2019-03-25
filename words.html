@@ -28,10 +28,17 @@
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gojs/2.0.4/go-debug.js"></script>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+	<link rel="stylesheet" href="https://www.datamuse.com/css/wordgraph.css">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-
 	<div id="page">
 		<div class="intro container">
 			<section class="page-title">
@@ -60,52 +67,34 @@
 		</div>
 
 		<div class="api-content container">
-			<input type="text" name="word" id="Word Input">
-			<input type="button" name="Submit" id="Submit" value="Submit" />
-			<div id="MindMap" style="width:800px; height:800px; background-color: #DAE4E4;">
+
+			<div class="row">
+				<div class="col-12 text-center">
+
+					<div id="graph">
+
+					</div>
+				</div>
 			</div>
+
+			<script type="text/javascript" src="js/words.js"></script>
+
+		</div>
+
+		<div id="navbar">
+			<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+			</script>
+			<script type="text/javascript" src="js/navbar.js"></script>
+		</div>
+
+		<div id="footer">
+			<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+			</script>
+			<script type="text/javascript" src="js/footer.js"></script>
 		</div>
 	</div>
 
-	<script>
-		$(document).ready(function () {
-			$("#Submit").click(function () {
-				var word = document.getElementById('Submit').value;
-				var check = "https://wordsapiv1.p.rapidapi.com/words/" + word + "/synonyms";
-				$.ajax({
-					url: check, // The URL to the API. You can get this in the API page of the API you intend to consume
-					type: 'GET', // The HTTP Method, can be GET POST PUT DELETE etc
-					data: {}, // Additional parameters here
-					dataType: 'json',
-					success: function (data) {
-						console.log(data);
-					},
-					error: function (err) {
-						wrong(word)
-					},
-					beforeSend: function (xhr) {
-						console.log(check);
-						XMLHttpRequest("X-RapidAPI-Key", "0c07449ca1mshce30974d17125b0p1525bdjsne8ca6678f9c1");
-					}
-				});
-			});
-		});
-		
-	</script>
 
-
-	<div id="navbar">
-		<!--Import Navbar file onto page-->
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script type="text/javascript" src="js/navbar.js"></script>
-	</div>
-
-
-	<div id="footer">
-		<!--Import Footer file onto page-->
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script type="text/javascript" src="js/footer.js"></script>
-	</div>
 </body>
 
 </html>
