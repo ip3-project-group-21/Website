@@ -23,7 +23,9 @@ $(document).ready(function () {
             console.log(CourseName);
 
             for (var i = 0; i < arrayLength; i++) {
+                if (data[i].id != "A4") {
                 $('#CourseDropdown').append('<option value="' + CourseID[i] + '">' + CourseName[i] + '</option>');
+                }
             }
         }
     });
@@ -60,7 +62,7 @@ $(document).ready(function () {
                 
                 //OccupationTitle[arrayLength] = "Other";
                 //OccupationPercentage[arrayLength] = 100-total;
-
+                
                 console.log(OccupationTitle)
 
                 var ctx = document.getElementById('myChart');
@@ -80,7 +82,7 @@ $(document).ready(function () {
                 });
 
 
-            }
+            },
         });
     });
 
