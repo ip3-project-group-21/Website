@@ -49,7 +49,7 @@ $(document).ready(function () {
                 var arrayLength = data.length;
                 //console.log(arrayLength);
 
-                for (var i = 0; i < arrayLength; i++) {
+                for (var i = 0; i <= arrayLength; i++) {
                     //OccupationSOC[i] = data[arrayLength - 1][i].soc;
                     OccupationTitle[i] = data[3].occupations[i].title;
                     OccupationPercentage[i] = data[3].occupations[i].percentage;
@@ -73,7 +73,7 @@ $(document).ready(function () {
                         datasets: [{
                             label: '#percentage of workers',
                             data: OccupationPercentage,
-                            backgroundColor: ["#FF0000", "#0000FF", "#FFFF00", "#00FF00", "#FF00FF", "#FFA500"],
+                            backgroundColor: ["#69D2E7", "#A7DBD8", "#E0E4CC", "#F38630", "#FA6900"],
                         }]
                     },
                     options: {
@@ -83,24 +83,6 @@ $(document).ready(function () {
 
 
             },
-        });
-    });
-
-    $("#Submit").click(function () {
-        var ctx = document.getElementById('myChart');
-        var myChart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Lime', 'Magenta', 'Orange'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: ["#FF0000", "#0000FF", "#FFFF00", "#00FF00", "#FF00FF", "#FFA500"],
-                }]
-            },
-            options: {
-                responsive: true,
-            }
         });
     });
 });
