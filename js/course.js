@@ -31,6 +31,7 @@ $(document).ready(function () {
     });
 
     $("#CourseDropdown").change(function () {
+        $("#chart-container")
         $("#myChart").remove(); // removing previous canvas element
         $("#chart-container").append('<canvas id="myChart" class="myChart"></canvas>');
         var course = document.getElementById('CourseDropdown').value;
@@ -48,6 +49,12 @@ $(document).ready(function () {
 
                 var arrayLength = data.length;
                 //console.log(arrayLength);
+                if (arrayLength == 0)
+                {
+                    alert("No Data avialable");
+                }
+                else
+                {
                 var lastArray = arrayLength-1;
                 var CourseArrayLength = data[lastArray].occupations.length;
                 console.log(CourseArrayLength);
@@ -82,9 +89,12 @@ $(document).ready(function () {
                         responsive: true,
                     }
                 });
-
+            }
 
             },
+            error: function (xhr, status) {
+                alert("Not enough Data to be reliable");
+            }
         });
     });
 });
