@@ -23,7 +23,7 @@ $(document).ready(function () {
             console.log(CourseName);
 
             for (var i = 0; i < arrayLength; i++) {
-                if (data[i].id != "A4") {
+                if (data[i].id != "A0") {
                 $('#CourseDropdown').append('<option value="' + CourseID[i] + '">' + CourseName[i] + '</option>');
                 }
             }
@@ -59,11 +59,20 @@ $(document).ready(function () {
                 var lastArray = arrayLength-1;
                 var CourseArrayLength = data[lastArray].occupations.length;
                 console.log(CourseArrayLength);
+                if (CourseArrayLength <= 10){
                 for (var i = 0; i < CourseArrayLength; i++) {
                     //OccupationSOC[i] = data[arrayLength - 1][i].soc;
                     OccupationTitle[i] = data[lastArray].occupations[i].title;
                     OccupationPercentage[i] = data[lastArray].occupations[i].percentage;
                 }
+            }
+            else{
+                for (var i = 0; i < 10; i++) {
+                    //OccupationSOC[i] = data[arrayLength - 1][i].soc;
+                    OccupationTitle[i] = data[lastArray].occupations[i].title;
+                    OccupationPercentage[i] = data[lastArray].occupations[i].percentage;
+                }
+            }
 
                 //var total = 0;
                 //for (var i = 0; i < OccupationPercentage.length; i++) {
