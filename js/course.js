@@ -48,11 +48,13 @@ $(document).ready(function () {
 
                 var arrayLength = data.length;
                 //console.log(arrayLength);
-
-                for (var i = 0; i <= arrayLength; i++) {
+                var lastArray = arrayLength-1;
+                var CourseArrayLength = data[lastArray].occupations.length;
+                console.log(CourseArrayLength);
+                for (var i = 0; i < CourseArrayLength; i++) {
                     //OccupationSOC[i] = data[arrayLength - 1][i].soc;
-                    OccupationTitle[i] = data[3].occupations[i].title;
-                    OccupationPercentage[i] = data[3].occupations[i].percentage;
+                    OccupationTitle[i] = data[lastArray].occupations[i].title;
+                    OccupationPercentage[i] = data[lastArray].occupations[i].percentage;
                 }
 
                 //var total = 0;
