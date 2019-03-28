@@ -31,7 +31,7 @@ $(document).ready(function () {
     });
 
     $("#CourseDropdown").change(function () {
-        $("#chart-container")
+        $("#chart-container").html("");
         $("#myChart").remove(); // removing previous canvas element
         $("#chart-container").append('<canvas id="myChart" class="myChart"></canvas>');
         var course = document.getElementById('CourseDropdown').value;
@@ -52,6 +52,7 @@ $(document).ready(function () {
                 if (arrayLength == 0)
                 {
                     alert("No Data avialable");
+                    $("#chart-container").html("No Data avialable");
                 }
                 else
                 {
@@ -93,7 +94,7 @@ $(document).ready(function () {
 
             },
             error: function (xhr, status) {
-                alert("Not enough Data to be reliable");
+                $("#chart-container").html("No Data avialable");
             }
         });
     });
