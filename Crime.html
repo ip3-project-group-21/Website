@@ -71,6 +71,33 @@
 
 
 		<div class="api-content container">
+			<div class="select">
+				<Select id="CrimeDropdown" name="CrimeDropdown">
+					<option value="select" selected>Select the Crime</option>
+					<option value="aggravated-assault" >Aggravated Assault</option>
+					<option value="burglary" >Burglary</option>
+					<option value="larceny" >Larceny</option>
+					<option value="motor-vehicle-theft" >Motor-Vehicle Theft</option>
+					<option value="homicide" >Homicide</option>
+					<option value="rape" >Rape</option>
+					<option value="robbery" >Robbery</option>
+					<option value="arson" >Arsony</option>
+					<option value="violent-crime" >Violent Crimes</option>
+					<option value="property-crime" >Property Crimes</option>
+				</Select>
+			</div>
+			<br>
+			<div class="select">
+				<Select id="SortDropdown" name="SortDropdown">
+					<option value="select" selected>Select Sorted Information</option>
+					<option value="age">Age</option>
+					<option value="count">Amount</option>
+					<option value="ethnicity">Ethnicity</option>
+					<option value="race">Race</option>
+					<option value="sex">Gender</option>
+					<option value="relationship">Relationship</option>
+				</Select>
+			</div>
 			<div id="chart-container">
 				<canvas id="myChart"></canvas>
 			</div>
