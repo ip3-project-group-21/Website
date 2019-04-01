@@ -920,7 +920,7 @@ $(document).ready(function () {
                         var marker = new google.maps.Marker({
                             position: latLng,
                             map: map,
-                            //label: val.properties.mag.toString()
+                            // label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
                             content: "<h3>" + val.properties.title + "</h3><p><a href='" + val.properties.url + "'>Details</a></p>"
