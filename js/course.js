@@ -35,6 +35,7 @@ $(document).ready(function () {
     });
 
     $("#CourseDropdown").change(function () {
+        $("#CourseDropdown option[value='select']").remove();  
         $("#chart-container").html("");
         $("#myChart").remove(); // removing previous canvas element
         $("#chart-container").append('<canvas id="myChart" class="myChart" width="500" height="500"></canvas>');
