@@ -104,9 +104,6 @@ $(document).ready(function () {
                         }
                     }
                 });
-<<<<<<< HEAD
-            },
-=======
                 var windowWidth = $(window).width();
                 if (windowWidth < 1000) {
                     myChart.options.legend.position = 'top';
@@ -117,7 +114,6 @@ $(document).ready(function () {
                     myChart.update();
                 }
             }
->>>>>>> parent of aeeac36... Revert "frhyrt"
         });
     });
 
