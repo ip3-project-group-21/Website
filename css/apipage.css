@@ -89,44 +89,51 @@
 /*WORDS PAGE*/
 .link {
     fill: none;
-    stroke: #666;
+    stroke: black;
     stroke-width: 1.5px;
   }
   
   .node rect {
-    fill: #ddddff;
+    fill: orangered;
     stroke: #000;
     stroke-width: 1.5px;
     cursor: pointer;
   }
+
+  .triggernode {
+      float:left;
+  }
   
   .triggernode rect {
-    fill: #fff;
+    fill: cyan;
     stroke: #000;
     stroke-width: 1.5px;
     cursor: text;
+    text-align:center;
   }
   
   .selectedtrigger rect {
-    fill: #fff;
+    fill: yellow;
     stroke: #000;
     stroke-width: 1.5px;
   }
   
   .selectedtrigger input[type="text"] {
-      width: 70;
+      width: 70px;
   }
   
   text {
-    font: 14px sans-serif;
+    font: 17px sans-serif;
     text-anchor: middle;
     pointer-events: None;
+    font-style: oblique;
   }
   
   .sourcewordtext {
     text-anchor: middle;
     pointer-events: auto;
   }
+  
 
   .wikdemo {
     margin: auto;
@@ -156,5 +163,9 @@ a:link.apilink {
 
 #logotext {
     font-size: 1.5em;
+}
+
+#graph {
+    border-style:solid;
 }
   
