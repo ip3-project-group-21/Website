@@ -909,7 +909,7 @@ $(document).ready(function () {
                         var marker = new google.maps.Marker({
                             position: latLng,
                             map: map,
-                            //label: val.properties.mag.toString()
+                            // label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
                             content: "Work in Progress"
