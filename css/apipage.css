@@ -85,6 +85,7 @@
     display:inline-block;
 }
 
+
 /*WORDS PAGE*/
 .link {
     fill: none;
@@ -179,6 +180,8 @@ select {
     background: #666;
     background-image: none;
   }
+
+  
   /* Custom Select */
   .select {
     position: relative;
@@ -203,6 +206,8 @@ select {
   select::-ms-expand {
     display: none;
   }
+
+
   /* Arrow */
   .select::after {
     content: '\25BC';
@@ -214,6 +219,8 @@ select {
     background: #666;
     pointer-events: none;
   }
+
+
   /* Transition */
   .select:hover::after {
     color: #f39c12;
