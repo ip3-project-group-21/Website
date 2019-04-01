@@ -1,8 +1,4 @@
 $(document).ready(function () {
-    var myChart;
-    var OccupationSOC = [];
-    var OccupationTitle = [];
-    var OccupationPercentage = [];
     $("#myChart").remove(); // removing previous canvas element
     $("#chart-container").append('<canvas id="myChart" class="myChart"></canvas>');
     $.ajax({
@@ -27,17 +23,16 @@ $(document).ready(function () {
             console.log(CourseName);
 
             for (var i = 0; i < arrayLength; i++) {
-                if (data[i].id != "A0") {
-                    $('#CourseDropdown').append('<option value="' + CourseID[i] + '">' + CourseName[i] + '</option>');
+                if (data[i].id != "A4") {
+                $('#CourseDropdown').append('<option value="' + CourseID[i] + '">' + CourseName[i] + '</option>');
                 }
             }
         }
     });
 
     $("#CourseDropdown").change(function () {
-        $("#chart-container").html("");
         $("#myChart").remove(); // removing previous canvas element
-        $("#chart-container").append('<canvas id="myChart" class="myChart" width="500" height="500"></canvas>');
+        $("#chart-container").append('<canvas id="myChart" class="myChart"></canvas>');
         var course = document.getElementById('CourseDropdown').value;
         $.ajax({
             type: "GET",
@@ -46,47 +41,32 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data)
 
+                var OccupationSOC = [];
+                var OccupationTitle = [];
+                var OccupationPercentage = [];
+
+
                 var arrayLength = data.length;
                 //console.log(arrayLength);
-                if (arrayLength == 0) {
-                    alert("No Data avialable");
-                    $("#chart-container").html("No Data avialable");
-                } else {
-                    var lastArray = arrayLength - 1;
-                    var CourseArrayLength = data[lastArray].occupations.length;
-                    console.log(CourseArrayLength);
-                    if (CourseArrayLength <= 10) {
-                        for (var i = 0; i < CourseArrayLength; i++) {
-                            //OccupationSOC[i] = data[arrayLength - 1][i].soc;
-                            OccupationTitle[i] = data[lastArray].occupations[i].title;
-                            OccupationPercentage[i] = data[lastArray].occupations[i].percentage;
-                        }
-                    } else {
-                        for (var i = 0; i < 10; i++) {
-                            //OccupationSOC[i] = data[arrayLength - 1][i].soc;
-                            OccupationTitle[i] = data[lastArray].occupations[i].title;
-                            OccupationPercentage[i] = data[lastArray].occupations[i].percentage;
-                        }
-                    }
 
-                    //var total = 0;
-                    //for (var i = 0; i < OccupationPercentage.length; i++) {
-                    //	total += OccupationPercentage[i] << 0;
-                    //}
-
-                    //OccupationTitle[arrayLength] = "Other";
-                    //OccupationPercentage[arrayLength] = 100-total;
-
-                    console.log(OccupationTitle)
+                for (var i = 0; i <= arrayLength; i++) {
+                    //OccupationSOC[i] = data[arrayLength - 1][i].soc;
+                    OccupationTitle[i] = data[3].occupations[i].title;
+                    OccupationPercentage[i] = data[3].occupations[i].percentage;
                 }
 
-            },
-            error: function (xhr, status) {
-                $("#chart-container").html("No Data avialable");
-            },
-            complete: function (data) {
+                //var total = 0;
+                //for (var i = 0; i < OccupationPercentage.length; i++) {
+                //	total += OccupationPercentage[i] << 0;
+                //}
+                
+                //OccupationTitle[arrayLength] = "Other";
+                //OccupationPercentage[arrayLength] = 100-total;
+                
+                console.log(OccupationTitle)
+
                 var ctx = document.getElementById('myChart');
-                myChart = new Chart(ctx, {
+                var myChart = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
                         labels: OccupationTitle,
@@ -98,36 +78,11 @@ $(document).ready(function () {
                     },
                     options: {
                         responsive: true,
-                        maintainAspectRatio: false,
-                        legend: {
-                            position: "right"
-                        }
                     }
                 });
-                var windowWidth = $(window).width();
-                if (windowWidth < 1000) {
-                    myChart.options.legend.position = 'top';
-                    myChart.update();
-                }
-                if (windowWidth >= 1000) {
-                    myChart.options.legend.position = 'right';
-                    myChart.update();
-                }
-            }
-        });
-    });
 
-    $(window).on('resize', function (event) {
-        if (myChart = "") {} else {
-            var windowWidth = $(window).width();
-            if (windowWidth < 1000) {
-                myChart.options.legend.position = 'top';
-                myChart.update();
-            }
-            if (windowWidth >= 1000) {
-                myChart.options.legend.position = 'right';
-                myChart.update();
-            }
-        }
+
+            },
+        });
     });
 });
