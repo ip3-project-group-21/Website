@@ -1,11 +1,17 @@
+//When the page is fully loaded the page the script will kick in
 $(document).ready(function () {
 
+    //Ajax call for the API data
     function getTargets(apiFn, sourceWord, max, response) {
         $.ajax({
             dataType: "json",
             type: 'Get',
+
+            //Using datamuse API for the data
             url: '//api.datamuse.com/words?' + apiFn + '=' + sourceWord + '&max=' + max,
             success: function (data) {
+
+                //Validation for the words being queried by user
                 if (sourceWord == "") {
                     alert("Please enter a word.");
                 } 
@@ -22,6 +28,7 @@ $(document).ready(function () {
     }
 
 
+    //Variables declared for the links, nodes, width of cells and the graph size
     var link;
     var node;
     var rect_width = 120;
@@ -35,14 +42,17 @@ $(document).ready(function () {
     var nodes = {};
 
 
+    //Function to handle the user entering a new word
     function response(sourceWord, followers, apiFn) {
 
+        //If the word the user enters has no synonyms - this means the word doesn't exist
         if (followers.length == 0) {
             alert("Word doesn't exist - please try again.");
             n["name"] = "error";
         }
 
 
+        //Generating nodes and links based off how many responses the trigger word has
         for (var n in nodes) {
             if (n != sourceWord) {
                 delete nodes[n];
@@ -76,6 +86,7 @@ $(document).ready(function () {
             });
         });
 
+        //Setting the layout of the visualisation
         var force = d3.layout.force()
             .nodes(d3.values(nodes))
             .links(links)
@@ -116,6 +127,7 @@ $(document).ready(function () {
             });
     }
 
+    //Dealing with coords when dragged
     function tick() {
         link
             .attr("x1", function (d) {
@@ -138,6 +150,7 @@ $(document).ready(function () {
     }
 
 
+    //Centre node clickable - Setting max responses
     function click(d, i, sourceWord, apiFn) {
         if (d["name"] === sourceWord) {
             var node = d3.select(".triggernode")
