@@ -18,7 +18,7 @@ $(document).ready(function () {
     var width = 1000, height = 500;
     var svg = d3.select("#graph").append("svg")
        .attr("width", "100%")
-       .attr("height", "500")
+       .attr("height", "100%")
        .attr("viewBox", "0 0 960 500")
        .attr("preserveAspectRatio", "xMidYMid meet");
     var nodes = {};
