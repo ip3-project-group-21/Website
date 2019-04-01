@@ -84,7 +84,7 @@ $(document).ready(function () {
                             label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
-                            content: "Work in Progress"
+                            content: "<h3>" + val.properties.title + "</h3><p><a href='location.html'>Details</a></p>"
                         });
                         marker.addListener('click', function (data) {
                             infowindow.open(map, marker); // Open the Google maps marker infoWindow
@@ -129,7 +129,7 @@ $(document).ready(function () {
                             label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
-                            content: "Work in Progress"
+                            content: "<h3>" + val.properties.title + "</h3><p><a href='" + val.properties.url + "'>Details</a></p>"
                         });
                         marker.addListener('click', function (data) {
                             infowindow.open(map, marker); // Open the Google maps marker infoWindow
@@ -174,7 +174,7 @@ $(document).ready(function () {
                             label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
-                            content: "Work in Progress"
+                            content: "<h3>" + val.properties.title + "</h3><p><a href='" + val.properties.url + "'>Details</a></p>"
                         });
                         marker.addListener('click', function (data) {
                             infowindow.open(map, marker); // Open the Google maps marker infoWindow
@@ -219,7 +219,7 @@ $(document).ready(function () {
                             label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
-                            content: "Work in Progress"
+                            content: "<h3>" + val.properties.title + "</h3><p><a href='" + val.properties.url + "'>Details</a></p>"
                         });
                         marker.addListener('click', function (data) {
                             infowindow.open(map, marker); // Open the Google maps marker infoWindow
@@ -267,7 +267,7 @@ $(document).ready(function () {
                             label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
-                            content: "Work in Progress"
+                            content: "<h3>" + val.properties.title + "</h3><p><a href='" + val.properties.url + "'>Details</a></p>"
                         });
                         marker.addListener('click', function (data) {
                             infowindow.open(map, marker); // Open the Google maps marker infoWindow
@@ -312,7 +312,7 @@ $(document).ready(function () {
                             label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
-                            content: "Work in Progress"
+                            content: "<h3>" + val.properties.title + "</h3><p><a href='" + val.properties.url + "'>Details</a></p>"
                         });
                         marker.addListener('click', function (data) {
                             infowindow.open(map, marker); // Open the Google maps marker infoWindow
@@ -357,7 +357,7 @@ $(document).ready(function () {
                             label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
-                            content: "Work in Progress"
+                            content: "<h3>" + val.properties.title + "</h3><p><a href='" + val.properties.url + "'>Details</a></p>"
                         });
                         marker.addListener('click', function (data) {
                             infowindow.open(map, marker); // Open the Google maps marker infoWindow
@@ -402,7 +402,7 @@ $(document).ready(function () {
                             label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
-                            content: "Work in Progress"
+                            content: "<h3>" + val.properties.title + "</h3><p><a href='" + val.properties.url + "'>Details</a></p>"
                         });
                         marker.addListener('click', function (data) {
                             infowindow.open(map, marker); // Open the Google maps marker infoWindow
@@ -454,7 +454,7 @@ $(document).ready(function () {
                             label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
-                            content: "Work in Progress"
+                            content: "<h3>" + val.properties.title + "</h3><p><a href='" + val.properties.url + "'>Details</a></p>"
                         });
                         marker.addListener('click', function (data) {
                             infowindow.open(map, marker); // Open the Google maps marker infoWindow
@@ -499,7 +499,7 @@ $(document).ready(function () {
                             label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
-                            content: "Work in Progress"
+                            content: "<h3>" + val.properties.title + "</h3><p><a href='" + val.properties.url + "'>Details</a></p>"
                         });
                         marker.addListener('click', function (data) {
                             infowindow.open(map, marker); // Open the Google maps marker infoWindow
@@ -544,7 +544,7 @@ $(document).ready(function () {
                             label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
-                            content: "Work in Progress"
+                            content: "<h3>" + val.properties.title + "</h3><p><a href='" + val.properties.url + "'>Details</a></p>"
                         });
                         marker.addListener('click', function (data) {
                             infowindow.open(map, marker); // Open the Google maps marker infoWindow
@@ -589,7 +589,7 @@ $(document).ready(function () {
                             label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
-                            content: "Work in Progress"
+                            content: "<h3>" + val.properties.title + "</h3><p><a href='" + val.properties.url + "'>Details</a></p>"
                         });
                         marker.addListener('click', function (data) {
                             infowindow.open(map, marker); // Open the Google maps marker infoWindow
@@ -637,7 +637,7 @@ $(document).ready(function () {
                             label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
-                            content: "Work in Progress"
+                            content: "<h3>" + val.properties.title + "</h3><p><a href='" + val.properties.url + "'>Details</a></p>"
                         });
                         marker.addListener('click', function (data) {
                             infowindow.open(map, marker); // Open the Google maps marker infoWindow
@@ -682,7 +682,7 @@ $(document).ready(function () {
                             label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
-                            content: "Work in Progress"
+                            content: "<h3>" + val.properties.title + "</h3><p><a href='" + val.properties.url + "'>Details</a></p>"
                         });
                         marker.addListener('click', function (data) {
                             infowindow.open(map, marker); // Open the Google maps marker infoWindow
@@ -727,7 +727,7 @@ $(document).ready(function () {
                             label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
-                            content: "Work in Progress"
+                            content: "<h3>" + val.properties.title + "</h3><p><a href='" + val.properties.url + "'>Details</a></p>"
                         });
                         marker.addListener('click', function (data) {
                             infowindow.open(map, marker); // Open the Google maps marker infoWindow
@@ -772,7 +772,7 @@ $(document).ready(function () {
                             label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
-                            content: "Work in Progress"
+                            content: "<h3>" + val.properties.title + "</h3><p><a href='" + val.properties.url + "'>Details</a></p>"
                         });
                         marker.addListener('click', function (data) {
                             infowindow.open(map, marker); // Open the Google maps marker infoWindow
@@ -822,7 +822,7 @@ $(document).ready(function () {
                             label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
-                            content: "Work in Progress"
+                            content: "<h3>" + val.properties.title + "</h3><p><a href='" + val.properties.url + "'>Details</a></p>"
                         });
                         marker.addListener('click', function (data) {
                             infowindow.open(map, marker); // Open the Google maps marker infoWindow
@@ -867,12 +867,23 @@ $(document).ready(function () {
                             label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
-                            content: "Work in Progress"
+                            content: "<h3>" + val.properties.title + "</h3><p><a href='location.html?" + latLng + "' id='" + key + "'>Details</a></p>"
                         });
                         marker.addListener('click', function (data) {
                             infowindow.open(map, marker); // Open the Google maps marker infoWindow
                         });
                         markers[i++] = marker;
+/*                         jQuery(document).on('click', '#' + key, function(event){
+                            $.ajax({
+                                type: 'POST',
+                                url: '../location.html',
+                                data: 'latiLong='+ latLng,
+                                success: function(data)
+                                {
+                                    //$('#curriculum').html(data);
+                                }
+                            });
+                        }); */
                     });
                     var markerCluster = new MarkerClusterer(map, markers, {
                         imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
@@ -912,7 +923,7 @@ $(document).ready(function () {
                             //label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
-                            content: "Work in Progress"
+                            content: "<h3>" + val.properties.title + "</h3><p><a href='" + val.properties.url + "'>Details</a></p>"
                         });
                         marker.addListener('click', function (data) {
                             infowindow.open(map, marker); // Open the Google maps marker infoWindow
@@ -957,7 +968,7 @@ $(document).ready(function () {
                             //label: val.properties.mag.toString()
                         });
                         var infowindow = new google.maps.InfoWindow({
-                            content: "Work in Progress"
+                            content: "<h3>" + val.properties.title + "</h3><p><a href='" + val.properties.url + "'>Details</a></p>"
                         });
                         marker.addListener('click', function (data) {
                             infowindow.open(map, marker); // Open the Google maps marker infoWindow
@@ -967,6 +978,8 @@ $(document).ready(function () {
                     var markerCluster = new MarkerClusterer(map, markers, {
                         imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
                     });
+
+                
                 }
             });
         };

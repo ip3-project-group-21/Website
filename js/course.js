@@ -118,7 +118,6 @@ $(document).ready(function () {
     });
 
     $(window).on('resize', function (event) {
-        if (myChart = "") {} else {
             var windowWidth = $(window).width();
             if (windowWidth < 1000) {
                 myChart.options.legend.position = 'top';
@@ -128,6 +127,5 @@ $(document).ready(function () {
                 myChart.options.legend.position = 'right';
                 myChart.update();
             }
-        }
     });
 });
