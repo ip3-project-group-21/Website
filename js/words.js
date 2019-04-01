@@ -14,14 +14,12 @@ $(document).ready(function () {
                 //Validation for the words being queried by user
                 if (sourceWord == "") {
                     alert("Please enter a word.");
-                } 
-                else if( sourceWord.includes(" ")) {
-                    alert("Cannot contain a space - please try again.");
-                }
-                else {
-                        response(sourceWord, $.map(data, function (item) {
-                            return item["word"];
-                        }), apiFn);
+                } else if (sourceWord.includes(" ")) {
+                    alert("Center word cannot contain a space - API issue");
+                } else {
+                    response(sourceWord, $.map(data, function (item) {
+                        return item["word"];
+                    }), apiFn);
                 }
             },
         });
@@ -31,7 +29,7 @@ $(document).ready(function () {
     //Variables declared for the links, nodes, width of cells and the graph size
     var link;
     var node;
-    var rect_width = 120;
+    var rect_width = 150;
     var width = 1000,
         height = 500;
     var svg = d3.select("#graph").append("svg")
@@ -47,7 +45,7 @@ $(document).ready(function () {
 
         //If the word the user enters has no synonyms - this means the word doesn't exist
         if (followers.length == 0) {
-            alert("Word doesn't exist - please try again.");
+            alert("Word doesn't exist - please enter another word.");
             n["name"] = "error";
         }
 
