@@ -14,10 +14,10 @@ $(document).ready(function () {
     
     var link;
     var node;
-    var rect_width = 120;
-    var width = 1000, height = 500;
+    var rect_width = 100;
+    var width = 500, height = 500;
     var svg = d3.select("#graph").append("svg")
-       .attr("width", "100%")
+       .attr("width", width)
        .attr("height", height);
     var nodes = {};
     
@@ -49,7 +49,7 @@ $(document).ready(function () {
             .nodes(d3.values(nodes))
             .links(links)
             .size([width, height])
-            .linkDistance(150)
+            .linkDistance(120)
             .charge(-800)
             .on("tick", tick)
             .start();
@@ -68,13 +68,13 @@ $(document).ready(function () {
     
         node.append("rect")
             .attr("width", rect_width)
-            .attr("height", 30)
-            .attr("rx", 50)
+            .attr("height", 20)
+            .attr("rx", 15)
             .attr("ry", 15);
     
         node.append("text")
             .attr("x", rect_width / 2 )
-            .attr("dy", "1.4em")
+            .attr("dy", "1.0em")
             .text(function(d) { return d.name; });
     }
     
@@ -101,17 +101,17 @@ $(document).ready(function () {
                 .attr("x", "15")
                 .append("xhtml:input").attr("id","sourceinput").attr("type","text").attr("value", sourceWord)
                 .on("keypress", function(d,i) {
-                        if (event.keyCode == 13) getTargets("rel_syn", $("#sourceinput").val(), 10, response);});
+                        if (event.keyCode == 13) getTargets("rel_jjb", $("#sourceinput").val(), 10, response);});
         } else {
             var nextApiFn;
-            if (apiFn == "rel_syn") {
-                nextApiFn = "rel_syn";
+            if (apiFn == "rel_jjb") {
+                nextApiFn = "rel_jja";
             } else {
-                nextApiFn = "rel_syn";
+                nextApiFn = "rel_jjb";
             }
-            getTargets(nextApiFn, d["name"], 15, response);
+            getTargets(nextApiFn, d["name"], 10, response);
         }
     }
     
-    getTargets("rel_syn", "brown", 15, response);
+    getTargets("rel_jjb", "brown", 10, response);
 });
