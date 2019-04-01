@@ -53,9 +53,9 @@
 				</a>
 			</aside>
 		</div>
-		<div id="chart" class="api-content container">
+		<div class="api-content container">
+			<div id="chart"></div>
 		</div>
-		<svg width="960" height="960" font-family="sans-serif" font-size="10" text-anchor="middle"></svg>
 	</div>
 
 	<script>
@@ -94,15 +94,19 @@
 
 			function drawRegionsMap() {
 				var data = new google.visualization.DataTable();
-				data.addColumn('string', 'Country');
+				data.addColumn('string', 'Country:');
 				data.addColumn('number', 'Population');
 
 				for (i = 0; i < CountryName.length; i++) {
-				data.addRow([CountryName[i], CountryPopulation[i]]);
+					data.addRow([CountryName[i], CountryPopulation[i]]);
 				}
 				var options = {
-					colorAxis: {minValue: 100000, maxValue: 50000000,  colors: ['#FFA07A','#DC143C']}
-
+					colorAxis: {
+						minValue: 100000,
+						maxValue: 50000000,
+						colors: ['#FFA07A', '#DC143C']
+					},
+					keepAspectRatio: true
 				};
 
 				var chart = new google.visualization.GeoChart(document.getElementById('chart'));
