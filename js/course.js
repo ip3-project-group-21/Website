@@ -1,4 +1,16 @@
 $(document).ready(function () {
+    /*     $.each($('#CourseDropdown option'), function(key, optionElement) {
+            var curText = $(optionElement).text();
+            $(this).attr('title', curText);
+        
+            // Tip: parseInt('350px', 10) removes the 'px' by forcing parseInt to use a base ten numbering system.
+            var lengthToShortenTo = Math.round(parseInt($(this).parent('select').css('max-width'), 10) / 7.3);
+            
+            if (curText.length > lengthToShortenTo) {
+                $(this).text('... ' + curText.substring((curText.length - lengthToShortenTo), curText.length));
+            }
+        });
+         */
     var myChart;
     var OccupationSOC = [];
     var OccupationTitle = [];
@@ -35,7 +47,7 @@ $(document).ready(function () {
     });
 
     $("#CourseDropdown").change(function () {
-        $("#CourseDropdown option[value='select']").remove();  
+        $("#CourseDropdown option[value='select']").remove();
         $("#chart-container").html("");
         $("#myChart").remove(); // removing previous canvas element
         $("#chart-container").append('<canvas id="myChart" class="myChart" width="500" height="500"></canvas>');
@@ -94,7 +106,9 @@ $(document).ready(function () {
                         datasets: [{
                             label: '#percentage of workers',
                             data: OccupationPercentage,
-                            backgroundColor: ["#69D2E7", "#A7DBD8", "#E0E4CC", "#F38630", "#FA6900"],
+                            backgroundColor: ["#33ccff", "#0099cc", "#006080", "#00394d", " #4d0026" ,"#800040", "#b30059" ," #e60073" ,"#ff1a8c", "#ff99cc"],
+                            //backgroundColor: ["#69D2E7", "#A7DBD8", "#94b2a2", "#a3a88b", "#b29e74" , , ,"#F38630", "#FA6900"],
+
                         }]
                     },
                     options: {
@@ -105,6 +119,15 @@ $(document).ready(function () {
                         }
                     }
                 });
+                document.getElementById("myChart").onclick = function(evt){
+                    var activePoints = myChart.getElementsAtEvent(evt);
+                    var firstPoint = activePoints[0];
+                    var label = myChart.data.labels[firstPoint._index];
+                    //var value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
+                    //alert(label + ": " + value);
+                    window.open("https://www.indeed.co.uk/jobs?q=" + label + "&l=", '_blank');
+
+                };
                 var windowWidth = $(window).width();
                 if (windowWidth < 1000) {
                     myChart.options.legend.position = 'top';
@@ -119,6 +142,7 @@ $(document).ready(function () {
     });
 
     $(window).on('resize', function (event) {
+        try {
             var windowWidth = $(window).width();
             if (windowWidth < 1000) {
                 myChart.options.legend.position = 'top';
@@ -128,5 +152,7 @@ $(document).ready(function () {
                 myChart.options.legend.position = 'right';
                 myChart.update();
             }
+        } catch (err) {
+        }
     });
 });

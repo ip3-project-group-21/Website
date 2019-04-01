@@ -39,14 +39,18 @@
 			</section>
 
 			<aside class="text desc text-justify">
-				<p>On this page the user will be able to get the idea of what each country's population size by seeing it in infrared 
-					format. By using this colour scheme, the user can get an idea on what a countries population size without knowing 
-					the number. If a user wants to know the exact number for the population size, they just have to hover over a country 
+				<p>On this page the user will be able to get the idea of what each country's population size by seeing
+					it in infrared
+					format. By using this colour scheme, the user can get an idea on what a countries population size
+					without knowing
+					the number. If a user wants to know the exact number for the population size, they just have to
+					hover over a country
 					with their mouse.</p>
 
 			</aside>
 			<aside class="text tut text-justify">
-				<p>For a more in-depth tutorial on how to fully take advantage of this page  please follow the link here to our population tutorial page.</p>
+				<p>For a more in-depth tutorial on how to fully take advantage of this page please follow the link here
+					to our population tutorial page.</p>
 
 				<a href="tutcountries.html">
 					<button type="button" class="btn btn-sm btn-outline-dark">Link to Tutorial Page</button>
@@ -54,8 +58,9 @@
 			</aside>
 		</div>
 		<div class="api-content container">
-			<div id="chart"></div>
 		</div>
+		<div id="chart" class="geochart"  style="width: 900px; height: 500px;"></div>
+
 	</div>
 
 	<script>
@@ -101,12 +106,19 @@
 					data.addRow([CountryName[i], CountryPopulation[i]]);
 				}
 				var options = {
-					colorAxis: {
+					/* colorAxis: {
 						minValue: 100000,
 						maxValue: 50000000,
-						colors: ['#FFA07A', '#DC143C']
+						colors: ['#FFA07A', '#DC143C'],
 					},
-					keepAspectRatio: true
+					tooltip: {
+						trigger: 'focus'
+					},
+					tooltip: {
+						isHtml: true
+					},
+					//backgroundColor: 'transparent',
+					keepAspectRatio: true */
 				};
 
 				var chart = new google.visualization.GeoChart(document.getElementById('chart'));
