@@ -113,5 +113,5 @@ $(document).ready(function () {
         }
     }
     
-    getTargets("rel_syn", "brown", 15, response);
+    getTargets("rel_syn", "start", 15, response);
 });

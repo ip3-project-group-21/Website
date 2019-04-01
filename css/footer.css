@@ -3,23 +3,8 @@
 .page-footer {
     font-family: 'ZCOOL QingKe HuangYou', cursive;
     background-color: rgba(0,0,0,0.15);
-    bottom: 0;
     width: 100%;
     box-shadow: 
         inset 0px 11px 8px -10px #CCC,
         inset 0px -11px 8px -10px #CCC; 
-}
-
-html, body {
-    height: 100%;
-}
-
-.wrapper {
-    min-height: 100%;
-    height: 100%;
-    margin: 0 auto -56px; /* the bottom margin is the negative value of the footer's height */
-}
-
-.footer, .push {
-    height: 56px; /* .push must be the same height as .footer */
 }
