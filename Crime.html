@@ -41,6 +41,7 @@
 
 <body>
 
+
 	<div id="page">
 		<div class="intro container">
 			<section class="page-title">
@@ -71,41 +72,31 @@
 
 
 		<div class="api-content container">
-			<div class="select">
-				<Select id="CrimeDropdown" name="CrimeDropdown">
-					<option value="select" selected>Select the Crime</option>
-					<option value="aggravated-assault" >Aggravated Assault</option>
-					<option value="burglary" >Burglary</option>
-					<option value="larceny" >Larceny</option>
-					<option value="motor-vehicle-theft" >Motor-Vehicle Theft</option>
-					<option value="homicide" >Homicide</option>
-					<option value="rape" >Rape</option>
-					<option value="robbery" >Robbery</option>
-					<option value="arson" >Arsony</option>
-					<option value="violent-crime" >Violent Crimes</option>
-					<option value="property-crime" >Property Crimes</option>
-				</Select>
-			</div>
-			<br>
-			<div class="select">
-				<Select id="SortDropdown" name="SortDropdown">
-					<option value="select" selected>Select Sorted Information</option>
-					<option value="age">Age</option>
-					<option value="count">Amount</option>
-					<option value="ethnicity">Ethnicity</option>
-					<option value="race">Race</option>
-					<option value="sex">Gender</option>
-					<option value="relationship">Relationship</option>
-				</Select>
-			</div>
-			<div id="chart-container">
-				<canvas id="myChart"></canvas>
+			<div id="options">
+
+				<div class="row">
+					<div class="col-sm-12 col-md-6">
+						<input class="form-control input-sm" id="Latitude" placeholder="Latitude" type="text">
+					</div>
+					<div class="col-sm-12 col-md-6">
+						<input class="form-control input-sm" id="Longitude" placeholder="Longitude" type="text">
+					</div>
+				</div>
+				<label for="date">Date(Optional)</label>
+				<input id="date" class="date-own form-control" type="text">
+				<div id="chart-container">
+					<canvas id="myChart"></canvas>
+				</div>
 			</div>
 
 		</div>
 	</div>
 
 	<script>
+		$('.date-own').datepicker({
+			minViewMode: 2,
+			format: 'yyyy'
+		});
 	</script>
 	<!--Link to local Javascript file-->
 	<script type="text/javascript" src="js/lifeExpectancy.js"></script>
