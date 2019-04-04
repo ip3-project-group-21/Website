@@ -97,6 +97,19 @@
 			minViewMode: 2,
 			format: 'yyyy'
 		});
+		$(document).ready(function () {
+			var longitude = document.getElementById('Longitude').value;
+			var latitude = document.getElementById('Latitude').value;
+			var date = $('#date').val() + "-01";
+			$.ajax({
+				type: "GET",
+				url: "https://data.police.uk/api/crimes-street/all-crime?lat=" + latitude + "&lng=" + longitude +" &date=" + date,
+				dataType: "json",
+				success: function (data) {
+					console.log(data)
+				}
+			});
+		});
 	</script>
 	<!--Link to local Javascript file-->
 	<script type="text/javascript" src="js/lifeExpectancy.js"></script>
