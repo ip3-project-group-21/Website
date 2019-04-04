@@ -37,9 +37,15 @@ $(document).ready(function () {
 
             console.log(CourseID);
             console.log(CourseName);
-
+            /*This IF statement is here due to the fact that the API returns arrays to us with no values in them so it is better to just take those options away from the
+              user by not putting it in the dropdown box*/
             for (var i = 0; i < arrayLength; i++) {
-                if (data[i].id != "A0") {
+                if (data[i].id != "A0" & data[i].id != "B0" & data[i].id != "D0" & data[i].id != "D5" & data[i].id != "D7" & data[i].id != "D9"& data[i].id != "F2"  
+                & data[i].id != "G9" & data[i].id != "H0" & data[i].id != "H9" & data[i].id != "I5" & data[i].id != "I9" & data[i].id != "J1" & data[i].id != "J2"
+                & data[i].id != "J3" & data[i].id != "J7" & data[i].id != "K0" & data[i].id != "K9" & data[i].id != "L0" & data[i].id != "N0" & data[i].id != "N7" 
+                & data[i].id != "P0" & data[i].id != "Q4" & data[i].id != "Q6" & data[i].id != "Q7" & data[i].id != "R5" & data[i].id != "R6" & data[i].id != "T3" 
+                & data[i].id != "T4" & data[i].id != "T5" & data[i].id != "T8" & data[i].id != "T9" & data[i].id != "V0" & data[i].id != "V7" & data[i].id != "W0" 
+                & data[i].id != "X0" & data[i].id != "X2") {
                     $('#CourseDropdown').append('<option value="' + CourseID[i] + '">' + CourseName[i] + '</option>');
                 }
             }

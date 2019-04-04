@@ -25,7 +25,6 @@
 /* API CONTENT */
 
 .api-content {
-    height: 800px;
     position:relative;
 }
 
@@ -86,6 +85,7 @@
     display:inline-block;
 }
 
+
 /*WORDS PAGE*/
 .link {
     fill: none;
@@ -119,7 +119,7 @@
   }
   
   .selectedtrigger input[type="text"] {
-      width: 70px;
+      width: 120px;
   }
   
   text {
@@ -180,6 +180,8 @@ select {
     background: #666;
     background-image: none;
   }
+
+  
   /* Custom Select */
   .select {
     position: relative;
@@ -204,6 +206,8 @@ select {
   select::-ms-expand {
     display: none;
   }
+
+
   /* Arrow */
   .select::after {
     content: '\25BC';
@@ -215,6 +219,8 @@ select {
     background: #666;
     pointer-events: none;
   }
+
+
   /* Transition */
   .select:hover::after {
     color: #f39c12;

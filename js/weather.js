@@ -124,9 +124,7 @@ $(document).ready(function () {
                             .region + " " + data.location.country + " " + data.location.lat + " " + data.location.lon +
                             '</p>'*/
 
-                        /** this code above was in ryans code twice not sure if you need it. Only thing not above is the lat & lon vars
-                         *  ALSO RYAN ALL YOU HAD TO DO WAS LOOK AT OUR WORK FROM WEB LAST SEMESTER!!!!!
-                         */
+                        /* this code above was in ryans code twice not sure if you need it. Only thing not above is the lat & lon vars */
 
                         $("#weathTextList").append(lastUpdated);
                         $("#weathTextList").append(loc);
@@ -270,8 +268,6 @@ $(document).ready(function () {
                         $("#weathTextList").append(windKPH);
                         $("#weathTextList").append(gustMPH);
                         $("#weathTextList").append(gustKPH);
-
-                        // RYAN YOU DIDNT EVEN FINISH THIS ONLY HAD THE FIRST 4 VARIABLES. THIS AJAX CALL SHOULD BE SAME AS THE ONE FOR LOCATION, ONLY DIFF IS THIS ONE USES LAT AND LONG.
 
                     } else {
                         var unsuccessful = $("<li />", {
