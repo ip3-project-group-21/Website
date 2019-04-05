@@ -86,7 +86,7 @@
 				<input id="date" class="date-own form-control" type="text">
 				<button type="button" class="" name="Info" id="ChartDisplay" value="DisplayChart"
 					style="margin-top: 1em">Display Chart</button>
-				<div id="chart-container" style="height:40; width:80">
+				<div id="chart-container">
 					<canvas id="myChart"></canvas>
 				</div>
 			</div>
@@ -118,6 +118,9 @@
 			var violentCrimeCount = 0;
 			var otherCrimeCount = 0;
 			$("#ChartDisplay").click(function () {
+				$("#chart-container").html("");
+				$("#myChart").remove(); // removing previous canvas element
+				$("#chart-container").append('<canvas id="myChart" class="myChart" width="500" height="500"></canvas>');
 				var longitude = document.getElementById('Longitude').value;
 				var latitude = document.getElementById('Latitude').value;
 				var date = $('#date').val(); //+ "-01";
