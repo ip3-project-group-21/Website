@@ -120,7 +120,8 @@
 			$("#ChartDisplay").click(function () {
 				$("#chart-container").html("");
 				$("#myChart").remove(); // removing previous canvas element
-				$("#chart-container").append('<canvas id="myChart" class="myChart" width="500" height="500"></canvas>');
+				$("#chart-container").append(
+					'<canvas id="myChart" class="myChart" width="500" height="500"></canvas>');
 				var longitude = document.getElementById('Longitude').value;
 				var latitude = document.getElementById('Latitude').value;
 				var date = $('#date').val(); //+ "-01";
@@ -242,22 +243,12 @@
 							options: {
 								responsive: true,
 								maintainAspectRatio: true,
+								legend: {
+									display: false,
+								}
 							}
 						});
 					}
-				});
-				$(window).on('resize', function (event) {
-					try {
-						var windowWidth = $(window).width();
-						if (windowWidth < 500) {
-							myChart.options.legend.display = 'false';
-							myChart.update();
-						}
-						if (windowWidth >= 500) {
-							myChart.options.legend.display = 'true';
-							myChart.update();
-						}
-					} catch (err) {}
 				});
 			});
 
