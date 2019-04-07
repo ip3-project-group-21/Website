@@ -73,13 +73,9 @@
 
 		<div class="api-content container">
 			<div id="options">
-
 				<div class="row">
 					<div class="col-sm-12 col-md-6">
-						<input class="form-control input-sm" id="Latitude" placeholder="Latitude" type="text">
-					</div>
-					<div class="col-sm-12 col-md-6">
-						<input class="form-control input-sm" id="Longitude" placeholder="Longitude" type="text">
+						<input class="form-control input-sm" id="LocationText" placeholder="Location" type="text">
 					</div>
 				</div>
 				<label for="date" style="margin-top: 1em">Date(Optional)</label>
@@ -120,134 +116,174 @@
 			$("#ChartDisplay").click(function () {
 				$("#chart-container").html("");
 				$("#myChart").remove(); // removing previous canvas element
-				$("#chart-container").append(
-					'<canvas id="myChart" class="myChart" width="500" height="500"></canvas>');
-				var longitude = document.getElementById('Longitude').value;
-				var latitude = document.getElementById('Latitude').value;
+				$("#chart-container").append('<canvas id="myChart" class="myChart"></canvas>');
+					//width="500" height="500"
+				var location = document.getElementById('LocationText').value;
+				var longitude; //= document.getElementById('Longitude').value;
+				var latitude; //= document.getElementById('Latitude').value;
 				var date = $('#date').val(); //+ "-01";
+
 				$.ajax({
 					type: "GET",
-					url: "https://data.police.uk/api/crimes-street/all-crime?lat=" + latitude +
-						"&lng=" +
-						longitude + "&date=" + date,
+					url: "http://api.apixu.com/v1/current.json?key=75fb86a2371f4abca12115412190403&q=" + location,
 					dataType: "json",
+					error: function () {
+						alert("Issue obtaining API data. Please enter a proper location.");
+					},
 					success: function (data) {
-						console.log(data)
-
-						var arrayLength = data.length;
-						console.log(arrayLength);
-
-						//console.log(arrayLength);
-
-						for (var i = 0; i < arrayLength; i++) {
-							if (data[i].category == "anti-social-behaviour") {
-								antiSocialBehaviourCount++;
-							}
-							if (data[i].category == "bicycle-theft") {
-								bicycleTheftCount++;
-
-							}
-							if (data[i].category == "burglary") {
-								burglaryCount++;
-
-							}
-							if (data[i].category == "criminal-damage-arson") {
-								criminalDamageArsonCount++;
-
-							}
-							if (data[i].category == "drugs") {
-								drugsCount++;
-
-							}
-							if (data[i].category == "other-theft") {
-								otherTheftCount++;
-
-							}
-							if (data[i].category == "possession-of-weapons") {
-								possessionOfWeaponsCount++;
-
-							}
-							if (data[i].category == "public-order") {
-								publicOrderCount++;
-
-							}
-							if (data[i].category == "robbery") {
-								robberyCount++;
-
-							}
-							if (data[i].category == "shoplifting") {
-								shopliftingCount++;
-
-							}
-							if (data[i].category == "theft-from-the-person") {
-								theftFromThePersonCount++;
-
-							}
-							if (data[i].category == "vehicle-crime") {
-								vehicleCrimeCount++;
-
-							}
-							if (data[i].category == "violent-crime") {
-								violentCrimeCount++;
-
-							}
-							if (data[i].category == "other-crime") {
-								otherCrimeCount++;
-
-							}
+						latitude = data.location.lat;
+						longitude= data.location.lon;
+						if (!(data.location.country == "United Kingdom")){
+							alert("Location not in United Kingdom");
 						}
-						console.log(otherCrimeCount);
+						else{
+						$.ajax({
+							type: "GET",
+							url: "https://data.police.uk/api/crimes-street/all-crime?lat=" +
+								latitude +
+								"&lng=" +
+								longitude + "&date=" + date,
+							dataType: "json",
+							success: function (data) {
+								console.log(data)
 
+								var arrayLength = data.length;
+								console.log(arrayLength);
 
+								//console.log(arrayLength);
 
+								for (var i = 0; i < arrayLength; i++) {
+									if (data[i].category == "anti-social-behaviour") {
+										antiSocialBehaviourCount++;
+									}
+									if (data[i].category == "bicycle-theft") {
+										bicycleTheftCount++;
 
+									}
+									if (data[i].category == "burglary") {
+										burglaryCount++;
 
-					},
-					error: function (jqXHR, status, errorThrown) {
-						alert("Location not in United Kingdom");
-					},
-					complete: function (data) {
-						var ctx = document.getElementById('myChart');
-						myChart = new Chart(ctx, {
-							type: 'horizontalBar',
-							data: {
-								labels: ["Anti-social behaviour", "Bicycle theft",
-									"Burglary", "Criminal damage and arson", "Drugs",
-									"Other theft", "Possession of weapons",
-									"Public order", "Robbery", "Shoplifting",
-									"Theft from the person", "Vehicle crime",
-									"Violence and sexual offences", "Other crime"
-								],
-								datasets: [{
-									label: 'Amount:',
-									data: [antiSocialBehaviourCount,
-										bicycleTheftCount, burglaryCount,
-										criminalDamageArsonCount, drugsCount,
-										otherTheftCount,
-										possessionOfWeaponsCount,
-										publicOrderCount, robberyCount,
-										shopliftingCount,
-										theftFromThePersonCount,
-										vehicleCrimeCount, violentCrimeCount,
-										otherCrimeCount
-									],
-									backgroundColor: ["#33ccff", "#0099cc",
-										"#006080", "#00394d", " #4d0026",
-										"#800040", "#b30059", " #e60073",
-										"#ff1a8c", "#ff99cc"
-									],
-									//backgroundColor: ["#69D2E7", "#A7DBD8", "#94b2a2", "#a3a88b", "#b29e74" , , ,"#F38630", "#FA6900"],
+									}
+									if (data[i].category == "criminal-damage-arson") {
+										criminalDamageArsonCount++;
 
-								}]
-							},
-							options: {
-								responsive: true,
-								maintainAspectRatio: true,
-								legend: {
-									display: false,
+									}
+									if (data[i].category == "drugs") {
+										drugsCount++;
+
+									}
+									if (data[i].category == "other-theft") {
+										otherTheftCount++;
+
+									}
+									if (data[i].category == "possession-of-weapons") {
+										possessionOfWeaponsCount++;
+
+									}
+									if (data[i].category == "public-order") {
+										publicOrderCount++;
+
+									}
+									if (data[i].category == "robbery") {
+										robberyCount++;
+
+									}
+									if (data[i].category == "shoplifting") {
+										shopliftingCount++;
+
+									}
+									if (data[i].category == "theft-from-the-person") {
+										theftFromThePersonCount++;
+
+									}
+									if (data[i].category == "vehicle-crime") {
+										vehicleCrimeCount++;
+
+									}
+									if (data[i].category == "violent-crime") {
+										violentCrimeCount++;
+
+									}
+									if (data[i].category == "other-crime") {
+										otherCrimeCount++;
+
+									}
 								}
+								//console.log(otherCrimeCount);
+
+
+
+
+
+							},
+/* 							error: function (jqXHR, status, errorThrown) {
+								alert("Location not in United Kingdom");
+							}, */
+							complete: function (data) {
+								var ctx = document.getElementById('myChart');
+								myChart = new Chart(ctx, {
+									type: 'horizontalBar',
+									data: {
+										labels: ["Anti-social behaviour",
+											"Bicycle theft",
+											"Burglary",
+											"Criminal damage and arson",
+											"Drugs",
+											"Other theft",
+											"Possession of weapons",
+											"Public order", "Robbery",
+											"Shoplifting",
+											"Theft from the person",
+											"Vehicle crime",
+											"Violence and sexual offences",
+											"Other crime"
+										],
+										datasets: [{
+											label: 'Amount:',
+											data: [antiSocialBehaviourCount,
+												bicycleTheftCount,
+												burglaryCount,
+												criminalDamageArsonCount,
+												drugsCount,
+												otherTheftCount,
+												possessionOfWeaponsCount,
+												publicOrderCount,
+												robberyCount,
+												shopliftingCount,
+												theftFromThePersonCount,
+												vehicleCrimeCount,
+												violentCrimeCount,
+												otherCrimeCount
+											],
+											backgroundColor: [
+												"#33ccff",
+												"#0099cc",
+												"#006080",
+												"#00394d",
+												" #4d0026",
+												"#800040",
+												"#b30059",
+												" #e60073",
+												"#ff1a8c",
+												"#ff99cc"
+											],
+											//backgroundColor: ["#69D2E7", "#A7DBD8", "#94b2a2", "#a3a88b", "#b29e74" , , ,"#F38630", "#FA6900"],
+
+										}]
+									},
+									options: {
+										responsive: true,
+										maintainAspectRatio: true,
+										legend: {
+											display: false,
+										}
+									}
+								});
 							}
 						});
+					}
+					},
+					complete: function (data) {
 					}
 				});
 			});
