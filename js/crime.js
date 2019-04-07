@@ -45,13 +45,19 @@
 		                location,
 		            dataType: "json",
 		            error: function () {
-		                alert("Issue obtaining API data. Please enter a proper location.");
+                        $("#errorlocation").show();
+
+		                $("#errorlocation").html("Issue obtaining API data. Please enter a proper location.");
 		            },
 		            success: function (data) {
+                        $("#errorlocation").html("");
+                        $("#errorlocation").hide();
+
 		                latitude = data.location.lat;
 		                longitude = data.location.lon;
 		                if (!(data.location.country == "United Kingdom")) {
-		                    alert("Location not in United Kingdom");
+                            $("#errorlocation").show();
+                            $("#errorlocation").html("Location is not in United Kingdom.");
 		                } else {
 		                    $.ajax({
 		                        type: "GET",

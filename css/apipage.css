@@ -28,6 +28,9 @@
     position:relative;
 }
 
+.error-text{
+    color: crimson
+}
 
 /*EARTHQUAKE PAGE MAP*/
  #map {
