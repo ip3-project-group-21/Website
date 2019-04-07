@@ -1,3 +1,8 @@
+//Page implemented by Gregor Baikie 24/03/19
+//Much of the code was sourced from https://www.datamuse.com/api/ including variable names and code structure
+//A portion of this code has been modified through removal or editing of certain functionality
+
+
 //When the page is fully loaded the page the script will kick in
 $(document).ready(function () {
 
