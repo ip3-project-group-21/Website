@@ -120,6 +120,7 @@
 		};
 		$('.date-own').datepicker(options);
 		$(document).ready(function () {
+			document.getElementById('LocationText').value = "";
 			$("#ChartDisplay").click(function () {
 				var myChart;
 				var antiSocialBehaviourCount = 0;
@@ -309,7 +310,8 @@
 									});
 								}
 								else{
-									$("#chart-container").html("<h1>No Crime Data Avialable</h1>");
+									$("#chart-container").html("<br><h1>No Crime Data Avialable</h1>"
+									+ "<p>Due to how the Data is being recieved we are not responsible for any Crime Data that is not shown.</p>");
 								}
 								}
 							});
