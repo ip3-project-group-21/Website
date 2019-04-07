@@ -31,11 +31,11 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">-->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css"
 		rel="stylesheet">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
 
@@ -78,8 +78,27 @@
 						<input class="form-control input-sm" id="LocationText" placeholder="Location" type="text">
 					</div>
 				</div>
-				<label for="date" style="margin-top: 1em">Date(Optional)</label>
-				<input id="date" class="date-own form-control" type="text">
+
+				<!-- 				<label for="date" style="margin-top: 1em">Date(Optional)</label>
+				<input id="date" class="date-own form-control" type="text"> -->
+				<div class="bootstrap-iso">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-6 col-sm-6 col-xs-12">
+
+								<!-- Form code begins -->
+								<div class="form-group">
+									<!-- Date input -->
+									<label class="control-label" for="date">Date</label>
+									<input class="date-own form-control" id="date" name="date" placeholder="MM/DD/YYY"
+										type="text" />
+								</div>
+								<!-- Form code ends -->
+
+							</div>
+						</div>
+					</div>
+				</div>
 				<button type="button" class="" name="Info" id="ChartDisplay" value="DisplayChart"
 					style="margin-top: 1em">Display Chart</button>
 				<div id="chart-container">
@@ -91,12 +110,17 @@
 	</div>
 
 	<script>
-		$('.date-own').datepicker({
+		//var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+		var options = {
+			container: ".form-group",
+			autoclose: true,
 			minViewMode: 1,
 			format: 'yyyy-mm',
 			startDate: '2016-04',
-			endDate: "0d"
-		});
+			endDate: "0d",
+			pickerPosition: "bottom-left"
+		};
+		$('.date-own').datepicker(options);
 		$(document).ready(function () {
 			$("#ChartDisplay").click(function () {
 				var myChart;
