@@ -73,12 +73,6 @@
 
 		<div class="api-content container">
 			<div id="options">
-				<div class="row">
-					<div class="col-sm-12 col-md-6">
-						<input class="form-control input-sm" id="LocationText" placeholder="Location" type="text">
-					</div>
-				</div>
-
 				<!-- 				<label for="date" style="margin-top: 1em">Date(Optional)</label>
 				<input id="date" class="date-own form-control" type="text"> -->
 				<div class="bootstrap-iso">
@@ -89,6 +83,8 @@
 								<!-- Form code begins -->
 								<div class="form-group">
 									<!-- Date input -->
+									<label class="control-label" for="LocationText">Location</label>
+									<input class="form-control input-sm" id="LocationText" placeholder="Location" type="text">
 									<label class="control-label" for="date">Date</label>
 									<input autocomplete="off"  class="date-own form-control" id="date" name="date" placeholder="YYYY-MM"
 										type="text" />
@@ -148,6 +144,7 @@
 				var longitude; //= document.getElementById('Longitude').value;
 				var latitude; //= document.getElementById('Latitude').value;
 				var date = $('#date').val(); //+ "-01";
+				var arrayLength = 0;
 
 				$.ajax({
 					type: "GET",
@@ -173,7 +170,7 @@
 								success: function (data) {
 									console.log(data)
 
-									var arrayLength = data.length;
+									arrayLength = data.length;
 									console.log(arrayLength);
 
 									//console.log(arrayLength);
@@ -250,6 +247,7 @@
 																alert("Location not in United Kingdom");
 															}, */
 								complete: function (data) {
+									if (!(arrayLength == 0)){
 									var ctx = document.getElementById('myChart');
 									myChart = new Chart(ctx, {
 										type: 'horizontalBar',
@@ -309,6 +307,10 @@
 											}
 										}
 									});
+								}
+								else{
+									$("#chart-container").html("<h1>No Data Avialable</h1>");
+								}
 								}
 							});
 						}
