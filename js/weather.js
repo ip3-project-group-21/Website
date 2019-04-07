@@ -32,7 +32,8 @@ $(document).ready(function () {
 
     $("#submitBtn").click(function () {
 
-        $("#weathTextList").empty(); // Clears the li elements under the UL when button clicked. Otherwise data gets muddled together. Source - https://stackoverflow.com/questions/6941489/how-does-one-remove-all-li-tags-from-a-parent-ul-tag
+        $("#weathTextList").empty();
+        $("#weathLocationInfo").empty(); // Clears the li elements under the UL when button clicked. Otherwise data gets muddled together. Source - https://stackoverflow.com/questions/6941489/how-does-one-remove-all-li-tags-from-a-parent-ul-tag
 
         // Additional source to check if the text box was disabled to help program decide which if statement to execute - https://stackoverflow.com/questions/8963781/find-if-a-textbox-is-disabled-or-not-using-jquery
 
@@ -44,7 +45,7 @@ $(document).ready(function () {
 
             $.ajax({
 
-                url: "http://api.apixu.com/v1/current.json?key=75fb86a2371f4abca12115412190403&q=" + location,
+                url: "http://api.apixu.com/v1/forecast.json?key=75fb86a2371f4abca12115412190403&q=" + location + "&days=2",
 
                 error: function () {
 
@@ -57,7 +58,11 @@ $(document).ready(function () {
                     if (data.location.name == titleCase(location) || data.location.region == titleCase(location) || data.location.country == titleCase(location)) {
 
 
-                        document.getElementById("WeathImage").src = "http:" + data.current.condition.icon;
+                        /* document.getElementById("WeathImage").src = "http:" + data.current.condition.icon;
+                        document.getElementById("WeathImage2").src = "http:" + data.current.condition.icon;
+                        document.getElementById("WeathImage3").src = "http:" + data.current.condition.icon; */
+
+
 
                         var lastUpdated = $("<li />", {
                             text: "Last Updated: " + data.current.last_updated
@@ -74,6 +79,8 @@ $(document).ready(function () {
                         var country = $("<li />", {
                             text: "Country: " + data.location.country
                         });
+
+
 
                         var weathCond = $("<li />", {
                             text: "Current Condition: " + data.current.condition.text
@@ -126,10 +133,12 @@ $(document).ready(function () {
 
                         /* this code above was in ryans code twice not sure if you need it. Only thing not above is the lat & lon vars */
 
-                        $("#weathTextList").append(lastUpdated);
-                        $("#weathTextList").append(loc);
-                        $("#weathTextList").append(reg);
-                        $("#weathTextList").append(country);
+                        $("#weathLocationInfo").append(lastUpdated);
+                        $("#weathLocationInfo").append(loc);
+                        $("#weathLocationInfo").append(reg);
+                        $("#weathLocationInfo").append(country);
+
+
                         $("#weathTextList").append(weathCond);
                         $("#weathTextList").append(vis);
                         $("#weathTextList").append(perc);
@@ -141,6 +150,9 @@ $(document).ready(function () {
                         $("#weathTextList").append(windKPH);
                         $("#weathTextList").append(gustMPH);
                         $("#weathTextList").append(gustKPH);
+
+
+
 
                     } else {
                         var unsuccessful = $("<li />", {
@@ -277,7 +289,6 @@ $(document).ready(function () {
                         $("#weathTextList").append(unsuccessful);
                     }
                 }
-
 
             });
 
