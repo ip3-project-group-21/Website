@@ -7,7 +7,7 @@ function initMap() {
     google.maps.event.trigger(map, 'resize');
 }
 
-function populateMap(earthquakePwr){
+function populateMap(earthquakePwr) {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 2,
         center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
@@ -28,6 +28,7 @@ function populateMap(earthquakePwr){
             i = 0;
             var markers = [];
             $.each(data.features, function (key, val) {
+
                 // Get the lat and lng data for use in the markers
                 var coords = val.geometry.coordinates;
                 var latLng = new google.maps.LatLng(coords[1], coords[0]);
@@ -37,11 +38,14 @@ function populateMap(earthquakePwr){
                     map: map,
                     label: val.properties.mag.toString()
                 });
+                /*                var point = new google.maps.LatLng(
+                                   parseFloat(markers[i].getAttribute("lat")),
+                                   parseFloat(markers[i].getAttribute("lng"))); */
                 var infowindow = new google.maps.InfoWindow({
-                    content: "<h3>" + val.properties.title + "</h3><p><a href='location.html'>Details</a></p>"
+                    content: "<h3>" + val.properties.title + "</h3><p><a class='.infoclick' href='javascript:locationInfo(" + coords[1] + "," + coords[0] + ")'>Details</a></p>"
                 });
                 marker.addListener('click', function (data) {
-                    infowindow.open(map, marker); // Open the Google maps marker infoWindow
+                    infowindow.open(map, marker); // Open the Google maps marker infoWindow location.html
                 });
                 markers[i++] = marker;
             });
@@ -52,9 +56,8 @@ function populateMap(earthquakePwr){
     });
 }
 
-
 ///this one is for all earthquakes in teh last month as errors occur///
-function noClusterPopulateMap(earthquakePwr){
+function noClusterPopulateMap(earthquakePwr) {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 2,
         center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
@@ -85,7 +88,7 @@ function noClusterPopulateMap(earthquakePwr){
                     //label: val.properties.mag.toString()
                 });
                 var infowindow = new google.maps.InfoWindow({
-                    content: "<h3>" + val.properties.title + "</h3><p><a href='location.html'>Details</a></p>"
+                    content: "<h3>" + val.properties.title + "</h3><p><a class='.infoclick' href='javascript:locationInfo(" + coords[1] + "," + coords[0] + ")'>Details</a></p>"
                 });
                 marker.addListener('click', function (data) {
                     infowindow.open(map, marker); // Open the Google maps marker infoWindow
@@ -98,6 +101,59 @@ function noClusterPopulateMap(earthquakePwr){
         }
     });
 }
+
+function locationInfo(lat, long) {
+    $.ajax({
+        type: "GET",
+        url: "http://api.geonames.org/countrySubdivisionJSON?lat=" + lat + "&lng=" + long + "&username=rballa201",
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            if (data.countryName == "United States") {
+                var countrycode = data.countryCode;
+                var countryname = data.countryName;
+                /*             var stateCode = data.adminCode1;
+                            var stateName = data.adminName1; */
+                //console.log(countrycode);
+                //console.log(countryname);
+                /*             console.log(stateCode);
+                            console.log(stateName); */
+                $.ajax({
+                    type: "GET",
+                    url: "https://restcountries.eu/rest/v2/alpha/" + countrycode,
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+                        localStorage.setItem('objectToPass', JSON.stringify(data));
+                        window.open('location.html', '_blank');
+                    }
+                });
+            } else {
+                var countrycode = data.countryCode;
+                var countryname = data.countryName;
+                //console.log(countrycode);
+                //console.log(countryname);
+                $.ajax({
+                    type: "GET",
+                    url: "https://restcountries.eu/rest/v2/alpha/" + countrycode,
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        console.log(data);
+                        localStorage.setItem('CountryData', JSON.stringify(data));
+                        window.open('location.html', '_blank');
+                    }
+                });
+            }
+
+            /*  var queryString = "?para1=" + value1 + "&para2=" + value2;
+             window.location.href = "page2.html" + queryString; */
+
+        },
+        //complete: function (data) {}
+
+    });
+};
 
 
 $(document).ready(function generateButtons() {
