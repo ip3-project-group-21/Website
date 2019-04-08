@@ -96,7 +96,7 @@
   }
   
   .node rect {
-    fill: orangered;
+    fill: #FFA07A;
     stroke: #000;
     stroke-width: 1.5px;
     cursor: pointer;
@@ -107,7 +107,7 @@
   }
   
   .triggernode rect {
-    fill: cyan;
+    fill: #CCE1E9;
     stroke: #000;
     stroke-width: 1.5px;
     cursor: text;
