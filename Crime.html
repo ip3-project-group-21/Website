@@ -4,7 +4,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Life Expectancy</title>
+	<title>Crime Inspector</title>
 
 	<!--Stylesheet import for API page-->
 	<link rel="stylesheet" href="css/apipage.css">
@@ -31,11 +31,11 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">-->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css"
 		rel="stylesheet">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
 
@@ -45,7 +45,7 @@
 	<div id="page">
 		<div class="intro container">
 			<section class="page-title">
-				<h1>Crime inspector</h1>
+				<h1>Crime Inspector</h1>
 			</section>
 
 			<aside class="text desc text-justify">
@@ -73,17 +73,31 @@
 
 		<div class="api-content container">
 			<div id="options">
+				<!-- 				<label for="date" style="margin-top: 1em">Date(Optional)</label>
+				<input id="date" class="date-own form-control" type="text"> -->
+				<div class="bootstrap-iso">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-6 col-sm-6 col-xs-12">
 
-				<div class="row">
-					<div class="col-sm-12 col-md-6">
-						<input class="form-control input-sm" id="Latitude" placeholder="Latitude" type="text">
-					</div>
-					<div class="col-sm-12 col-md-6">
-						<input class="form-control input-sm" id="Longitude" placeholder="Longitude" type="text">
+								<!-- Form code begins -->
+								<div class="form-group">
+									<!-- Date input -->
+									<span class="error-text" id="errorlocation"></span><br>
+									<label class="control-label" for="LocationText">Location</label>
+									<input class="form-control input-sm" id="LocationText" placeholder="Location" type="text">
+									<label class="control-label" for="date">Date(Optional)</label>
+									<input autocomplete="off"  class="date-own form-control" id="date" name="date" placeholder="YYYY-MM"
+										type="text" />
+								</div>
+								<!-- Form code ends -->
+
+							</div>
+						</div>
 					</div>
 				</div>
-				<label for="date">Date(Optional)</label>
-				<input id="date" class="date-own form-control" type="text">
+				<button type="button" class="btn btn-secondary" name="Info" id="ChartDisplay" value="DisplayChart"
+					style="margin-top: 1em">Display Chart</button>
 				<div id="chart-container">
 					<canvas id="myChart"></canvas>
 				</div>
@@ -92,27 +106,8 @@
 		</div>
 	</div>
 
-	<script>
-		$('.date-own').datepicker({
-			minViewMode: 2,
-			format: 'yyyy'
-		});
-		$(document).ready(function () {
-			var longitude = document.getElementById('Longitude').value;
-			var latitude = document.getElementById('Latitude').value;
-			var date = $('#date').val() + "-01";
-			$.ajax({
-				type: "GET",
-				url: "https://data.police.uk/api/crimes-street/all-crime?lat=" + latitude + "&lng=" + longitude +" &date=" + date,
-				dataType: "json",
-				success: function (data) {
-					console.log(data)
-				}
-			});
-		});
-	</script>
 	<!--Link to local Javascript file-->
-	<script type="text/javascript" src="js/lifeExpectancy.js"></script>
+	<script type="text/javascript" src="js/crime.js"></script>
 
 
 	<div id="navbar">

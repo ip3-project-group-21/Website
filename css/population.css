@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+/* -- Page Content -- */
+#page {
+    margin-top: 70px;
+    padding-bottom: 30px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.text {
+    display: inline-block;
+    font-size: 80%;
+}
+
+.desc {
+    width: 55%;
+}
+
+.tut {
+    width: 30%;
+    float: right;
+}
+
+
+/* API CONTENT */
+
+.api-content {
+    position:relative;
+}
+
+.error-text{
+    color: crimson
+}
+
+/*EARTHQUAKE PAGE MAP*/
+ #map {
+    height: 500px;
+    width: 100%;
+}
+
+#options {
+    padding: 5px 0;
+    height: auto;
+}
+
+.geochart{
+  margin-left:100px;
+}

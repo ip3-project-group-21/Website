@@ -37,6 +37,24 @@
 		</div>
 	</div>
 
+	<div class="api-content container">
+		<div id="Info"></div>
+		<button type="button" class="btn btn-secondary" name="Info" id="GoBack" value="GoBack"
+		style="margin-top: 1em">Return to Map</button>
+	</div>
+
+<script>
+var myData = JSON.parse(localStorage.getItem('CountryData'));
+localStorage.removeItem( 'CountryData' );
+console.log(myData);
+//$("#Info").html(myData.name);
+var Name = myData.name;
+var flag = myData.flag;
+$('#GoBack').click(function () {
+	location.replace("earthquake.html");
+});
+</script>
+
 	<div id="navbar">
 		<!--Import Navbar file onto page-->
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
