@@ -36,9 +36,8 @@
 		        var location = document.getElementById('LocationText').value;
 		        var longitude; //= document.getElementById('Longitude').value;
 		        var latitude; //= document.getElementById('Latitude').value;
-		        var date = $('#date').val(); //+ "-01";
+				var date = $('#date').val(); //+ "-01";
 		        var arrayLength = 0;
-
 		        $.ajax({
 		            type: "GET",
 		            url: "http://api.apixu.com/v1/current.json?key=75fb86a2371f4abca12115412190403&q=" +
@@ -52,19 +51,21 @@
 		            success: function (data) {
                         $("#errorlocation").html("");
                         $("#errorlocation").hide();
-
 		                latitude = data.location.lat;
 		                longitude = data.location.lon;
 		                if (!(data.location.country == "United Kingdom")) {
                             $("#errorlocation").show();
                             $("#errorlocation").html("Location is not in United Kingdom.");
 		                } else {
+							if (date == ""){
+								var url ="https://data.police.uk/api/crimes-street/all-crime?lat=" +latitude + "&lng=" + longitude;
+							}
+							else{
+								var url ="https://data.police.uk/api/crimes-street/all-crime?lat=" +latitude + "&lng=" + longitude + "&date=" + date;
+							}
 		                    $.ajax({
 		                        type: "GET",
-		                        url: "https://data.police.uk/api/crimes-street/all-crime?lat=" +
-		                            latitude +
-		                            "&lng=" +
-		                            longitude + "&date=" + date,
+		                        url: url,
 		                        dataType: "json",
 		                        success: function (data) {
 		                            console.log(data)
