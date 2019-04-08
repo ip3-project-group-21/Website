@@ -47,7 +47,7 @@
 var myData = JSON.parse(localStorage.getItem('CountryData'));
 localStorage.removeItem( 'CountryData' );
 console.log(myData);
-//$("#Info").html(myData.name);
+$("#Info").html(myData.name);
 var Name = myData.name;
 var flag = myData.flag;
 $('#GoBack').click(function () {
