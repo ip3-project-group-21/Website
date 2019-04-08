@@ -64,18 +64,18 @@ $(document).ready(function () {
                         document.getElementById("WeathImage2").src = "http:" + data.forecast.forecastday[1].day.condition.icon;
                         document.getElementById("WeathImage3").src = "http:" + data.forecast.forecastday[2].day.condition.icon;
 
- 
+
 
                         //Location information variables
-                        var loc = $("<li />", {
+                        var loc = $("<h4 />", {
                             text: "Location Name: " + data.location.name
                         });
 
-                        var reg = $("<li />", {
+                        var reg = $("<h4 />", {
                             text: "Region: " + data.location.region
                         });
 
-                        var country = $("<li />", {
+                        var country = $("<h4 />", {
                             text: "Country: " + data.location.country
                         });
                         //Location information variables
@@ -87,8 +87,7 @@ $(document).ready(function () {
                             text: "Today (" + data.current.last_updated + ")"
                         });
 
-                        var lastUpdated = $("<h5 />", {
-                        });
+                        var lastUpdated = $("<h5 />", {});
 
                         lastUpdated.append(lastUpdatedBold);
 
@@ -144,10 +143,49 @@ $(document).ready(function () {
                             text: "Tomorrow (" + data.forecast.forecastday[1].date + ")"
                         });
 
-                        var tomorrowDate = $("<h5 />", {
-                        });
+                        var tomorrowDate = $("<h5 />", {});
 
                         tomorrowDate.append(tomorrowDateBold);
+
+                        var tmrwDesc = $("<li />", {
+                            text: "Condition: " + data.forecast.forecastday[1].day.condition.text
+                        });
+
+                        var tmrwMaxTemp = $("<li />", {
+                            text: "Max Temperature (C): " + data.forecast.forecastday[1].day.maxtemp_c + "°"
+                        });
+
+                        var tmrwMinTemp = $("<li />", {
+                            text: "Min Temperature (C): " + data.forecast.forecastday[1].day.mintemp_c + "°"
+                        });
+
+                        var tmrwAvgTemp = $("<li />", {
+                            text: "Avg Temperature (C): " + data.forecast.forecastday[1].day.avgtemp_c + "°"
+                        });
+
+                        var tmrwMaxWind = $("<li />", {
+                            text: "Max Wind Speed (MPH): " + data.forecast.forecastday[1].day.maxwind_mph
+                        });
+
+                        var tmrwTotalPrecip = $("<li />", {
+                            text: "Total Precipitation (MM): " + data.forecast.forecastday[1].day.totalprecip_mm
+                        });
+
+                        var tmrwAvgVis = $("<li />", {
+                            text: "Average Visibility (Miles): " + data.forecast.forecastday[1].day.avgvis_miles
+                        });
+
+                        var tmrwAvgHum = $("<li />", {
+                            text: "Average Humidity: " + data.forecast.forecastday[1].day.avghumidity
+                        });
+
+                        var tmrwSunrise = $("<li />", {
+                            text: "Sunrise: " + data.forecast.forecastday[1].astro.sunrise
+                        });
+
+                        var tmrwSunset = $("<li />", {
+                            text: "Sunset: " + data.forecast.forecastday[1].astro.sunset
+                        });
                         //Tomorrows forecast variables
 
 
@@ -157,14 +195,53 @@ $(document).ready(function () {
                             text: "Next Again Day (" + data.forecast.forecastday[2].date + ")"
                         });
 
-                        var nextAgainDate = $("<h5 />", {
-                        });
+                        var nextAgainDate = $("<h5 />", {});
 
                         nextAgainDate.append(nextAgainDateBold);
+
+                        var nadDesc = $("<li />", {
+                            text: "Condition: " + data.forecast.forecastday[2].day.condition.text
+                        });
+
+                        var nadMaxTemp = $("<li />", {
+                            text: "Max Temperature (C): " + data.forecast.forecastday[2].day.maxtemp_c + "°"
+                        });
+
+                        var nadMinTemp = $("<li />", {
+                            text: "Min Temperature (C): " + data.forecast.forecastday[2].day.mintemp_c + "°"
+                        });
+
+                        var nadAvgTemp = $("<li />", {
+                            text: "Avg Temperature (C): " + data.forecast.forecastday[2].day.avgtemp_c + "°"
+                        });
+
+                        var nadMaxWind = $("<li />", {
+                            text: "Max Wind Speed (MPH): " + data.forecast.forecastday[2].day.maxwind_mph
+                        });
+
+                        var nadTotalPrecip = $("<li />", {
+                            text: "Total Precipitation (MM): " + data.forecast.forecastday[2].day.totalprecip_mm
+                        });
+
+                        var nadAvgVis = $("<li />", {
+                            text: "Average Visibility (Miles): " + data.forecast.forecastday[2].day.avgvis_miles
+                        });
+
+                        var nadAvgHum = $("<li />", {
+                            text: "Average Humidity: " + data.forecast.forecastday[2].day.avghumidity
+                        });
+
+                        var nadSunrise = $("<li />", {
+                            text: "Sunrise: " + data.forecast.forecastday[2].astro.sunrise
+                        });
+
+                        var nadSunset = $("<li />", {
+                            text: "Sunset: " + data.forecast.forecastday[2].astro.sunset
+                        });
                         //Next again days forecast variables
 
-                        
-                        
+
+
 
 
                         /*data.location.name + " is " + data.current.condition.text + "<br> " + data.location
@@ -179,6 +256,9 @@ $(document).ready(function () {
                         $("#weathLocationInfo").append(country);
                         //Location information appendages
 
+
+
+                        //Todays weather appendages
                         $("#weathTextList").append(lastUpdated);
                         $("#weathTextList").append(weathCond);
                         $("#weathTextList").append(vis);
@@ -191,9 +271,37 @@ $(document).ready(function () {
                         $("#weathTextList").append(windKPH);
                         $("#weathTextList").append(gustMPH);
                         $("#weathTextList").append(gustKPH);
+                        //Todays weather appendages
 
+
+                        //Tomorrows weather appendages
                         $('#List2').append(tomorrowDate);
+                        $('#List2').append(tmrwDesc);
+                        $('#List2').append(tmrwMaxTemp);
+                        $('#List2').append(tmrwMinTemp);
+                        $('#List2').append(tmrwAvgTemp);
+                        $('#List2').append(tmrwMaxWind);
+                        $('#List2').append(tmrwTotalPrecip);
+                        $('#List2').append(tmrwAvgVis);
+                        $('#List2').append(tmrwAvgHum);
+                        $('#List2').append(tmrwSunrise);
+                        $('#List2').append(tmrwSunset);
+                        //Tomorrows weather appendages
+
+
+                        //Next again day weather appendages
                         $('#List3').append(nextAgainDate);
+                        $('#List3').append(nadDesc);
+                        $('#List3').append(nadMaxTemp);
+                        $('#List3').append(nadMinTemp);
+                        $('#List3').append(nadAvgTemp);
+                        $('#List3').append(nadMaxWind);
+                        $('#List3').append(nadTotalPrecip);
+                        $('#List3').append(nadAvgVis);
+                        $('#List3').append(nadAvgHum);
+                        $('#List3').append(nadSunrise);
+                        $('#List3').append(nadSunset);
+                        //Next again day weather appendages
 
 
                     } else {
@@ -216,8 +324,7 @@ $(document).ready(function () {
 
             $.ajax({
 
-                url: "http://api.apixu.com/v1/current.json?key=75fb86a2371f4abca12115412190403&q=" + latitude + "," +
-                    longitude,
+                url: "http://api.apixu.com/v1/forecast.json?key=75fb86a2371f4abca12115412190403&q=" + latitude + "," + longitude + "&days=3",
 
                 error: function () {
 
@@ -231,40 +338,43 @@ $(document).ready(function () {
                     if (data.location.lon == longitude || data.location.lat == latitude) {
 
 
-
                         document.getElementById("WeathImage").src = "http:" + data.current.condition.icon;
+                        document.getElementById("WeathImage2").src = "http:" + data.forecast.forecastday[1].day.condition.icon;
+                        document.getElementById("WeathImage3").src = "http:" + data.forecast.forecastday[2].day.condition.icon;
 
 
-                        var lastUpdated = $("<li />", {
-                            text: "Last Updated: " + data.current.last_updated
-                        });
 
-                        var loc = $("<li />", {
+                        //Location information variables
+                        var loc = $("<h4 />", {
                             text: "Location Name: " + data.location.name
                         });
 
-                        var reg = $("<li />", {
+                        var reg = $("<h4 />", {
                             text: "Region: " + data.location.region
                         });
 
-                        /* var lon = $("<li />", {
-                            text: "Longitude: " + data.location.lon
-                        });
-
-                        var lat = $("<li />", {
-                            text: "Latitude: " + data.location.lat
-                        }); */
-
-                        var country = $("<li />", {
+                        var country = $("<h4 />", {
                             text: "Country: " + data.location.country
                         });
+                        //Location information variables
+
+
+
+                        //Todays forecast variables
+                        var lastUpdatedBold = $("<b />", {
+                            text: "Today (" + data.current.last_updated + ")"
+                        });
+
+                        var lastUpdated = $("<h5 />", {});
+
+                        lastUpdated.append(lastUpdatedBold);
 
                         var weathCond = $("<li />", {
                             text: "Current Condition: " + data.current.condition.text
                         });
 
                         var vis = $("<li />", {
-                            text: "Current Visibiility: " + data.current.vis_km + " km"
+                            text: "Current Visibility: " + data.current.vis_km + " km"
                         });
 
                         var perc = $("<li />", {
@@ -302,15 +412,132 @@ $(document).ready(function () {
                         var gustKPH = $("<li />", {
                             text: "Gusts (KPH): " + data.current.gust_kph + " kph"
                         });
+                        //Todays forecast variables
 
+
+
+                        //Tomorrows forecast variables
+                        var tomorrowDateBold = $("<b />", {
+                            text: "Tomorrow (" + data.forecast.forecastday[1].date + ")"
+                        });
+
+                        var tomorrowDate = $("<h5 />", {});
+
+                        tomorrowDate.append(tomorrowDateBold);
+
+                        var tmrwDesc = $("<li />", {
+                            text: "Condition: " + data.forecast.forecastday[1].day.condition.text
+                        });
+
+                        var tmrwMaxTemp = $("<li />", {
+                            text: "Max Temperature (C): " + data.forecast.forecastday[1].day.maxtemp_c + "°"
+                        });
+
+                        var tmrwMinTemp = $("<li />", {
+                            text: "Min Temperature (C): " + data.forecast.forecastday[1].day.mintemp_c + "°"
+                        });
+
+                        var tmrwAvgTemp = $("<li />", {
+                            text: "Avg Temperature (C): " + data.forecast.forecastday[1].day.avgtemp_c + "°"
+                        });
+
+                        var tmrwMaxWind = $("<li />", {
+                            text: "Max Wind Speed (MPH): " + data.forecast.forecastday[1].day.maxwind_mph
+                        });
+
+                        var tmrwTotalPrecip = $("<li />", {
+                            text: "Total Precipitation (MM): " + data.forecast.forecastday[1].day.totalprecip_mm
+                        });
+
+                        var tmrwAvgVis = $("<li />", {
+                            text: "Average Visibility (Miles): " + data.forecast.forecastday[1].day.avgvis_miles
+                        });
+
+                        var tmrwAvgHum = $("<li />", {
+                            text: "Average Humidity: " + data.forecast.forecastday[1].day.avghumidity
+                        });
+
+                        var tmrwSunrise = $("<li />", {
+                            text: "Sunrise: " + data.forecast.forecastday[1].astro.sunrise
+                        });
+
+                        var tmrwSunset = $("<li />", {
+                            text: "Sunset: " + data.forecast.forecastday[1].astro.sunset
+                        });
+                        //Tomorrows forecast variables
+
+
+
+                        //Next again days forecast variables
+                        var nextAgainDateBold = $("<b />", {
+                            text: "Next Again Day (" + data.forecast.forecastday[2].date + ")"
+                        });
+
+                        var nextAgainDate = $("<h5 />", {});
+
+                        nextAgainDate.append(nextAgainDateBold);
+
+                        var nadDesc = $("<li />", {
+                            text: "Condition: " + data.forecast.forecastday[2].day.condition.text
+                        });
+
+                        var nadMaxTemp = $("<li />", {
+                            text: "Max Temperature (C): " + data.forecast.forecastday[2].day.maxtemp_c + "°"
+                        });
+
+                        var nadMinTemp = $("<li />", {
+                            text: "Min Temperature (C): " + data.forecast.forecastday[2].day.mintemp_c + "°"
+                        });
+
+                        var nadAvgTemp = $("<li />", {
+                            text: "Avg Temperature (C): " + data.forecast.forecastday[2].day.avgtemp_c + "°"
+                        });
+
+                        var nadMaxWind = $("<li />", {
+                            text: "Max Wind Speed (MPH): " + data.forecast.forecastday[2].day.maxwind_mph
+                        });
+
+                        var nadTotalPrecip = $("<li />", {
+                            text: "Total Precipitation (MM): " + data.forecast.forecastday[2].day.totalprecip_mm
+                        });
+
+                        var nadAvgVis = $("<li />", {
+                            text: "Average Visibility (Miles): " + data.forecast.forecastday[2].day.avgvis_miles
+                        });
+
+                        var nadAvgHum = $("<li />", {
+                            text: "Average Humidity: " + data.forecast.forecastday[2].day.avghumidity
+                        });
+
+                        var nadSunrise = $("<li />", {
+                            text: "Sunrise: " + data.forecast.forecastday[2].astro.sunrise
+                        });
+
+                        var nadSunset = $("<li />", {
+                            text: "Sunset: " + data.forecast.forecastday[2].astro.sunset
+                        });
+                        //Next again days forecast variables
+
+
+
+
+
+                        /*data.location.name + " is " + data.current.condition.text + "<br> " + data.location
+                            .region + " " + data.location.country + " " + data.location.lat + " " + data.location.lon +
+                            '</p>'*/
+
+                        /* this code above was in ryans code twice not sure if you need it. Only thing not above is the lat & lon vars */
+
+                        //Location information appendages
+                        $("#weathLocationInfo").append(loc);
+                        $("#weathLocationInfo").append(reg);
+                        $("#weathLocationInfo").append(country);
+                        //Location information appendages
+
+
+
+                        //Todays weather appendages
                         $("#weathTextList").append(lastUpdated);
-                        $("#weathTextList").append(loc);
-                        $("#weathTextList").append(reg);
-
-                        /* $("#weathTextList").append(lon);
-                        $("#weathTextList").append(lat); */
-
-                        $("#weathTextList").append(country);
                         $("#weathTextList").append(weathCond);
                         $("#weathTextList").append(vis);
                         $("#weathTextList").append(perc);
@@ -322,6 +549,39 @@ $(document).ready(function () {
                         $("#weathTextList").append(windKPH);
                         $("#weathTextList").append(gustMPH);
                         $("#weathTextList").append(gustKPH);
+                        //Todays weather appendages
+
+
+                        //Tomorrows weather appendages
+                        $('#List2').append(tomorrowDate);
+                        $('#List2').append(tmrwDesc);
+                        $('#List2').append(tmrwMaxTemp);
+                        $('#List2').append(tmrwMinTemp);
+                        $('#List2').append(tmrwAvgTemp);
+                        $('#List2').append(tmrwMaxWind);
+                        $('#List2').append(tmrwTotalPrecip);
+                        $('#List2').append(tmrwAvgVis);
+                        $('#List2').append(tmrwAvgHum);
+                        $('#List2').append(tmrwSunrise);
+                        $('#List2').append(tmrwSunset);
+                        //Tomorrows weather appendages
+
+
+                        //Next again day weather appendages
+                        $('#List3').append(nextAgainDate);
+                        $('#List3').append(nadDesc);
+                        $('#List3').append(nadMaxTemp);
+                        $('#List3').append(nadMinTemp);
+                        $('#List3').append(nadAvgTemp);
+                        $('#List3').append(nadMaxWind);
+                        $('#List3').append(nadTotalPrecip);
+                        $('#List3').append(nadAvgVis);
+                        $('#List3').append(nadAvgHum);
+                        $('#List3').append(nadSunrise);
+                        $('#List3').append(nadSunset);
+                        //Next again day weather appendages
+
+
 
                     } else {
                         var unsuccessful = $("<li />", {
