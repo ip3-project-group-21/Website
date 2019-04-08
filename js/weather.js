@@ -62,7 +62,7 @@ $(document).ready(function () {
                         document.getElementById("WeathImage2").src = "http:" + data.current.condition.icon;
                         document.getElementById("WeathImage3").src = "http:" + data.current.condition.icon; */
 
-
+ 
 
                         var lastUpdated = $("<li />", {
                             text: "Last Updated: " + data.current.last_updated
@@ -125,6 +125,13 @@ $(document).ready(function () {
                         var gustKPH = $("<li />", {
                             text: "Gusts (KPH): " + data.current.gust_kph + " kph"
                         });
+                        
+                        var tomorrowDate = $("<li />", {
+                            text: "Date: " + data.forecast.forecastday[1].date
+                        });
+
+                        $('#weathTextList2').append(tomorrowDate);
+                        
 
 
                         /*data.location.name + " is " + data.current.condition.text + "<br> " + data.location
