@@ -33,6 +33,8 @@ $(document).ready(function () {
     $("#submitBtn").click(function () {
 
         $("#weathTextList").empty();
+        $("#List2").empty();
+        $("#List3").empty();
         $("#weathLocationInfo").empty(); // Clears the li elements under the UL when button clicked. Otherwise data gets muddled together. Source - https://stackoverflow.com/questions/6941489/how-does-one-remove-all-li-tags-from-a-parent-ul-tag
 
         // Additional source to check if the text box was disabled to help program decide which if statement to execute - https://stackoverflow.com/questions/8963781/find-if-a-textbox-is-disabled-or-not-using-jquery
@@ -45,7 +47,7 @@ $(document).ready(function () {
 
             $.ajax({
 
-                url: "http://api.apixu.com/v1/forecast.json?key=75fb86a2371f4abca12115412190403&q=" + location + "&days=2",
+                url: "http://api.apixu.com/v1/forecast.json?key=75fb86a2371f4abca12115412190403&q=" + location + "&days=3",
 
                 error: function () {
 
@@ -58,16 +60,13 @@ $(document).ready(function () {
                     if (data.location.name == titleCase(location) || data.location.region == titleCase(location) || data.location.country == titleCase(location)) {
 
 
-                        /* document.getElementById("WeathImage").src = "http:" + data.current.condition.icon;
-                        document.getElementById("WeathImage2").src = "http:" + data.current.condition.icon;
-                        document.getElementById("WeathImage3").src = "http:" + data.current.condition.icon; */
+                        document.getElementById("WeathImage").src = "http:" + data.current.condition.icon;
+                        document.getElementById("WeathImage2").src = "http:" + data.forecast.forecastday[1].day.condition.icon;
+                        document.getElementById("WeathImage3").src = "http:" + data.forecast.forecastday[2].day.condition.icon;
 
  
 
-                        var lastUpdated = $("<li />", {
-                            text: "Last Updated: " + data.current.last_updated
-                        });
-
+                        //Location information variables
                         var loc = $("<li />", {
                             text: "Location Name: " + data.location.name
                         });
@@ -79,8 +78,19 @@ $(document).ready(function () {
                         var country = $("<li />", {
                             text: "Country: " + data.location.country
                         });
+                        //Location information variables
 
 
+
+                        //Todays forecast variables
+                        var lastUpdatedBold = $("<b />", {
+                            text: "Today (" + data.current.last_updated + ")"
+                        });
+
+                        var lastUpdated = $("<h5 />", {
+                        });
+
+                        lastUpdated.append(lastUpdatedBold);
 
                         var weathCond = $("<li />", {
                             text: "Current Condition: " + data.current.condition.text
@@ -125,12 +135,35 @@ $(document).ready(function () {
                         var gustKPH = $("<li />", {
                             text: "Gusts (KPH): " + data.current.gust_kph + " kph"
                         });
-                        
-                        var tomorrowDate = $("<li />", {
-                            text: "Date: " + data.forecast.forecastday[1].date
+                        //Todays forecast variables
+
+
+
+                        //Tomorrows forecast variables
+                        var tomorrowDateBold = $("<b />", {
+                            text: "Tomorrow (" + data.forecast.forecastday[1].date + ")"
                         });
 
-                        $('#weathTextList2').append(tomorrowDate);
+                        var tomorrowDate = $("<h5 />", {
+                        });
+
+                        tomorrowDate.append(tomorrowDateBold);
+                        //Tomorrows forecast variables
+
+
+
+                        //Next again days forecast variables
+                        var nextAgainDateBold = $("<b />", {
+                            text: "Next Again Day (" + data.forecast.forecastday[2].date + ")"
+                        });
+
+                        var nextAgainDate = $("<h5 />", {
+                        });
+
+                        nextAgainDate.append(nextAgainDateBold);
+                        //Next again days forecast variables
+
+                        
                         
 
 
@@ -140,12 +173,13 @@ $(document).ready(function () {
 
                         /* this code above was in ryans code twice not sure if you need it. Only thing not above is the lat & lon vars */
 
-                        $("#weathLocationInfo").append(lastUpdated);
+                        //Location information appendages
                         $("#weathLocationInfo").append(loc);
                         $("#weathLocationInfo").append(reg);
                         $("#weathLocationInfo").append(country);
+                        //Location information appendages
 
-
+                        $("#weathTextList").append(lastUpdated);
                         $("#weathTextList").append(weathCond);
                         $("#weathTextList").append(vis);
                         $("#weathTextList").append(perc);
@@ -158,7 +192,8 @@ $(document).ready(function () {
                         $("#weathTextList").append(gustMPH);
                         $("#weathTextList").append(gustKPH);
 
-
+                        $('#List2').append(tomorrowDate);
+                        $('#List3').append(nextAgainDate);
 
 
                     } else {
