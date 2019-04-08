@@ -52,6 +52,8 @@ function populateMap(earthquakePwr){
     });
 }
 
+
+///this one is for all earthquakes in teh last month as errors occur///
 function noClusterPopulateMap(earthquakePwr){
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 2,
