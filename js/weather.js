@@ -278,9 +278,10 @@ $(document).ready(function () {
                 url: "http://api.apixu.com/v1/forecast.json?key=75fb86a2371f4abca12115412190403&q=" + location + "&days=3",
 
                 error: function () {
-
+                    document.getElementById("WeathImage").style.visibility = "hidden";
+                    document.getElementById("WeathImage2").style.visibility = "hidden";
+                    document.getElementById("WeathImage3").style.visibility = "hidden";
                     alert("Issue obtaining API data. Please enter a proper location.");
-
                 },
 
                 success: function (data) {
@@ -317,7 +318,9 @@ $(document).ready(function () {
                 url: "http://api.apixu.com/v1/forecast.json?key=75fb86a2371f4abca12115412190403&q=" + latitude + "," + longitude + "&days=3",
 
                 error: function () {
-
+                    document.getElementById("WeathImage").style.visibility = "hidden";
+                    document.getElementById("WeathImage2").style.visibility = "hidden";
+                    document.getElementById("WeathImage3").style.visibility = "hidden";
                     alert("Issue obtaining API data. Please enter a proper Longitude and Latitude.");
 
                 },
