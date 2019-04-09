@@ -20,7 +20,7 @@ $(document).ready(function () {
                 if (sourceWord == "") {
                     alert("Please enter a word.");
                 } else if (sourceWord.includes(" ")) {
-                    alert("Center word cannot contain a space - API issue");
+                    alert("Center word cannot contain a space - we are aware of this issue and have plans to fix upon further development. We thank you for your understanding.");
                 } else {
                     response(sourceWord, $.map(data, function (item) {
                         return item["word"];
