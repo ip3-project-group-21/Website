@@ -103,19 +103,23 @@ function noClusterPopulateMap(earthquakePwr) {
 }
 
 function locationInfo(lat, long) {
+    //var redirectWindow  = window.open('location.html', '_blank');
     $.ajax({
         type: "GET",
         url: "http://api.geonames.org/countrySubdivisionJSON?lat=" + lat + "&lng=" + long + "&username=rballa201",
         dataType: "json",
         success: function (data) {
-            console.log(data);
+            //console.log(data);
+
+            if (typeof data.status === 'undefined')
+            {
             if (data.countryName == "United States") {
                 var countrycode = data.countryCode;
                 var countryname = data.countryName;
                 /*             var stateCode = data.adminCode1;
                             var stateName = data.adminName1; */
                 //console.log(countrycode);
-                //console.log(countryname);
+                console.log(countryname);
                 /*             console.log(stateCode);
                             console.log(stateName); */
                 $.ajax({
@@ -124,11 +128,15 @@ function locationInfo(lat, long) {
                     dataType: "json",
                     success: function (data) {
                         console.log(data);
-                        localStorage.setItem('objectToPass', JSON.stringify(data));
+                        var CountryData = data;
+                        //localStorage.removeItem( 'CountryData' );
+                        localStorage.setItem('CountryData', JSON.stringify(CountryData));
+                        setTimeout(10000);
                         window.open('location.html', '_blank');
                     }
                 });
-            } else {
+            }
+            else{
                 var countrycode = data.countryCode;
                 var countryname = data.countryName;
                 //console.log(countrycode);
@@ -140,12 +148,19 @@ function locationInfo(lat, long) {
                     async: false,
                     success: function (data) {
                         console.log(data);
-                        localStorage.setItem('CountryData', JSON.stringify(data));
+                        var CountryData = data;
+                        //localStorage.removeItem( 'CountryData' );
+                        localStorage.setItem('CountryData', JSON.stringify(CountryData));
+                        setTimeout(10000);
                         window.open('location.html', '_blank');
                     }
                 });
             }
-
+            }
+            else
+            {
+                alert("Area is an Located on an Ocean/Major Water Location. No Data is Avialable");
+            }
             /*  var queryString = "?para1=" + value1 + "&para2=" + value2;
              window.location.href = "page2.html" + queryString; */
 
@@ -199,6 +214,7 @@ $(document).ready(function generateButtons() {
 
 
 $(document).ready(function () {
+    localStorage.clear();
     $('#Significant').click(function () {
         if (document.getElementById('Past_Hour').checked) {
             populateMap("significant_hour");

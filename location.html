@@ -40,20 +40,24 @@
 	<div class="api-content container">
 		<div id="Info"></div>
 		<button type="button" class="btn btn-secondary" name="Info" id="GoBack" value="GoBack"
-		style="margin-top: 1em">Return to Map</button>
+			style="margin-top: 1em">Return to Map</button>
 	</div>
 
-<script>
-var myData = JSON.parse(localStorage.getItem('CountryData'));
-localStorage.removeItem( 'CountryData' );
-console.log(myData);
-$("#Info").html(myData.name);
-var Name = myData.name;
-var flag = myData.flag;
-$('#GoBack').click(function () {
-	location.replace("earthquake.html");
-});
-</script>
+	<script>
+		$(document).ready(function () {
+			$('#GoBack').click(function () {
+				//localStorage.removeItem( 'CountryData' );
+				//location.replace("earthquake.html");
+				window.close();
+			});
+			var myData = JSON.parse(localStorage.getItem('CountryData'));
+			window.localStorage.clear();
+			console.log(myData);
+			$("#Info").html(myData.name);
+			var Name = myData.name;
+			var flag = myData.flag;
+		});
+	</script>
 
 	<div id="navbar">
 		<!--Import Navbar file onto page-->
