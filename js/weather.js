@@ -1,6 +1,9 @@
 //this function will get the weather data and show it to the user
-function getWeather(data){
+function getWeather(data) {
 
+    document.getElementById("WeathImage").style.visibility = "visible";
+    document.getElementById("WeathImage2").style.visibility = "visible";
+    document.getElementById("WeathImage3").style.visibility = "visible";
     document.getElementById("WeathImage").src = "http:" + data.current.condition.icon;
     document.getElementById("WeathImage2").src = "http:" + data.forecast.forecastday[1].day.condition.icon;
     document.getElementById("WeathImage3").src = "http:" + data.forecast.forecastday[2].day.condition.icon;
@@ -221,7 +224,7 @@ function getWeather(data){
     $('#List3').append(nadSunrise);
     $('#List3').append(nadSunset);
     //Next again day weather appendages
-}//end of getWeather function
+} //end of getWeather function
 
 $(document).ready(function () {
 
@@ -286,13 +289,13 @@ $(document).ready(function () {
 
                         //calling the getWeather function
                         getWeather(data);
-                        
+
                     } else {
-                        var unsuccessful = $("<li />", {
+                        var unsuccessful = $("<h3 />", {
                             text: "No matching data - please ensure the data you entered is the location, region or country."
                         });
 
-                        $("#weathTextList").append(unsuccessful);
+                        $("#List2").append(unsuccessful);
                     }
                 }
 
@@ -322,13 +325,17 @@ $(document).ready(function () {
 
                         //calling getWeather function
                         getWeather(data);
-                        
+
                     } else {
-                        var unsuccessful = $("<li />", {
-                            text: "No matching data - please ensure the co-ordinates you enter are numerical."
+                        var unsuccessful = $("<h3 />", {
+                            text: "No matching data - please ensure the co-ordinates you enter exist and are numerical."
                         });
 
-                        $("#weathTextList").append(unsuccessful);
+                        $("#List2").append(unsuccessful);
+
+                        document.getElementById("WeathImage").style.visibility = "hidden";
+                        document.getElementById("WeathImage2").style.visibility = "hidden";
+                        document.getElementById("WeathImage3").style.visibility = "hidden";
                     }
                 }
 
