@@ -296,6 +296,10 @@ $(document).ready(function () {
                         });
 
                         $("#List2").append(unsuccessful);
+
+                        document.getElementById("WeathImage").style.visibility = "hidden";
+                        document.getElementById("WeathImage2").style.visibility = "hidden";
+                        document.getElementById("WeathImage3").style.visibility = "hidden";
                     }
                 }
 
