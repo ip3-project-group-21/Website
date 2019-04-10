@@ -131,7 +131,7 @@ function locationInfo(lat, long) {
                         var CountryData = data;
                         //localStorage.removeItem( 'CountryData' );
                         localStorage.setItem('CountryData', JSON.stringify(CountryData));
-                        setTimeout(10000);
+                        setTimeout(1000);
                         window.open('location.html', '_blank');
                     }
                 });
@@ -151,7 +151,7 @@ function locationInfo(lat, long) {
                         var CountryData = data;
                         //localStorage.removeItem( 'CountryData' );
                         localStorage.setItem('CountryData', JSON.stringify(CountryData));
-                        setTimeout(10000);
+                        setTimeout(1000);
                         window.open('location.html', '_blank');
                     }
                 });
