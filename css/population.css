@@ -46,3 +46,19 @@
 .geochart{
   margin-left:100px;
 }
+
+#chart_wrap {
+    border:1px solid gray;
+    position: relative;
+    padding-bottom: 80%;
+    height: 0;
+    overflow:hidden;
+}
+
+#chart {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+}
