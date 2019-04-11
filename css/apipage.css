@@ -237,10 +237,28 @@ select {
        width: 100%; max-width: 100%;
     }
   }
-
-
   .Weather {
     display:inline-block;
   }
 
+  .Lcolumn {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    /* height: 300px; Should be removed. Only for demonstration */
+  }
   
+  /* Clear floats after the columns */
+  .Lrow:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .Lcolumn {
+      width: 100%;
+    }
+  }
+

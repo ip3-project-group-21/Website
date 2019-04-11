@@ -109,7 +109,7 @@ function locationInfo(lat, long) {
         url: "http://api.geonames.org/countrySubdivisionJSON?lat=" + lat + "&lng=" + long + "&username=rballa201",
         dataType: "json",
         success: function (data) {
-            //console.log(data);
+            console.log(data);
 
             if (typeof data.status === 'undefined')
             {
