@@ -1,4 +1,13 @@
     $(document).ready(function () {
+        google.charts.load('current', {
+            'packages': ['corechart'],
+            // Note: you will need to get a mapsApiKey for your project.
+            // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+            'mapsApiKey': 'AIzaSyAYmsRSnEUBTBaLIEfT64IZ1Gtnny-5wcs'
+        });
+
+        google.charts.setOnLoadCallback(drawRegionsMap);
+
         var CountryName = [];
         var CountryPopulation = [];
         $.ajax({
@@ -22,16 +31,6 @@
                 }
             }
         });
-
-        google.charts.load('current', {
-            'packages': ['corechart'],
-            // Note: you will need to get a mapsApiKey for your project.
-            // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
-            'mapsApiKey': 'AIzaSyAYmsRSnEUBTBaLIEfT64IZ1Gtnny-5wcs'
-        });
-
-        google.charts.setOnLoadCallback(drawRegionsMap);
-
 
         function drawRegionsMap() {
             var data = new google.visualization.DataTable();
