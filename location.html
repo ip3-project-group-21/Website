@@ -38,15 +38,16 @@
 	</div>
 
 	<div class="api-content container">
-		<div class="Lrow">
+		<div class="Lrow" style="padding-bottom: 0px">
 			<div class="Lcolumn" style="background-color:#aaa;">
 				<img id="Flag" src="" alt="" style="max-width:100%;height:auto;">
 			</div>
-			<div class="Lcolumn">
+			<div class="Lcolumn" style="padding: 15px;padding-bottom: 0px">
 				<div id="Info">
 				</div>
 			</div>
 		</div>
+
 
 		<!-- <img id="StateFlag" src="" alt="" >-->
 		<button type="button" class="btn btn-secondary" name="Info" id="GoBack" value="GoBack"
@@ -69,16 +70,12 @@
 			var capital = $("<p />", {
 				text: "Capital: " + myData.capital
 			});
-
-			var currenciesLength = myData.currencies.length;
-			console.log(currenciesLength);
-
 			var demonym = $("<p />", {
 				text: "Demonym: " + myData.demonym
 			});
-			// var languages = $("<p />", {
-			// 	text: ": " + myData.
-			// });
+			var continent = $("<p />", {
+				text: "Region: " + myData.region
+			});
 			var subregion = $("<p />", {
 				text: "Subregion: " + myData.subregion
 			});
@@ -88,14 +85,13 @@
 			// var borders = $("<p />", {
 			// 	text: ": " + myData.
 			// });
-			var continent = $("<p />", {
-				text: "Continent " + myData.region
-			});
 			// var regionBloc = $("<p />", {
 			// 	text: "Capital: " + myData.
 			// });
 
 			$("#Info").append(country, capital, continent, subregion, demonym);
+			var currenciesLength = myData.currencies.length;
+			console.log(currenciesLength);
 			for (var i = 0; i < currenciesLength; i++) {
 				if (myData.currencies[i].symbol == null) {
 					var currencies = $("<p />", {
@@ -111,6 +107,39 @@
 					$("#Info").append(currencies);
 				}
 			}
+
+
+			var languagesLength = myData.languages.length;
+			console.log(languagesLength);
+			for (var i = 0; i < languagesLength; i++) {
+				var languages = $("<p />", {
+					text: "Language: " + myData.languages[i].name
+				});
+				$("#Info").append(languages);
+			}
+
+			var timesLength = myData.timezones.length;
+			console.log(timesLength);
+			var time = $("<p />", {
+				text: "Timezones:"
+			});
+			for (var i = 0; i < timesLength; i++) {
+				var timezones = $("<li />", {});
+				timezones.append(myData.timezones[i]);
+				time.append(timezones);
+			}
+			$("#Info").append(time);
+
+
+			var regionBlocLength = myData.regionalBlocs.length;
+			console.log(regionBlocLength);
+			for (var i = 0; i < regionBlocLength; i++) {
+				var regionalBlocs = $("<p />", {
+					text: "Region Bloc(Unions etc): " + myData.regionalBlocs[i].name
+				});
+				$("#Info").append(regionalBlocs);
+			}
+
 			document.getElementById('Flag').src = myData.flag;
 			document.getElementById('Flag').alt = myData.name + " Flag";
 
