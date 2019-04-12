@@ -33,6 +33,11 @@ function populateMap(earthquakePwr) {
                 var coords = val.geometry.coordinates;
                 var latLng = new google.maps.LatLng(coords[1], coords[0]);
                 // Now create a new marker on the map
+                //if statement to replace any null magnitudes with a zero
+                if (val.properties.mag === null)
+                {
+                    val.properties.mag = 0;
+                }
                 var marker = new google.maps.Marker({
                     position: latLng,
                     map: map,
@@ -46,52 +51,6 @@ function populateMap(earthquakePwr) {
                 });
                 marker.addListener('click', function (data) {
                     infowindow.open(map, marker); // Open the Google maps marker infoWindow location.html
-                });
-                markers[i++] = marker;
-            });
-            var markerCluster = new MarkerClusterer(map, markers, {
-                imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
-            });
-        }
-    });
-}
-
-///this one is for all earthquakes in teh last month as errors occur///
-function noClusterPopulateMap(earthquakePwr) {
-    map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 2,
-        center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
-        mapTypeId: 'terrain' // can be any valid type
-    });
-    // The following uses JQuery library
-    $.ajax({
-        // The URL of the specific data required
-        url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/" + earthquakePwr + ".geojson",
-
-        // Called if there is a problem loading the data
-        error: function () {
-            $('#info').html('<p>An error has occurred</p>');
-        },
-
-        // Called when the data has succesfully loaded
-        success: function (data) {
-            i = 0;
-            var markers = [];
-            $.each(data.features, function (key, val) {
-                // Get the lat and lng data for use in the markers
-                var coords = val.geometry.coordinates;
-                var latLng = new google.maps.LatLng(coords[1], coords[0]);
-                // Now create a new marker on the map
-                var marker = new google.maps.Marker({
-                    position: latLng,
-                    map: map,
-                    //label: val.properties.mag.toString()
-                });
-                var infowindow = new google.maps.InfoWindow({
-                    content: "<h3>" + val.properties.title + "</h3><p><a class='.infoclick' href='javascript:locationInfo(" + coords[1] + "," + coords[0] + ")'>Details</a></p>"
-                });
-                marker.addListener('click', function (data) {
-                    infowindow.open(map, marker); // Open the Google maps marker infoWindow
                 });
                 markers[i++] = marker;
             });
@@ -170,7 +129,6 @@ function locationInfo(lat, long) {
     });
 };
 
-
 $(document).ready(function generateButtons() {
 
     var btnAll = $('<button/>', {
@@ -211,8 +169,6 @@ $(document).ready(function generateButtons() {
 
 });
 
-
-
 $(document).ready(function () {
     localStorage.clear();
     $('#Significant').click(function () {
@@ -246,10 +202,6 @@ $(document).ready(function () {
         if (document.getElementById('Past_Month').checked) {
             populateMap("4.5_month");
         };
-
-
-
-
     });
 
     $('#m25').click(function () {
@@ -288,8 +240,6 @@ $(document).ready(function () {
             populateMap("1.0_month");
 
         };
-
-
     });
 
     $('#All').click(function () {
@@ -306,7 +256,7 @@ $(document).ready(function () {
 
         };
         if (document.getElementById('Past_Month').checked) {
-            noClusterPopulateMap("all_month");
+            populateMap("all_month");
 
         };
     });

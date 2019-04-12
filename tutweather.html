@@ -42,39 +42,49 @@
 			</aside>
 
 			<section class="content container">
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
+					<p class="text-justify">This following page will take you through step by step on how to use the API that we used 
+							effectively and how to use the visualisation for this page as well.</p>
+						<p class="text-justify">So, for the weather webpage, we used an API calls to gain the data we needed for the website but before 
+							we call the APIs we first need to make an Ajax request.</p>
+						<p class="text-justify">An Ajax request main purpose is to update a webpage asynchronously, meaning a user will not have to refresh 
+							a webpage for a tiny change to take effect. There are four main features to an ajax request the first would be to update a 
+							webpage without reloading it, the second would be to request data from a server after the page has loaded up, the third would 
+							be to receive data after a page has loaded up and the forth would be to send data to a server and this would happen in the background.</p>
+						<p class="text-justify">To use an Ajax request we first need to implement jQuery. jQuery is a lightweight JavaScript library, this means that 
+							writing in JavaScript will become a lot easier as with this library implemented tasks that used to require a lot of lines of code to function 
+							now require less as the jQuery library will most likely have useful functions that the developer could implement instead. The jQuery 
+							library will also help simplify the Ajax requests that will be seen throughout this website.</p>
+						<p class="text-justify">For this page specifically, there is two Ajax requests one for when the user chooses the location name and the second one 
+							is when the user chooses the latitude and longitude textbox field. Once the user hits submit that is when the Ajax request is called and 
+							the first thing it will do is call the API that is being used. If the call is successful it will continue with the code that we have made 
+							if It isn’t successful, then it will show an error message to the user.</p>
+						<p class="text-justify">The API call we use to gain the weather data is the following:<br><b>//api.apicu.com/v1/forecast.json?key=&q= + location + &days=3</b><br>
+							Currently, this API call won’t do anything as it is missing key components. The first component is missing is the API key. Usually, it depends on what API 
+							you are using if it requires a key or not. The way you would gain a key would either be registering to the website and some websites may require payment 
+							for the key however in this case the only requirement is to register with the website and they will then send you the key code through an email.<br>The other 
+							requirement that is needed to allow this API to work would be to enter in what the q variable is. For this specific API call that is being shown it is the 
+							location name that we are wanting to enter. For when the user is to enter in the latitude and longitude the API call is the same as the one shown however 
+							the only difference is the q variable as the q variable now needs the following: q = latitude, longitude.</p>
+						<p class ="text-justify">However, for this API call, there is a problem with the q variable which is if a user was to type in a whole number into the latitude 
+							and longitude field it is likely that it will find a location with the whole number first rather than the actual location. This happens as it will go down its 
+							list of variables and try and find the closest match first and the latitude and longitude variable is bellow location name. There is an easy way to fix this
+							problem that we have implemented into our code. To fix this problem all you must do is enter in an if statement and this will be after you call the API and the 
+							if statement will look like the following: if (data.location.lon == longitude || data.location.lat == latitude)<br>This if statement simply means if the API’s 
+							longitude is equal to the user’s inputted longitude or if the API’s latitude is equal to the user’s inputted latitude then do the following and the following, 
+							in this case, is to gain the data that is going to be shown.<br>A similar if statement is used for the location name to ensure that the users inputted location 
+							can be city, country, or street.</p>
+						<p class ="text-justify">Once the, if statement passes the function that we have created called getWeather(), will be called and this function will then get the 
+							required data we wish to show and show it to the user. This function was created to decrease the number of lines of code used for this page.</p>
+						<p class ="text-justify">The visualisation that we use for this page comes from the same API we use to get the weather info it is the weather icon and this 
+							visualisation of the weather is simply a picture of the relevant weather in the chosen location for example if it is sunny the image would show the sun.</p>
 
 				<div class="link">
-					<a href="#">More Information</a>
+					<h2>Links to more in depth information</h2>
+					<a href="https://www.apixu.com/" target="_blank">The website we got the API from</a><br>
+					<a href="https://www.apixu.com/doc/current.aspx" target="_blank">Where to find the variables of the API that we used</a><br>
+					<a href="https://skillcrush.com/2018/04/26/what-is-ajax/" target="_blank">More on AJAX</a><br>
+					<a href="https://jquery.com/" target="_blank">More on jQuery</a><br>
+					<a href="https://d3js.org/" target="_blank">A selection of visualisations</a>
 				</div>
 
 			</section>

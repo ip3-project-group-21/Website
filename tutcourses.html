@@ -42,39 +42,55 @@
 			</aside>
 
 			<section class="content container">
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-
-				<div class="link">
-					<a href="#">More Information</a>
+				<p class="text-justify">This following page will take you through step by step on how to use the API that we used 
+					effectively and how to use the visualisation for this page as well.</p>
+				<p class="text-justify">So, for the pathfinder webpage, we used one API to gain the data we needed for the website 
+					but before we call the APIs we first need to make an Ajax request.</p>
+				<p class="text-justify">An Ajax request main purpose is to update a webpage asynchronously, meaning a user will not 
+					have to refresh a webpage for a tiny change to take effect. There are four main features to an ajax request the 
+					first would be to update a webpage without reloading it, the second would be to request data from a server after 
+					the page has loaded up, the third would be to receive data after a page has loaded up and the forth would be to 
+					send data to a server and this would happen in the background.</p>
+				<p class="text-justify">To use an Ajax request we first need to implement jQuery. jQuery is a lightweight JavaScript 
+					library, this means that writing in JavaScript will become a lot easier as with this library implemented tasks that 
+					use to require a lot of lines of code to function now require less as the jQuery library will most likely have useful 
+					functions that the developer could use. The jQuery library will also help simplify the Ajax requests that will be seen 
+					throughout this website.</p>
+				<p class="text-justify">For this page specifically, there is two Ajax requests one to populate the dropdown box with the 
+					required variable names of the qualifications and the other is to populate the doughnut chart with the data that is 
+					linked to the qualification. If the call is successful it will continue with the code that we have made if It isn’t 
+					successful, then it will show an error message to the user.</p>
+				<p class="text-justify">The API call that this webpage uses to populate the dropdown box with is the following:
+					<br><b>//api.lmiforall.org.uk/api/v1/hesa/list-courses</b><br>Using this API call we store the list of qualifications 
+					within an array and we also store the ID that is linked to the course name in a different array. With the name 
+					now stored in an array, we can now populate the dropdown box by using a for loop until it reaches the array length. 
+					In this, for loop, we have appended the course ID variable and course name into the dropdown box. We have also added 
+					in a massive if statement as 36 courses returns null values back to us so to avoid errors within the doughnut chart 
+					we implemented this if statement to not show the null value qualifications within the drop-down box.</p>
+				<p class="text-justify">The second Ajax request will be called when a user chose one of the options from the 
+					dropdown box and it will continue to be called if the user cycles through the options.<br>The API call that will be 
+					used in this Ajax request is the following:<br><b>//api.lmifotall.org.uk/api/v1/hesa/occupations?courses=</b><br>This 
+					API currently will not work if you were to use it as it is missing a core part and that is the courses variable. The 
+					variable that must be entered here isn’t the course name, it is the ID that is linked to the name. We get this ID by 
+					declaring a new variable and using the getElementByID method we can get the specified ID by itself. Now we just add 
+					this new variable into the end of the API call. This will now get us the data to be put into the doughnut chart.<br>
+					This API will return with a big list of job titles that have a percentage number linked to them over the previous 4 
+					years. For this page, we will only be using the most recent year's data.</p>
+				<p class="text-justify">The Visualisation that is being used for this page is a doughnut chart. In the doughnut chart, we 
+					will be showing the percentage of people in a specified job with the users chosen education. The doughnut chart will 
+					only have 10 sections as we decided this would get the best visual appeal out of it. To get the data itself into the 
+					doughnut chart we must look into the second Ajax request. If the Ajax request passes, then there will be a loop that 
+					will bind the job name and percentage to an individual section of the doughnut chart until all the sections are filled.</p>
+				<p class="text-justify">There is also a click event for each section of the doughnut chart where when the section is clicked 
+					on the user will be taken to a job finder site that will already have searched for that sections job and this is done 
+					through the following webpage:<br><b>//www.indeed.co.uk/jobs?q=+label+&1=</b><br>Where the variable label will be the jobs name.</p>
+				
+				<div class="link"></div>
+						<h2>Links to more in depth information</h2>
+						<a href="http://api.lmiforall.org.uk/" target="_blank">The website we got the API from</a><br>
+						<a href="https://skillcrush.com/2018/04/26/what-is-ajax/" target="_blank">More on AJAX</a><br>
+						<a href="https://jquery.com/" target="_blank">More on jQuery</a><br>
+						<a href="https://d3js.org/" target="_blank">A selection of visualisations</a>
 				</div>
 
 			</section>
