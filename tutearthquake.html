@@ -32,7 +32,7 @@
 		<div class="container">
 
 			<aside class="page-title">
-				<h1>Earthquake Viewer <span>Tutorial</span></h1>
+				<h1>Earthquake Viewer<span>Tutorial</span></h1>
 
 			</aside>
 			<aside class="back">
@@ -42,39 +42,38 @@
 			</aside>
 
 			<section class="content container">
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
+				<p class="text-justify">This following page will take you through step by step on how to use the API that we used effectively and how to use the visualisation 
+					for this page as well.</p>
+				<p class="text-justify">So, for the weather webpage, we used two different API calls to gain the data we needed for the website but before we call the APIs we 
+					first need to make an Ajax request.</p>
+				<p class="text-justify">An Ajax request main purpose is to update a webpage asynchronously, meaning a user will not have to refresh a webpage for a tiny change 
+					to take effect. There are four main features to an ajax request the first would be to update a webpage without reloading it, the second would be to request 
+					data from a server after the page has loaded up, the third would be to receive data after a page has loaded up and the forth would be to send data to a server 
+					and this would happen in the background. </p>
+				<p class="text-justify">To use an Ajax request we first need to implement jQuery. jQuery is a lightweight JavaScript library, this means that writing in JavaScript 
+					will become a lot easier as with this library implemented tasks that use to require a lot of lines of code to function now require less as the jQuery library 
+					will most likely have useful functions that the developer could use. The jQuery library will also help simplify the Ajax requests that will be seen throughout 
+					this website.</p>
+				<p class="text-justify">The API call that we use for this page to gain the earthquake locations in the following:<br>
+					<b>//eathquake.usgs.gov/earthquakes/feed/v1.0/summary/ + earthquakePwr +.geojson</b><br>For this API call how it needs to work is for the earthquakePwr variable 
+					to have the required data. The required data for this variable can vary depending on what the user wishes to view. For example, if the user wishes to view all 
+					earthquakes in the past week the variable would be all_week. </p>
+				<p class="text-justify">As the user has multiple options when they want to view the earthquake data we decided to create our own function called populateMap() and 
+					the variable getting passed into this function would be the one that determines what type of earthquake and how long ago it happened. We implemented this function 
+					as it will decrease the amount of code on the screen and it will also make it easier to edit this section of code.</p>
+				<p class="text-justify">The Ajax request that we use for this page is within the populateMap() function and when it is successful it will start to store the data 
+					that is needed. It does this by creating an array called markers and then using the .each method it will then loop through the array of data we have received 
+					from the API and store the latitude and longitude for each earthquake. Still, within the .each method, it will now loop through the marker array and store the 
+					latitude and longitude that it had just got and store it in a position in the array and then show the marker on the map.</p><br><br>
+				<p class="text-justify">The visualisation being used for this page is the map from google maps. We gain this map by importing it in the HTML section of this page. 
+					The data is then being visualised on the map as a marker we then use google maps inbuilt function to cluster the markers.</p>
 
 				<div class="link">
-					<a href="#">More Information</a>
+					<h2>Links to more in depth information</h2>
+					<a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php" target="_blank">The website we got the API from</a><br>
+					<a href="https://skillcrush.com/2018/04/26/what-is-ajax/" target="_blank">More on AJAX</a><br>
+					<a href="https://jquery.com/" target="_blank">More on jQuery</a><br>
+					<a href="https://d3js.org/" target="_blank">A selection of visualisations</a>
 				</div>
 
 			</section>

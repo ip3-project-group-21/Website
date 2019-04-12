@@ -32,7 +32,7 @@
 		<div class="container">
 
 			<aside class="page-title">
-				<h1>Crime Inspector <span>Tutorial</span></h1>
+				<h1>Crime Inspector<span>Tutorial</span></h1>
 
 			</aside>
 			<aside class="back">
@@ -42,39 +42,50 @@
 			</aside>
 
 			<section class="content container">
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
+				<p class="text-justify">This following page will take you through step by step on how to use the API that we used effectively and how to use the visualisation 
+					for this page as well.</p>
+				<p class="text-justify">For this page there will be two Ajax requests the first will get the latitude and longitude data and the second will get our crime data.</p>
+				<p class="text-justify">An Ajax request main purpose is to update a webpage asynchronously, meaning a user will not have to refresh a webpage for a tiny change 
+					to take effect. There are four main features to an ajax request the first would be to update a webpage without reloading it, the second would be to request 
+					data from a server after the page has loaded up, the third would be to receive data after a page has loaded up and the forth would be to send data to a 
+					server and this would happen in the background. </p>
+				<p class="text-justify">To use an Ajax request we first need to implement jQuery. jQuery is a lightweight JavaScript library, this means that writing in 
+					JavaScript will become a lot easier as with this library implemented tasks that use to require a lot of lines of code to function now require less as the 
+					jQuery library will most likely have useful functions that the developer could use. The jQuery library will also help simplify the Ajax requests that will 
+					be seen throughout this website.</p>
+				<p class="text-justify">For this page, we are using two different APIs and the calls for these APIs are the following:<br>
+					<b>//api.apixu.com/v1/current.json?key=&q=</b><br>Currently, this API call won’t do anything as it is missing key components. The first component is missing 
+					is the API key. Usually, it depends on what API you are using if it requires a key or not. The way you would gain a key would either be registering to the 
+					website and some websites may require payment for the key however in this case the only requirement is to register with the website and they will then send 
+					you the key code through an email.<br>The other requirement that is needed to allow this API to work would be to enter in what the q variable is. The best 
+					way to find out what this is would be to use the website and in this case, the q variable can be any variable that the API holds. For this page, we are using 
+					q as a location name, for example, a user could enter Glasgow.</p>
+				<p class="text-justify">We are using this API to make this webpage more user-friendly as the second API requires the user to enter in latitude and longitude 
+					coordinates to the exact point and most people won’t know this information without help from the internet. The Team chose this specific API as it is the 
+					same API used in the weather page, so the team was already familiar with it.</p>
+				<p class="text-justify">The second API call is the following:<br><b>//data.police.uk/api/crimes-street/all-crime?lat=+latitude+&lng+longitude+&date=+date</b><br>
+					For this API call, the variable latitude will be the latitude that we have gained from the previous API and this is the same for the longitude variable. The 
+					date variable is optional as if no data is entered here the API will use the month and year we are currently on.</p>
+				<p class="text-justify">When a user has filled in the required fields and then clicked the button the first thing that will happen will be that all the crime 
+					data that we have will be set to zero as we are counting the crimes that happened in a certain area. </p>
+				<p class="text-justify">After this happens the first ajax request is called and in this, ajax request we will use the weather API mentioned to gain the latitude 
+					and longitude of the users inputted area however we have implemented an if statement in this area since the second API requires the location to be in the 
+					United Kingdom. So, if the user inputted location is not in the United Kingdom then an error message is shown. If the location is in the United Kingdom, then 
+					the second Ajax request will be called.</p>
+				<p class="text-justify">The second Ajax request will use the crime API to gain an array of data. We also store the length of the array so that we can use a for 
+					statement to then count how many crimes have happened in the chosen location. These crimes are separated into the categories that the API gives us.</p><br><br>
+				<p class="text-justify">The visualisation that is used for this website is a horizontal bar chart. This bar chart is generated after the second Ajax request is 
+					completed and the code to generate the graph is within the first Ajax request. First, we ensure that there is data to show by using an if statement. We will 
+					show an error message of the data array length is zero if it isn’t we will generate the graph with the crime category names and the amount of crime that has 
+					happened in each category.</p>
 
 				<div class="link">
-					<a href="#">More Information</a>
+					<h2>Links to more in depth information</h2>
+					<a href="https://www.apixu.com/" target="_blank">The website we got the API from (one that helped make the webpage more user user-friendly)</a><br>
+					<a href="https://data.police.uk/" target="_blank">The website we got the API from (one that gained the required data)</a><br>
+					<a href="https://skillcrush.com/2018/04/26/what-is-ajax/" target="_blank">More on AJAX</a><br>
+					<a href="https://jquery.com/" target="_blank">More on jQuery</a><br>
+					<a href="https://d3js.org/" target="_blank">A selection of visualisations</a>
 				</div>
 
 			</section>

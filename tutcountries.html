@@ -32,7 +32,7 @@
 		<div class="container">
 
 			<aside class="page-title">
-				<h1>Population Calculator <span>Tutorial</span></h1>
+				<h1>Population Calculator<span>Tutorial</span></h1>
 
 			</aside>
 			<aside class="back">
@@ -42,12 +42,37 @@
 			</aside>
 
 			<section class="content container">
-				<p class ="text-justify"></p>
-				<p class ="text-justify"></p>
-				<p class ="text-justify"></p>
+				<p class ="text-justify">This following page will take you through step by step on how to use the API that we used effectively and how to use the visualisation 
+					for this page as well.</p>
+				<p class ="text-justify">For this page, there is one Ajax request to get the data with as soon as the page is loaded. </p>
+				<p class ="text-justify">An Ajax request main purpose is to update a webpage asynchronously, meaning a user will not have to refresh a webpage for a tiny change 
+					to take effect. There are four main features to an ajax request the first would be to update a webpage without reloading it, the second would be to request 
+					data from a server after the page has loaded up, the third would be to receive data after a page has loaded up and the forth would be to send data to a server 
+					and this would happen in the background. </p>
+				<p class ="text-justify">To use an Ajax request we first need to implement jQuery. jQuery is a lightweight JavaScript library, this means that writing in 
+					JavaScript will become a lot easier as with this library implemented tasks that use to require a lot of lines of code to function now require less as the jQuery 
+					library will most likely have useful functions that the developer could use. The jQuery library will also help simplify the Ajax requests that will be seen 
+					throughout this website.</p>
+				<p class ="text-justify">The API call that is used to gain the data for this website is the following:<br><b>//restcountries.eu/rest/v2/all</b><br>Compared to 
+					our other APIs that are used this one doesn’t require any additional variables as well as not needing an API key.</p>
+				<p class ="text-justify">The information we are looking for in this array of data is each country’s population size and the countries corresponding alpha2 code. 
+					The alpha2 code of a country is its unique two letter code. We gain the population size and alpha2 code by using a for loop to go through each position in 
+					the array of data we gained through the API and store each countries alpha2 code and population in the variables that we have made.</p><br><br>
+				<p class ="text-justify">The visualisation that we are using for this page is a map of the world and the data is being shown through the colour of each country 
+					as the darker red a country the more population it has. We are doing this by first importing the map from google and then loading the map on the screen. 
+					After this, we use the google function drawRehionMap() to populate the map with the information we previously gained and then we declare what the colours 
+					are going to be and this is done within the same function. For the colours, we need to declare the min value which is 10000 and the max value which is 5000000 
+					and then we declare what each sections colour will be. For this case, we have declared that the min value will be a salmon colour and the max value will be 
+					a dark red. The colour section when complete will then go through each section and colour it in with a corresponding colour using the colour range that we 
+					have declared earlier.</p>
 
 				<div class="link">
-					<a href="#">More Information</a>
+					<h2>Links to more in depth information</h2>
+					<a href="https://restcountries.eu/" target="_blank">The website we got the API from</a><br>
+					<a href="https://www.iban.com/country-codes" target="_blank">List of countries alpha2 code</a><br>
+					<a href="https://skillcrush.com/2018/04/26/what-is-ajax/" target="_blank">More on AJAX</a><br>
+					<a href="https://jquery.com/" target="_blank">More on jQuery</a><br>
+					<a href="https://d3js.org/" target="_blank">A selection of visualisations</a>
 				</div>
 
 			</section>

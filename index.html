@@ -32,10 +32,10 @@
 		<div class="hero-text">
 			<p>Link to GeoJson tutorial page<p>
 					<p>Link to Javascript techniques tutorial page</p>
-					<a href="tutorials.html">
+					<a href="#Geo">
 						<button type="button" class="btn btn-lg btn-outline-light">GeoJson</button>
 					</a>
-					<a href="tutorials.html">
+					<a href="#Java">
 						<button type="button" class="btn btn-lg btn-outline-light">JavaScript techniques</button>
 					</a>
 		</div>
@@ -132,8 +132,50 @@
 					chosen to do this were chosen as it gives the idea to the user that they are seeing in infrared meaning the warmer a country is the more population they 
 					have.</p>
 			</section>
+			<p class ="Java link" id="Java"><p><br>
+			<section class="content Java Script techniques">
+				<h3>Java Script techniques</h3>
+				<p class="text-justify">When coding this project, we will be using some JavaScript to create the web pages, within JavaScript there are things called JavaScript 
+					techniques. A JavaScript technique is a way of improving the readability of the code and the general performance and resource usage of the code.</p>
+				<p class="text-justify">One JavaScript technique that we used was the use of proper variable names, this is an important technique to make use of as it improves 
+					the readability of the code as using proper variable names makes it easier to follow code, debug the code and it makes it easier to understand what each 
+					variable stores as it will have a name appropriate to its use.</p>
+				<p class="text-justify">Another JavaScript technique that we have made use of for the code is, we used text indentation properly. This technique is important 
+					to the code readability as it helps to show where loops start and being using indentation as the start of a loop and the end will be less indented than the 
+					inside of the loop which means it is easier to follow and understand loops.</p>
+				<p class="text-justify">One other way of using JavaScript techniques to improve the readability of the code is to use comments throughout the development process. 
+					Through the use of comments we can see what each function does, what each variable is used for and what every class is for, this helps improve the readability 
+					of the code as using comments means that is easier to quickly find and maintain any problem areas of code as it is already described for us.</p>
+				<p class="text-justify">Browser developer tool is a technique that the team frequently used as this tool is most commonly used when a developer is debugging their 
+					code. With the help of this debugger tool the developers will be able to find where the main errors are with ease. This tool will be used mostly during the development 
+					phase as the developers will use this during their unit testing.</p>
+					<h5>Link to more in depth information</h5>
+					<a href="https://www.w3schools.com/js/js_best_practices.asp" target="_blank">More info here</a><br>	
+					<a href="https://modernweb.com/45-useful-javascript-tips-tricks-and-best-practices/" target="_blank">and here</a><br><br>
+			</section>
+			<p class="Geo link" id="Geo"></p><br>
+			<section class="content GeoJson">
+				<h3>GeoJson</h3>
+				<p class="text-justify">Within this website, we are required to make use of geographical data in order for some of the webpages to function. The two main 
+					pages that require geographical data for the API’S to run are the Earthquakes page and the Weather page. For these API’S to run and function correctly we 
+					will be using geographical data in the GEOJSON format.</p>
+				<p class="text-justify">GEOJSON is the standard format for displaying geographical types and data, the types that are supported by this format are, Points, 
+					LineString, Polygon, MultiPoint, MultiLineString and MultiPolygon.</p>
+				<p class="text-justify">Points are used to display a singular geometrical point, this is also the simplest form of geometrical data that GEOJSON will display 
+					as the data is only displayed in one point, and this could be used to identify 1 singular area of geographical interest.<br>LineStrings are used to display 
+					two points of geographical data that are connected through a line, this could be used to calculate the distance between 2 geographical areas of interest.<br>
+					Polygons are the more complex GEOJSON data types, this is where we have 4 points that are mapped out to display a polygon shape, and this could be used to 
+					represent a large area of geographical interest such as the area with the most earthquakes in a month.<br>The data types that are multi are simply used to 
+					support more than one data entry.</p>
+				<p class="text-justify">For the Earthquakes page the API will read in the data and then display all the points on a map that the earthquakes have happened over 
+					a period of time, for this to function properly we will use GEOJSON multi points as we will display multiple points of geographical interest.</p>
+				<p class="text-justify">For the weather page we will also be using multipoint as the data type due to the pages API displaying the weather as a single point for 
+					that day.</p>
+					<h5>Link to more in depth information</h5>
+					<a href="https://macwright.org/2015/03/23/geojson-second-bite" target="_blank">More info here</a>	
+			</section>
 			<section class="spec-pdf container">
-				<h3>Project Specification</h3>
+				<br><br><h3>Project Specification</h3>
 				<a href="https://drive.google.com/file/d/1JxJx0xlJEf7-7IfvUTUyf-_ijmsVLbjm/view?usp=sharing" target ="_blank">
 					<button type="button" class="btn btn-sm btn-outline-dark font-italic">Link to PDF file</button>
 				</a>

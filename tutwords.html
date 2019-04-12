@@ -32,7 +32,7 @@
 		<div class="container">
 
 			<aside class="page-title">
-				<h1>Synonym Finder <span>Tutorial</span></h1>
+				<h1>Synonym Finder<span>Tutorial</span></h1>
 
 			</aside>
 			<aside class="back">
@@ -42,40 +42,43 @@
 			</aside>
 
 			<section class="content container">
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
-				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.</p>
+				<p class="text-justify">This following page will take you through step by step on how to use the API that we used effectively and how to use the visualisation for 
+					this page as well.</p>
+				<p class="text-justify">For this page, there is only one Ajax request however this Ajax request is inside a function it is done this way as it is most likely will 
+					be called multiple times. </p>
+				<p class="text-justify">An Ajax request main purpose is to update a webpage asynchronously, meaning a user will not have to refresh a webpage for a tiny change to 
+					take effect. There are four main features to an ajax request the first would be to update a webpage without reloading it, the second would be to request data 
+					from a server after the page has loaded up, the third would be to receive data after a page has loaded up and the forth would be to send data to a server and 
+					this would happen in the background. </p>
+				<p class="text-justify">To use an Ajax request we first need to implement jQuery. jQuery is a lightweight JavaScript library, this means that writing in JavaScript 
+					will become a lot easier as with this library implemented tasks that use to require a lot of lines of code to function now require less as the jQuery library 
+					will most likely have useful functions that the developer could use. The jQuery library will also help simplify the Ajax requests that will be seen throughout 
+					this website.</p>
+				<p class="text-justify">The API that this webpage uses is the following:<br><b>//api.datamuse.com/words?rel_syn+ sourceWord + &max= + max</b><br>For this API the 
+					rel_syn part of the call is what ensures that the data we receive back are synonyms. This part of the call can be changed so that the received data back could 
+					be anything relating to words, for example, the user could receive back popular adjectives by entering in rel_jjb instead. The sourceWord variable in the call 
+					is the word that a user will choose to find out what synonyms it has. The final variable needed to make this API call work is the max variable and this variable 
+					will determine how many synonym words we will receive back.</p>
+				<p class="text-justify">For this page specifically, the Ajax request is within a function that can only be called 3 different ways. The first time it will be called 
+					is when the webpage initially loads up and this will use the function to load our initial spider diagram with the starting word as start. The other two ways this 
+					function can be called upon is when the user clicks on the centre word or when a user clicks on a branched word.</p><br><br>
+				<p class="text-justify">The visualisation that is used for this page is a spider diagram. This visualisation is hard-coded into our webpage and we found the code 
+					through the example visualisation on the API web page. We took this visualisation and made it our own by changing the colour scheme and the shape and size of 
+					the boxes used.</p>
+				<p class="text-justify">When a new spider diagram is generated we use the function called response to first determine if the word has any synonyms if it does not 
+					then an error message will appear for the user. If there are synonyms for the word, then the spider diagram that was there, to begin with, will be erased. 
+					There will also be a statement in this function to fill the array called link with the synonym data. Later in the function, we use the for each method to the 
+					array to generate the new spider diagram.</p>
+				<p class="text-justify">The function response also determines the layout of the spider diagram. This would be the spacing in between each box and how far away it 
+					is from the user inputted word.</p>
 
-				<div class="link">
-					<a href="#">More Information</a>
-				</div>
+					<div class="link">
+						<h2>Links to more in depth information</h2>
+						<a href="https://www.datamuse.com/" target="_blank">The website we got the API from</a><br>
+						<a href="https://skillcrush.com/2018/04/26/what-is-ajax/" target="_blank">More on AJAX</a><br>
+						<a href="https://jquery.com/" target="_blank">More on jQuery</a><br>
+						<a href="https://d3js.org/" target="_blank">A selection of visualisations</a>
+					</div>
 
 			</section>
 		</div>
