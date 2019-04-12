@@ -109,7 +109,7 @@ function locationInfo(lat, long) {
         url: "http://api.geonames.org/countrySubdivisionJSON?lat=" + lat + "&lng=" + long + "&username=rballa201",
         dataType: "json",
         success: function (data) {
-            //console.log(data);
+            console.log(data);
 
             if (typeof data.status === 'undefined')
             {
@@ -131,7 +131,7 @@ function locationInfo(lat, long) {
                         var CountryData = data;
                         //localStorage.removeItem( 'CountryData' );
                         localStorage.setItem('CountryData', JSON.stringify(CountryData));
-                        setTimeout(10000);
+                        setTimeout(1000);
                         window.open('location.html', '_blank');
                     }
                 });
@@ -151,7 +151,7 @@ function locationInfo(lat, long) {
                         var CountryData = data;
                         //localStorage.removeItem( 'CountryData' );
                         localStorage.setItem('CountryData', JSON.stringify(CountryData));
-                        setTimeout(10000);
+                        setTimeout(1000);
                         window.open('location.html', '_blank');
                     }
                 });

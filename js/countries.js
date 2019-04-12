@@ -1,4 +1,19 @@
     $(document).ready(function () {
+        google.charts.load('current', {
+            'packages': ['corechart'],
+            // Note: you will need to get a mapsApiKey for your project.
+            // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+            'mapsApiKey': 'AIzaSyAYmsRSnEUBTBaLIEfT64IZ1Gtnny-5wcs'
+        });
+
+        google.charts.setOnLoadCallback(drawRegionsMap);
+
+
+        $(window).on('resize', function (event) {
+            drawRegionsMap();
+        });
+
+
         var CountryName = [];
         var CountryPopulation = [];
         $.ajax({
@@ -23,16 +38,6 @@
             }
         });
 
-        google.charts.load('current', {
-            'packages': ['corechart'],
-            // Note: you will need to get a mapsApiKey for your project.
-            // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
-            'mapsApiKey': 'AIzaSyAYmsRSnEUBTBaLIEfT64IZ1Gtnny-5wcs'
-        });
-
-        google.charts.setOnLoadCallback(drawRegionsMap);
-
-
         function drawRegionsMap() {
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Country:');
@@ -42,6 +47,8 @@
                 data.addRow([CountryName[i], CountryPopulation[i]]);
             }
             var options = {
+                width: '70%',
+                height: '70%',
                 colorAxis: {
                     minValue: 100000,
                     maxValue: 50000000,
@@ -53,8 +60,14 @@
                 tooltip: {
                     isHtml: true
                 },
+                /* chartArea: {
+                    left: "25%",
+                    top: "3%",
+                    height: "80%",
+                    width: "100%"
+                }, */
                 //backgroundColor: 'transparent',
-                keepAspectRatio: true,
+                keepAspectRatio: false,
                 //width: 900,
                 //height: 900
             };
@@ -62,10 +75,10 @@
             var chart = new google.visualization.GeoChart(document.getElementById('chart'));
 
             chart.draw(data, options);
-/* 				$(window).resize(function () {
-                var view = new google.visualization.DataView(data);
-                chart.draw(view, options);
-            }); */
+            /* 				$(window).resize(function () {
+                            var view = new google.visualization.DataView(data);
+                            chart.draw(view, options);
+                        }); */
         }
 
     });
