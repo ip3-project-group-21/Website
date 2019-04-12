@@ -118,7 +118,7 @@ function locationInfo(lat, long) {
             }
             else
             {
-                alert("Area is an Located on an Ocean/Major Water Location. No Data is Avialable");
+                alert("Area is on a Body of Water. No Data is Avialable");
             }
             /*  var queryString = "?para1=" + value1 + "&para2=" + value2;
              window.location.href = "page2.html" + queryString; */

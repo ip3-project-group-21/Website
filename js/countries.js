@@ -15,6 +15,7 @@
 
 
         var CountryName = [];
+        var CountryCode = [];
         var CountryPopulation = [];
         $.ajax({
             type: "GET",
@@ -27,7 +28,8 @@
 
                 for (var i = 0; i < arrayLength; i++) {
 
-                    CountryName[i] = data[i].alpha2Code;
+                    CountryName[i] = data[i].name;
+                    CountryCode[i] = data[i].alpha2Code;
                     CountryPopulation[i] = data[i].population;
 
 
@@ -40,11 +42,12 @@
 
         function drawRegionsMap() {
             var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Country:');
+            data.addColumn('string', 'Country Code:');
+            data.addColumn('string', 'Country Name:');
             data.addColumn('number', 'Population');
 
             for (i = 0; i < CountryName.length; i++) {
-                data.addRow([CountryName[i], CountryPopulation[i]]);
+                data.addRow([CountryCode[i], CountryName[i], CountryPopulation[i]]);
             }
             var options = {
                 width: '70%',
@@ -55,10 +58,10 @@
                     colors: ['#FFA07A', '#DC143C'],
                 },
                 tooltip: {
-                    trigger: 'focus'
+                    trigger: 'hover'
                 },
                 tooltip: {
-                    isHtml: true
+                    //isHtml: true
                 },
                 /* chartArea: {
                     left: "25%",
@@ -70,9 +73,51 @@
                 keepAspectRatio: false,
                 //width: 900,
                 //height: 900
+
             };
 
+
             var chart = new google.visualization.GeoChart(document.getElementById('chart'));
+            new google.visualization.events.addListener(chart, 'select', function () {
+                try {
+                    var selection = chart.getSelection();
+                    var selectedRow = selection[0].row;
+                    var selectedRegionCode = data.getValue(selectedRow, 0);
+                    $.ajax({
+                        type: "GET",
+                        url: "https://restcountries.eu/rest/v2/alpha/" + selectedRegionCode,
+                        dataType: "json",
+                        async: false,
+                        success: function (data) {
+                            //console.log(data);
+                            //localStorage.removeItem( 'CountryData' );
+                            //alert("Country Name: " + data.name);
+                            var modal = document.getElementById('myModal');
+
+                            // Get the button that opens the modal
+
+                            // Get the <span> element that closes the modal
+                            var span = document.getElementsByClassName("close")[0];
+
+                            // When the user clicks the button, open the modal 
+                                modal.style.display = "block";
+                                
+                            // When the user clicks on <span> (x), close the modal
+                            span.onclick = function () {
+                                modal.style.display = "none";
+                            }
+
+                            // When the user clicks anywhere outside of the modal, close it
+                            window.onclick = function (event) {
+                                if (event.target == modal) {
+                                    modal.style.display = "none";
+                                }
+                            }
+
+                        }
+                    });
+                } catch (err) {}
+            });
 
             chart.draw(data, options);
             /* 				$(window).resize(function () {
