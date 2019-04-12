@@ -155,22 +155,68 @@
 		                                myChart = new Chart(ctx, {
 		                                    type: 'horizontalBar',
 		                                    data: {
-		                                        labels: ["Anti-social behaviour",
-		                                            "Bicycle theft",
-		                                            "Burglary",
-		                                            "Criminal damage and arson",
-		                                            "Drugs",
-		                                            "Other theft",
-		                                            "Possession of weapons",
-		                                            "Public order", "Robbery",
-		                                            "Shoplifting",
-		                                            "Theft from the person",
-		                                            "Vehicle crime",
-		                                            "Violence and sexual offences",
-		                                            "Other crime"
-		                                        ],
+		                                        labels: ["Crime"],
 		                                        datasets: [{
-		                                            label: 'Amount:',
+													label: "Anti-social behaviour",
+													data: antiSocialBehaviourCount
+												},
+												{
+													label: "Bicycle theft",
+													data: antiSocialBehaviourCount
+												},
+												{
+													label: "Burglary",
+													data: antiSocialBehaviourCount
+												},
+												{
+													label: "Criminal damage and arson",
+													data: antiSocialBehaviourCount
+												},
+												{
+													label: "Drugs",
+													data: antiSocialBehaviourCount
+												},
+												{
+													label: "Other theft",
+													data: antiSocialBehaviourCount
+												},
+												{
+													label: "Possession of weapons",
+													data: antiSocialBehaviourCount
+												},
+												{
+													label: "Public order",
+													data: antiSocialBehaviourCount
+												},
+												
+												{
+													label: "Robbery",
+													data: antiSocialBehaviourCount
+												},
+												{
+													label: "Shoplifting",
+													data: antiSocialBehaviourCount
+												},
+												{
+													label: "Theft from the person",
+													data: antiSocialBehaviourCount
+												},
+												{
+													label: "Vehicle crime",
+													data: antiSocialBehaviourCount
+												},
+												{
+													label: "Violence and sexual offences",
+													data: antiSocialBehaviourCount
+												},
+												
+						
+		                                            "Robbery",}
+		                                            "Shoplifting",}
+		                                            "Theft from the person",}
+		                                            "Vehicle crime",}
+		                                            "Violence and sexual offences",}
+		                                            "Other crime":',}
 		                                            data: [antiSocialBehaviourCount,
 		                                                bicycleTheftCount,
 		                                                burglaryCount,
