@@ -87,16 +87,20 @@
     display:inline-block;
 }
 
+#weathLocationInfo {
+  padding:0;
+}
+
 
 /*WORDS PAGE*/
 .link {
     fill: none;
-    stroke: black;
+    stroke: rgba(97, 97, 97, 0.507);
     stroke-width: 1.5px;
   }
   
   .node rect {
-    fill: #FFA07A;
+    fill:  rgba(255, 118, 214, 0.781);
     stroke: #000;
     stroke-width: 1.5px;
     cursor: pointer;
@@ -107,7 +111,7 @@
   }
   
   .triggernode rect {
-    fill: #CCE1E9;
+    fill: rgb(243, 245, 141); 
     stroke: #000;
     stroke-width: 1.5px;
     cursor: text;
