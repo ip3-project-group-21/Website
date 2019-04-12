@@ -293,7 +293,7 @@ $(document).ready(function () {
 
                     } else {
                         var unsuccessful = $("<h3 />", {
-                            text: "No matching data - please ensure the data you entered is the location, region or country."
+                            text: "No matching data - please ensure the data you entered is the location or region."
                         });
 
                         $("#List2").append(unsuccessful);

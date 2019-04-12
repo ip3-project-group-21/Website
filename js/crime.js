@@ -1,16 +1,19 @@
 		//var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
 		var options = {
-		    container: ".form-group",
+		    container: ".DatePicker",
 		    autoclose: true,
 		    minViewMode: 1,
 		    format: 'yyyy-mm',
 		    startDate: '2016-04',
 		    endDate: "0d",
-		    orientation: "auto",
-		    clearBtn: true
-		    //pickerPosition: "bottom-left"
+		    // orientation: "auto",
+		    clearBtn: true,
+		    pickerPosition: "bottom-left"
 		};
 		$('.date-own').datepicker(options);
+		// $('.date-own').datepicker(options).on('changeDate', function (ev) {
+		// 	$(this).datepicker('hide');
+		// 	});;
 		$(document).ready(function () {
 		    document.getElementById('LocationText').value = "";
 		    $("#ChartDisplay").click(function () {

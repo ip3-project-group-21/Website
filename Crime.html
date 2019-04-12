@@ -50,8 +50,10 @@
 
 			<aside class="text desc text-justify">
 				<p>To use this page simply enter in a location into the location field and then click display chart.<br>
-				<b>Location entered must be within the United Kindom</b><br><b>Due to how API works there is not much data 
-				for places in Scotland.</b><br><b>If date is not filled out it will use most current month.</b></p>
+					<b>Location entered must be within the United Kindom</b><br><b>Due to how API works there is not
+						much data
+						for places in Scotland.</b><br><b>If date is not filled out it will use most current month.</b>
+				</p>
 
 			</aside>
 			<aside class="text tut text-justify">
@@ -71,34 +73,63 @@
 				<!-- 				<label for="date" style="margin-top: 1em">Date(Optional)</label>
 				<input id="date" class="date-own form-control" type="text"> -->
 				<div class="bootstrap-iso">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-md-6 col-sm-6 col-xs-12">
-
-								<!-- Form code begins -->
-								<div class="form-group">
-									<!-- Date input -->
-									<span class="error-text" id="errorlocation"></span><br>
-									<label class="control-label" for="LocationText">Location</label>
-									<input class="form-control input-sm" id="LocationText" placeholder="Location" type="text">
-									<label class="control-label" for="date">Date(Optional)</label>
-									<input autocomplete="off"  class="date-own form-control" id="date" name="date" placeholder="YYYY-MM"
-										type="text" />
-								</div>
-								<!-- Form code ends -->
-
+					<!-- <div class="container-fluid"> -->
+					<div class="Drow" style="padding-top:10px">
+						<div class="Dcolumn" style="padding-right:3px">
+							<div class="form-group DatePicker">
+								<!-- Date input -->
+								<label class="control-label" for="date">Date(Optional)</label>
+								<input autocomplete="off" class="date-own form-control" id="date" name="date"
+									placeholder="YYYY-MM" type="text" />
+							</div>
+						</div>
+						<div class="Rcolumn" style="padding-right:3px">
+							<div class="form-group">
+								<!-- Date input -->
+								<span class="error-text" id="errorlocation"></span>
+								<label class="control-label" for="LocationText">Location</label>
+								<input class="form-control input-sm" id="LocationText" placeholder="Location"
+									type="text">
+							</div>
+						</div>
+						<div class="Rcolumn1" style="padding-top:32px">
+							<div class="form-group">
+								<button type="button" class="btn btn-secondary" name="Info" id="ChartDisplay"
+									value="DisplayChart">Display Chart</button>
 							</div>
 						</div>
 					</div>
-				</div>
-				<button type="button" class="btn btn-secondary" name="Info" id="ChartDisplay" value="DisplayChart"
-					style="margin-top: 1em">Display Chart</button>
-				<div id="chart-container">
-					<canvas id="myChart"></canvas>
+
+					<!-- <div class="row"> -->
+					<!-- Form code begins -->
+					<!-- <div class="form-group"> -->
+					<!-- Date input -->
+					<!-- <span class="error-text" id="errorlocation"></span><br>
+							<label class="control-label" for="LocationText">Location</label>
+							<input class="form-control input-sm" id="LocationText" placeholder="Location" type="text">
+						</div> -->
+					<!-- Form code ends -->
+
+					<!-- </div> -->
+					<!-- <div class="row"> -->
+					<!-- Form code begins -->
+					<!-- <div class="form-group"> -->
+					<!-- Date input -->
+					<!-- <label class="control-label" for="date">Date(Optional)</label>
+							<input autocomplete="off" class="date-own form-control" id="date" name="date"
+								placeholder="YYYY-MM" type="text" />
+						</div> -->
+					<!-- Form code ends -->
+
+					<!-- </div> -->
 				</div>
 			</div>
-
+			<div id="chart-container">
+				<canvas id="myChart"></canvas>
+			</div>
 		</div>
+
+	</div>
 	</div>
 
 	<!--Link to local Javascript file-->
@@ -107,7 +138,8 @@
 
 	<div id="navbar">
 		<!--Import Navbar file onto page-->
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+		</script>
 		<script type="text/javascript" src="js/navbar.js"></script>
 	</div>
 
