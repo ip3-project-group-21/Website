@@ -110,7 +110,7 @@ function locationInfo(lat, long) {
                         var CountryData = data;
                         //localStorage.removeItem( 'CountryData' );
                         localStorage.setItem('CountryData', JSON.stringify(CountryData));
-                        setTimeout(1000);
+                        setTimeout(100);
                         window.open('location.html', '_blank');
                     }
                 });

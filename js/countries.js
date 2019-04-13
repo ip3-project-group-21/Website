@@ -83,6 +83,7 @@
                     var selection = chart.getSelection();
                     var selectedRow = selection[0].row;
                     var selectedRegionCode = data.getValue(selectedRow, 0);
+                    chart.setSelection([]);
                     $.ajax({
                         type: "GET",
                         url: "https://restcountries.eu/rest/v2/alpha/" + selectedRegionCode,
