@@ -93,19 +93,96 @@
                             //localStorage.removeItem( 'CountryData' );
                             //alert("Country Name: " + data.name);
                             var modal = document.getElementById('myModal');
-
-                            var header = document.getElementById('MHeader');
-                            var body = document.getElementById('MHeader');
-                            var footer = document.getElementById('MFooter');
+                            $("#Info").html("");
 
                             // Get the button that opens the modal
+                            var country = data.name;
+                            $('#MHeader').text(country);
+                            
+                            //header.html(country);
+
+                            var capital = $("<p />", {
+                                text: "Capital: " + data.capital
+                            });
+                            var demonym = $("<p />", {
+                                text: "Demonym: " + data.demonym
+                            });
+                            var continent = $("<p />", {
+                                text: "Region: " + data.region
+                            });
+                            var subregion = $("<p />", {
+                                text: "Subregion: " + data.subregion
+                            });
+                            // var timezones = $("<p />", {
+                            // 	text: ": " + data.
+                            // });
+                            // var borders = $("<p />", {
+                            // 	text: ": " + data.
+                            // });
+                            // var regionBloc = $("<p />", {
+                            // 	text: "Capital: " + data.
+                            // });
+
+                            $("#Info").append(capital, continent, subregion, demonym);
+                            var currenciesLength = data.currencies.length;
+                            console.log(currenciesLength);
+                            for (var i = 0; i < currenciesLength; i++) {
+                                if (data.currencies[i].symbol == null) {
+                                    var currencies = $("<p />", {
+                                        text: "Main Currency: " + data.currencies[i].name
+                                    });
+                                    currencies.append("<br>Symbol: (No Symbol Avialable)");
+                                    $("#Info").append(currencies);
+                                } else {
+                                    var currencies = $("<p />", {
+                                        text: "Main Currency: " + data.currencies[i].name
+                                    });
+                                    currencies.append("<br>Symbol: " + data.currencies[i].symbol);
+                                    $("#Info").append(currencies);
+                                }
+                            }
+
+
+                            var languagesLength = data.languages.length;
+                            console.log(languagesLength);
+                            for (var i = 0; i < languagesLength; i++) {
+                                var languages = $("<p />", {
+                                    text: "Language: " + data.languages[i].name
+                                });
+                                $("#Info").append(languages);
+                            }
+
+                            var timesLength = data.timezones.length;
+                            console.log(timesLength);
+                            var time = $("<p />", {
+                                text: "Timezones:"
+                            });
+                            for (var i = 0; i < timesLength; i++) {
+                                var timezones = $("<li />", {});
+                                timezones.append(data.timezones[i]);
+                                time.append(timezones);
+                            }
+                            $("#Info").append(time);
+
+
+                            var regionBlocLength = data.regionalBlocs.length;
+                            console.log(regionBlocLength);
+                            for (var i = 0; i < regionBlocLength; i++) {
+                                var regionalBlocs = $("<p />", {
+                                    text: "Region Bloc(Unions etc): " + data.regionalBlocs[i].name
+                                });
+                                $("#Info").append(regionalBlocs);
+                            }
+
+                            document.getElementById('Flag').src = data.flag;
+                            document.getElementById('Flag').alt = data.name + " Flag";
 
                             // Get the <span> element that closes the modal
                             var span = document.getElementsByClassName("close")[0];
 
                             // When the user clicks the button, open the modal 
-                                modal.style.display = "block";
-                                
+                            modal.style.display = "block";
+
                             // When the user clicks on <span> (x), close the modal
                             span.onclick = function () {
                                 modal.style.display = "none";
