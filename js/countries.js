@@ -89,7 +89,7 @@
                         dataType: "json",
                         async: false,
                         success: function (data) {
-                            //console.log(data);
+                            console.log(data);
                             //localStorage.removeItem( 'CountryData' );
                             //alert("Country Name: " + data.name);
                             var modal = document.getElementById('myModal');
@@ -100,6 +100,9 @@
                             $('#MHeader').text(country);
                             
                             //header.html(country);
+                            var population = $("<p />", {
+                                text: "Population: " + data.population.toLocaleString("en")
+                            });
 
                             var capital = $("<p />", {
                                 text: "Capital: " + data.capital
@@ -123,9 +126,8 @@
                             // 	text: "Capital: " + data.
                             // });
 
-                            $("#Info").append(capital, continent, subregion, demonym);
+                            $("#Info").append(population,capital, continent, subregion, demonym);
                             var currenciesLength = data.currencies.length;
-                            console.log(currenciesLength);
                             for (var i = 0; i < currenciesLength; i++) {
                                 if (data.currencies[i].symbol == null) {
                                     var currencies = $("<p />", {
@@ -144,7 +146,6 @@
 
 
                             var languagesLength = data.languages.length;
-                            console.log(languagesLength);
                             for (var i = 0; i < languagesLength; i++) {
                                 var languages = $("<p />", {
                                     text: "Language: " + data.languages[i].name
@@ -153,7 +154,6 @@
                             }
 
                             var timesLength = data.timezones.length;
-                            console.log(timesLength);
                             var time = $("<p />", {
                                 text: "Timezones:"
                             });
@@ -166,7 +166,6 @@
 
 
                             var regionBlocLength = data.regionalBlocs.length;
-                            console.log(regionBlocLength);
                             for (var i = 0; i < regionBlocLength; i++) {
                                 var regionalBlocs = $("<p />", {
                                     text: "Region Bloc(Unions etc): " + data.regionalBlocs[i].name
@@ -176,6 +175,7 @@
 
                             document.getElementById('Flag').src = data.flag;
                             document.getElementById('Flag').alt = data.name + " Flag";
+                            
 
                             // Get the <span> element that closes the modal
                             var span = document.getElementsByClassName("close")[0];
