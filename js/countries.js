@@ -94,6 +94,10 @@
                             //alert("Country Name: " + data.name);
                             var modal = document.getElementById('myModal');
 
+                            var header = document.getElementById('MHeader');
+                            var body = document.getElementById('MHeader');
+                            var footer = document.getElementById('MFooter');
+
                             // Get the button that opens the modal
 
                             // Get the <span> element that closes the modal
