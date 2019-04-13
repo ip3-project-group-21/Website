@@ -264,16 +264,29 @@
 												legend: { position: 'right'},
 											}
 										});
-										document.getElementById("myChart").onclick = function(evt){
-											var activePoints = myChart.getElementsAtEvent(evt);
-											var firstPoint = activePoints[0];
-											var label = myChart.data.labels[firstPoint._index];
-											//var value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
-											//alert(label + ": " + value);
-											window.open("https://www.met.police.uk/sd/stats-and-data/met/crime-type-definitions/", '_blank');
-						
-										};
 										var windowWidth = $(window).width();
+										if (windowWidth > 500) {
+											document.getElementById("myChart").onclick = function(evt){
+												var activePoints = myChart.getElementsAtEvent(evt);
+												var firstPoint = activePoints[0];
+												var label = myChart.data.labels[firstPoint._index];
+												//var value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
+												//alert(label + ": " + value);
+												window.open("https://www.met.police.uk/sd/stats-and-data/met/crime-type-definitions/", '_blank');
+							
+											};
+										}
+										if (windowWidth < 500) {
+											document.getElementById("myChart").ondblclick = function (evt) {
+												var activePoints = myChart.getElementsAtEvent(evt);
+												var firstPoint = activePoints[0];
+												var label = myChart.data.labels[firstPoint._index];
+												//var value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
+												//alert(label + ": " + value);
+												window.open("https://www.met.police.uk/sd/stats-and-data/met/crime-type-definitions/", '_blank');
+							
+											};
+										}
 										if (windowWidth < 1000) {
 											myChart.options.legend.position = 'bottom';
 											myChart.update();
@@ -294,6 +307,30 @@
 				$(window).on('resize', function (event) {
 					try {
 						var windowWidth = $(window).width();
+						if (windowWidth > 500) {
+							document.getElementById("myChart").ondblclick = null;
+							document.getElementById("myChart").onclick = function(evt){
+								var activePoints = myChart.getElementsAtEvent(evt);
+								var firstPoint = activePoints[0];
+								var label = myChart.data.labels[firstPoint._index];
+								//var value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
+								//alert(label + ": " + value);
+								window.open("https://www.met.police.uk/sd/stats-and-data/met/crime-type-definitions/", '_blank');
+			
+							};
+						}
+						if (windowWidth < 500) {
+							document.getElementById("myChart").onclick = null;
+							document.getElementById("myChart").ondblclick = function (evt) {
+								var activePoints = myChart.getElementsAtEvent(evt);
+								var firstPoint = activePoints[0];
+								var label = myChart.data.labels[firstPoint._index];
+								//var value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
+								//alert(label + ": " + value);
+								window.open("https://www.met.police.uk/sd/stats-and-data/met/crime-type-definitions/", '_blank');
+			
+							};
+						}
 						if (windowWidth < 1000) {
 							myChart.options.legend.position = 'bottom';
 							myChart.update();

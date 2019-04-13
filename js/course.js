@@ -125,16 +125,30 @@ $(document).ready(function () {
                         }
                     }
                 });
-                document.getElementById("myChart").onclick = function(evt){
-                    var activePoints = myChart.getElementsAtEvent(evt);
-                    var firstPoint = activePoints[0];
-                    var label = myChart.data.labels[firstPoint._index];
-                    //var value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
-                    //alert(label + ": " + value);
-                    window.open("https://www.indeed.co.uk/jobs?q=" + label + "&l=", '_blank');
-
-                };
                 var windowWidth = $(window).width();
+                console.log(windowWidth);
+                if (windowWidth > 500) {
+                    document.getElementById("myChart").onclick = function (evt) {
+                        var activePoints = myChart.getElementsAtEvent(evt);
+                        var firstPoint = activePoints[0];
+                        var label = myChart.data.labels[firstPoint._index];
+                        //var value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
+                        //alert(label + ": " + value);
+                        window.open("https://www.indeed.co.uk/jobs?q=" + label + "&l=", '_blank');
+
+                    };
+                }
+                if (windowWidth < 500) {
+                    document.getElementById("myChart").ondblclick = function (evt) {
+                        var activePoints = myChart.getElementsAtEvent(evt);
+                        var firstPoint = activePoints[0];
+                        var label = myChart.data.labels[firstPoint._index];
+                        //var value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
+                        //alert(label + ": " + value);
+                        window.open("https://www.indeed.co.uk/jobs?q=" + label + "&l=", '_blank');
+
+                    };
+                }
                 if (windowWidth < 1000) {
                     myChart.options.legend.position = 'top';
                     myChart.update();
@@ -150,6 +164,28 @@ $(document).ready(function () {
     $(window).on('resize', function (event) {
         try {
             var windowWidth = $(window).width();
+            if (windowWidth < 500) {
+                document.getElementById("myChart").onclick = null;
+                document.getElementById("myChart").ondblclick = function (evt) {
+                    var activePoints = myChart.getElementsAtEvent(evt);
+                    var firstPoint = activePoints[0];
+                    var label = myChart.data.labels[firstPoint._index];
+                    //var value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
+                    //alert(label + ": " + value);
+                    window.open("https://www.indeed.co.uk/jobs?q=" + label + "&l=", '_blank');
+                };
+            }
+            if (windowWidth > 500) {
+                document.getElementById("myChart").ondblclick = null;
+                document.getElementById("myChart").onclick = function (evt) {
+                    var activePoints = myChart.getElementsAtEvent(evt);
+                    var firstPoint = activePoints[0];
+                    var label = myChart.data.labels[firstPoint._index];
+                    //var value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
+                    //alert(label + ": " + value);
+                    window.open("https://www.indeed.co.uk/jobs?q=" + label + "&l=", '_blank');
+                };
+            }
             if (windowWidth < 1000) {
                 myChart.options.legend.position = 'top';
                 myChart.update();
@@ -158,7 +194,6 @@ $(document).ready(function () {
                 myChart.options.legend.position = 'right';
                 myChart.update();
             }
-        } catch (err) {
-        }
+        } catch (err) {}
     });
 });
