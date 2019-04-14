@@ -1,3 +1,15 @@
+//function to clear the text inside lat and long text boxes
+function clearLatLon(){
+    document.getElementById('Latitude').value = '';
+    document.getElementById('Longitude').value = '';
+}
+
+//function to clear the text inside location text box
+function clearLoc(){
+    document.getElementById('LocationText').value = '';
+}
+
+
 //this function will get the weather data and show it to the user
 function getWeather(data) {
 
