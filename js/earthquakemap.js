@@ -34,8 +34,7 @@ function populateMap(earthquakePwr) {
                 var latLng = new google.maps.LatLng(coords[1], coords[0]);
                 // Now create a new marker on the map
                 //if statement to replace any null magnitudes with a zero
-                if (val.properties.mag === null)
-                {
+                if (val.properties.mag === null) {
                     val.properties.mag = 0;
                 }
                 var marker = new google.maps.Marker({
@@ -70,54 +69,64 @@ function locationInfo(lat, long) {
         success: function (data) {
             console.log(data);
 
-            if (typeof data.status === 'undefined')
-            {
-            if (data.countryName == "United States") {
-                var countrycode = data.countryCode;
-                var countryname = data.countryName;
-                /*             var stateCode = data.adminCode1;
-                            var stateName = data.adminName1; */
-                //console.log(countrycode);
-                console.log(countryname);
-                /*             console.log(stateCode);
-                            console.log(stateName); */
-                $.ajax({
-                    type: "GET",
-                    url: "https://restcountries.eu/rest/v2/alpha/" + countrycode,
-                    dataType: "json",
-                    success: function (data) {
-                        console.log(data);
-                        var CountryData = data;
-                        //localStorage.removeItem( 'CountryData' );
-                        localStorage.setItem('CountryData', JSON.stringify(CountryData));
-                        setTimeout(1000);
-                        window.open('location.html', '_blank');
-                    }
-                });
-            }
-            else{
-                var countrycode = data.countryCode;
-                var countryname = data.countryName;
-                //console.log(countrycode);
-                //console.log(countryname);
-                $.ajax({
-                    type: "GET",
-                    url: "https://restcountries.eu/rest/v2/alpha/" + countrycode,
-                    dataType: "json",
-                    async: false,
-                    success: function (data) {
-                        console.log(data);
-                        var CountryData = data;
-                        //localStorage.removeItem( 'CountryData' );
-                        localStorage.setItem('CountryData', JSON.stringify(CountryData));
-                        setTimeout(100);
-                        window.open('location.html', '_blank');
-                    }
-                });
-            }
-            }
-            else
-            {
+            if (typeof data.status === 'undefined') {
+                if (data.countryName == "United States") {
+                    var countrycode = data.countryCode;
+                    var countryname = data.countryName;
+                    /*             var stateCode = data.adminCode1;
+                                var stateName = data.adminName1; */
+                    //console.log(countrycode);
+                    console.log(countryname);
+                    $.ajax({
+                        type: "GET",
+                        url: "https://api.opencagedata.com/geocode/v1/json?q=" + lat + "+" + long + "&key=690bdf56f915408b82b1929eb586ef55",
+                        dataType: "json",
+                        success: function (data) {
+                            console.log(data);
+                            var StateData = data;
+                            //localStorage.removeItem( 'CountryData' );
+                            localStorage.setItem('StateData', JSON.stringify(StateData));
+                            // window.open('location.html', '_blank');
+                        },
+                        complete: function (data) {
+                            $.ajax({
+                                type: "GET",
+                                url: "https://restcountries.eu/rest/v2/alpha/" + countrycode,
+                                dataType: "json",
+                                success: function (data) {
+                                    console.log(data);
+                                    var CountryData = data;
+                                    //localStorage.removeItem( 'CountryData' );
+                                    localStorage.setItem('CountryData', JSON.stringify(CountryData));
+                                    setTimeout(1000);
+                                    window.open('location.html', '_blank');
+                                }
+                            });
+                        }
+                    });
+                    /*             console.log(stateCode);
+                                console.log(stateName); */
+                } else {
+                    var countrycode = data.countryCode;
+                    var countryname = data.countryName;
+                    //console.log(countrycode);
+                    //console.log(countryname);
+                    $.ajax({
+                        type: "GET",
+                        url: "https://restcountries.eu/rest/v2/alpha/" + countrycode,
+                        dataType: "json",
+                        async: false,
+                        success: function (data) {
+                            console.log(data);
+                            var CountryData = data;
+                            //localStorage.removeItem( 'CountryData' );
+                            localStorage.setItem('CountryData', JSON.stringify(CountryData));
+                            setTimeout(100);
+                            window.open('location.html', '_blank');
+                        }
+                    });
+                }
+            } else {
                 alert("Area is on a Body of Water. No Data is Avialable");
             }
             /*  var queryString = "?para1=" + value1 + "&para2=" + value2;
