@@ -7,8 +7,8 @@ $(document).ready(function () {
     var myData = JSON.parse(localStorage.getItem('CountryData'));
     if (myData.name == "United States of America") {
         var stateData = JSON.parse(localStorage.getItem('StateData'));
+        console.log(stateData);
     }
-    console.log(stateData);
 
     //window.localStorage.clear();
     console.log(myData);
