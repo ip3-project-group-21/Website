@@ -4,9 +4,9 @@ function getWeather(data) {
     document.getElementById("WeathImage").style.visibility = "visible";
     document.getElementById("WeathImage2").style.visibility = "visible";
     document.getElementById("WeathImage3").style.visibility = "visible";
-    document.getElementById("WeathImage").src = "http:" + data.current.condition.icon;
-    document.getElementById("WeathImage2").src = "http:" + data.forecast.forecastday[1].day.condition.icon;
-    document.getElementById("WeathImage3").src = "http:" + data.forecast.forecastday[2].day.condition.icon;
+    document.getElementById("WeathImage").src = "https:" + data.current.condition.icon;
+    document.getElementById("WeathImage2").src = "https:" + data.forecast.forecastday[1].day.condition.icon;
+    document.getElementById("WeathImage3").src = "https:" + data.forecast.forecastday[2].day.condition.icon;
 
     //Location information variables
     var loc = $("<h4 />", {
@@ -275,7 +275,7 @@ $(document).ready(function () {
 
             $.ajax({
 
-                url: "http://api.apixu.com/v1/forecast.json?key=75fb86a2371f4abca12115412190403&q=" + location + "&days=3",
+                url: "https://api.apixu.com/v1/forecast.json?key=75fb86a2371f4abca12115412190403&q=" + location + "&days=3",
 
                 error: function () {
                     document.getElementById("WeathImage").style.visibility = "hidden";
@@ -315,7 +315,7 @@ $(document).ready(function () {
 
             $.ajax({
 
-                url: "http://api.apixu.com/v1/forecast.json?key=75fb86a2371f4abca12115412190403&q=" + latitude + "," + longitude + "&days=3",
+                url: "https://api.apixu.com/v1/forecast.json?key=75fb86a2371f4abca12115412190403&q=" + latitude + "," + longitude + "&days=3",
 
                 error: function () {
                     document.getElementById("WeathImage").style.visibility = "hidden";

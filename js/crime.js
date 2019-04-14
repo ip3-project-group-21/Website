@@ -43,7 +43,7 @@
 				var arrayLength = 0;
 				$.ajax({
 					type: "GET",
-					url: "http://api.apixu.com/v1/current.json?key=75fb86a2371f4abca12115412190403&q=" +
+					url: "https://api.apixu.com/v1/current.json?key=75fb86a2371f4abca12115412190403&q=" +
 						location,
 					dataType: "json",
 					error: function () {

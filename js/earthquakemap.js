@@ -65,7 +65,7 @@ function locationInfo(lat, long) {
     //var redirectWindow  = window.open('location.html', '_blank');
     $.ajax({
         type: "GET",
-        url: "http://api.geonames.org/countrySubdivisionJSON?lat=" + lat + "&lng=" + long + "&username=rballa201",
+        url: "https://secure.geonames.org/countrySubdivisionJSON?lat=" + lat + "&lng=" + long + "&username=rballa201",
         dataType: "json",
         success: function (data) {
             console.log(data);
