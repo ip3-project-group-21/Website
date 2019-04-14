@@ -183,15 +183,18 @@
 
                             // When the user clicks the button, open the modal 
                             modal.style.display = "block";
+                            $('body').css('overflow', 'hidden');
 
                             // When the user clicks on <span> (x), close the modal
                             span.onclick = function () {
+                                $('body').css('overflow', 'auto');
                                 modal.style.display = "none";
                             }
 
                             // When the user clicks anywhere outside of the modal, close it
                             window.onclick = function (event) {
                                 if (event.target == modal) {
+                                    $('body').css('overflow', 'auto');
                                     modal.style.display = "none";
                                 }
                             }
