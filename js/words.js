@@ -5,17 +5,20 @@
 
 //When the page is fully loaded the page the script will kick in
 $(document).ready(function () {
+    
     function isIE() {
         ua = navigator.userAgent;
-        /* MSIE used to detect old browsers and Trident used to newer ones*/
+        // MSIE used to detect old browsers and Trident used to newer ones
         var is_ie = ua.indexOf("MSIE ") > -1 || ua.indexOf("Trident/") > -1;
         
         return is_ie; 
       }
-      /* Create an alert to show if the browser is IE or not */
+      //Create an alert to show if the browser is IE or not
       if (isIE()){
           alert('This Page does not support Internet Explorer');
       }
+
+
     //Ajax call for the API data
     function getTargets(apiFn, sourceWord, max, response) {
         $.ajax({
