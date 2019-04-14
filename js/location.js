@@ -73,6 +73,27 @@ $(document).ready(function () {
     }
     $("#Info").append(time);
 
+    var bordersLength = myData.borders.length;
+    console.log(bordersLength);
+    var border = $("<p />", {
+        text: "Borders:"
+    });
+    for (var i = 0; i < bordersLength; i++) {
+        var countrycode = myData.borders[i];
+        $.ajax({
+            type: "GET",
+            url: "https://restcountries.eu/rest/v2/alpha/" + countrycode,
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                var borders = $("<li />", {});
+                borders.append(data.name);
+                border.append(borders);
+            }
+        });
+    }
+    $("#Info").append(border);
 
     var regionBlocLength = myData.regionalBlocs.length;
     console.log(regionBlocLength);
