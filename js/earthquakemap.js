@@ -306,41 +306,4 @@ $(document).ready(function () {
 
         };
     });
-    var lastValidCenter;
-    var minZoomLevel = 2;
-
-    setOutOfBoundsListener();
-
-    function setOutOfBoundsListener() {
-        google.maps.event.addListener(map, 'dragend', function () {
-            checkLatitude(map);
-        });
-        google.maps.event.addListener(map, 'idle', function () {
-            checkLatitude(map);
-        });
-        google.maps.event.addListener(map, 'zoom_changed', function () {
-            checkLatitude(map);
-        });
-    };
-
-    function checkLatitude(map) {
-        if (this.minZoomLevel) {
-            if (map.getZoom() < minZoomLevel) {
-                map.setZoom(parseInt(minZoomLevel));
-            }
-        }
-
-        var bounds = map.getBounds();
-        var sLat = map.getBounds().getSouthWest().lat();
-        var nLat = map.getBounds().getNorthEast().lat();
-        if (sLat < -85 || nLat > 85) {
-            //the map has gone beyone the world's max or min latitude - gray areas are visible
-            //return to a valid position
-            if (this.lastValidCenter) {
-                map.setCenter(this.lastValidCenter);
-            }
-        } else {
-            this.lastValidCenter = map.getCenter();
-        }
-    }
 });
