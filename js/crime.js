@@ -139,9 +139,10 @@
 										}
 									}
 								},
-								/* 							error: function (jqXHR, status, errorThrown) {
-																alert("Location not in United Kingdom");
-															}, */
+								error: function (jqXHR, status, errorThrown) {
+									$("#chart-container").html("<br><h1>No Crime Data Avialable</h1>" +
+									"<p>Due to how the Data is being recieved we are not responsible for any Crime Data that is not shown.</p>");
+								},
 								complete: function (data) {
 									if (!(arrayLength == 0)) {
 										var ctx = document.getElementById('myChart').getContext("2d");
