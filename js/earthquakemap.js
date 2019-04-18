@@ -1,3 +1,4 @@
+//Function to Initialize Map
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 2,
@@ -7,17 +8,22 @@ function initMap() {
     google.maps.event.trigger(map, 'resize');
 }
 
+//Function toPopulate Map with Marers, Clustering and InfoWindows
 function populateMap(earthquakePwr) {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 2,
         center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
         mapTypeId: 'terrain' // can be any valid type
     });
+
+    //Map Limit Variables
     var lastValidCenter;
     var minZoomLevel = 2;
 
+    //Call Function setOutOfBoundsListener
     setOutOfBoundsListener();
 
+    //Function to check if map is out of bounds
     function setOutOfBoundsListener() {
         google.maps.event.addListener(map, 'dragend', function () {
             checkLatitude(map);
@@ -30,6 +36,7 @@ function populateMap(earthquakePwr) {
         });
     };
 
+    //Function to Check Map Latitude
     function checkLatitude(map) {
         if (this.minZoomLevel) {
             if (map.getZoom() < minZoomLevel) {
@@ -37,9 +44,11 @@ function populateMap(earthquakePwr) {
             }
         }
 
+        //Map Limit Variables
         var bounds = map.getBounds();
         var sLat = map.getBounds().getSouthWest().lat();
         var nLat = map.getBounds().getNorthEast().lat();
+
         if (sLat < -85 || nLat > 85) {
             //the map has gone beyone the world's max or min latitude - gray areas are visible
             //return to a valid position
@@ -79,17 +88,17 @@ function populateMap(earthquakePwr) {
                     map: map,
                     label: val.properties.mag.toString()
                 });
-                /*                var point = new google.maps.LatLng(
-                                   parseFloat(markers[i].getAttribute("lat")),
-                                   parseFloat(markers[i].getAttribute("lng"))); */
+                //Create InfoWindows
                 var infowindow = new google.maps.InfoWindow({
                     content: "<h3>" + val.properties.title + "</h3><p><a class='.infoclick' href='javascript:locationInfo(" + coords[1] + "," + coords[0] + ")'>Details</a></p>"
                 });
+                //Add event to open InfoWindows on marker click
                 marker.addListener('click', function (data) {
                     infowindow.open(map, marker); // Open the Google maps marker infoWindow location.html
                 });
                 markers[i++] = marker;
             });
+            //Allow Marker Clustering
             var markerCluster = new MarkerClusterer(map, markers, {
                 imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
             });
@@ -97,84 +106,85 @@ function populateMap(earthquakePwr) {
     });
 }
 
+//Obtain Location Information Function
 function locationInfo(lat, long) {
-    //var redirectWindow  = window.open('location.html', '_blank');
+
+    //API Call - obtain LOcation Name using Marker Location
     $.ajax({
         type: "GET",
         url: "https://secure.geonames.org/countrySubdivisionJSON?lat=" + lat + "&lng=" + long + "&username=rballa201",
         dataType: "json",
         success: function (data) {
-            console.log(data);
 
+            //If Data is avialable
             if (typeof data.status === 'undefined') {
+                //If Country is US
                 if (data.countryName == "United States") {
+
+                    //Country Information Variables
                     var countrycode = data.countryCode;
                     var countryname = data.countryName;
-                    /*             var stateCode = data.adminCode1;
-                                var stateName = data.adminName1; */
-                    //console.log(countrycode);
-                    console.log(countryname);
+
+                    //API Call - Obtain State Data using Marker Location
                     $.ajax({
                         type: "GET",
                         url: "https://api.opencagedata.com/geocode/v1/json?q=" + lat + "+" + long + "&key=690bdf56f915408b82b1929eb586ef55",
                         dataType: "json",
                         success: function (data) {
-                            console.log(data);
+                            //Store State Data in Local Storage
                             var StateData = data;
-                            //localStorage.removeItem( 'CountryData' );
                             localStorage.setItem('StateData', JSON.stringify(StateData));
-                            // window.open('location.html', '_blank');
                         },
                         complete: function (data) {
+                            //API Call - Obtaon Country Info using Marker Location
                             $.ajax({
                                 type: "GET",
                                 url: "https://restcountries.eu/rest/v2/alpha/" + countrycode,
                                 dataType: "json",
                                 success: function (data) {
-                                    console.log(data);
+                                    //Store Country Data in Local Storage
                                     var CountryData = data;
-                                    //localStorage.removeItem( 'CountryData' );
                                     localStorage.setItem('CountryData', JSON.stringify(CountryData));
                                     setTimeout(1000);
+                                    //Open Location Page
                                     window.open('location.html', '_blank');
                                 }
                             });
                         }
                     });
-                    /*             console.log(stateCode);
-                                console.log(stateName); */
+
                 } else {
+                    //Country Information Variables
                     var countrycode = data.countryCode;
                     var countryname = data.countryName;
-                    //console.log(countrycode);
-                    //console.log(countryname);
+
+                    //API Call - Obtaon Country Info using Marker Location
                     $.ajax({
                         type: "GET",
                         url: "https://restcountries.eu/rest/v2/alpha/" + countrycode,
                         dataType: "json",
                         async: false,
                         success: function (data) {
-                            console.log(data);
+                            //Store Country Data in Local Storage
                             var CountryData = data;
-                            //localStorage.removeItem( 'CountryData' );
                             localStorage.setItem('CountryData', JSON.stringify(CountryData));
                             setTimeout(100);
+
+                            //Open Location Page
                             window.open('location.html', '_blank');
                         }
                     });
                 }
-            } else {
+            }
+            //If No Location Name is available display error message
+            else {
                 alert("Area is on a Body of Water. No Data is Avialable");
             }
-            /*  var queryString = "?para1=" + value1 + "&para2=" + value2;
-             window.location.href = "page2.html" + queryString; */
-
         },
-        //complete: function (data) {}
-
     });
 };
 
+//Dynamically Create Buttons
 $(document).ready(function generateButtons() {
 
     var btnAll = $('<button/>', {
@@ -216,7 +226,11 @@ $(document).ready(function generateButtons() {
 });
 
 $(document).ready(function () {
+
+    //Clear Local Storage
     localStorage.clear();
+
+    //Set Significant Earthquake button to populate Map Depending on Radio Buttons  
     $('#Significant').click(function () {
         if (document.getElementById('Past_Hour').checked) {
             populateMap("significant_hour");
@@ -233,6 +247,7 @@ $(document).ready(function () {
         };
     });
 
+    //Set M4.5 Earthquake button to populate Map Depending on Radio Buttons  
     $('#m45').click(function () {
         if (document.getElementById('Past_Hour').checked) {
             populateMap("4.5_hour");
@@ -250,6 +265,7 @@ $(document).ready(function () {
         };
     });
 
+    //Set M2.5 Earthquake button to populate Map Depending on Radio Buttons  
     $('#m25').click(function () {
         if (document.getElementById('Past_Hour').checked) {
             populateMap("2.5_hour");
@@ -269,6 +285,7 @@ $(document).ready(function () {
         };
     });
 
+    //Set M1.0 Earthquake button to populate Map Depending on Radio Buttons  
     $('#m10').click(function () {
         if (document.getElementById('Past_Hour').checked) {
             populateMap("1.0_hour");
@@ -288,6 +305,7 @@ $(document).ready(function () {
         };
     });
 
+    //Set All Earthquake button to populate Map Depending on Radio Buttons  
     $('#All').click(function () {
         if (document.getElementById('Past_Hour').checked) {
             populateMap("all_hour");

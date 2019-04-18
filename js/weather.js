@@ -9,7 +9,6 @@ function clearLoc(){
     document.getElementById('LocationText').value = '';
 }
 
-
 //this function will get the weather data and show it to the user
 function getWeather(data) {
 
@@ -283,7 +282,6 @@ $(document).ready(function () {
 
             var location = document.getElementById('LocationText').value;
 
-            console.log(location);
 
             $.ajax({
 

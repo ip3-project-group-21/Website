@@ -1,4 +1,4 @@
-		//var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+		//DatePicker Options
 		var options = {
 			container: ".DatePicker",
 			autoclose: true,
@@ -6,17 +6,19 @@
 			format: 'yyyy-mm',
 			startDate: '2016-04',
 			endDate: "0d",
-			// orientation: "auto",
 			clearBtn: true,
 			pickerPosition: "bottom-left"
 		};
+		//Create Datepicker
 		$('.date-own').datepicker(options);
-		// $('.date-own').datepicker(options).on('changeDate', function (ev) {
-		// 	$(this).datepicker('hide');
-		// 	});;
+		
 		$(document).ready(function () {
+			//Set LocationText's Value to be empty
 			document.getElementById('LocationText').value = "";
+			
+			//Display Chart Button Press Function
 			$("#ChartDisplay").click(function () {
+				//Chart Variables
 				var myChart;
 				var antiSocialBehaviourCount = 0;
 				var bicycleTheftCount = 0;
@@ -32,51 +34,60 @@
 				var vehicleCrimeCount = 0;
 				var violentCrimeCount = 0;
 				var otherCrimeCount = 0;
+
+				//Clear Previous Charts
 				$("#chart-container").html("");
 				$("#myChart").remove(); // removing previous canvas element
 				$("#chart-container").append('<canvas id="myChart" class="myChart" width="500" height="500"></canvas>');
-				//width="500" height="500"
+
+				//Obtain Location and Create API Variables
 				var location = document.getElementById('LocationText').value;
-				var longitude; //= document.getElementById('Longitude').value;
-				var latitude; //= document.getElementById('Latitude').value;
-				var date = $('#date').val(); //+ "-01";
+				var longitude;
+				var latitude; 
+				var date = $('#date').val();
 				var arrayLength = 0;
+
+				//API Call - Obtain Latitude and Longitude from Name
 				$.ajax({
 					type: "GET",
 					url: "https://api.apixu.com/v1/current.json?key=75fb86a2371f4abca12115412190403&q=" +
 						location,
 					dataType: "json",
 					error: function () {
+						//If it dosent work show error message
 						$("#errorlocation").show();
 
 						$("#errorlocation").html("Issue obtaining API data. Please enter a proper location.");
 					},
 					success: function (data) {
+						//Hide error message if showing
 						$("#errorlocation").html("");
 						$("#errorlocation").hide();
+
+						//Set Lat and Long variables to Location's Lat and long
 						latitude = data.location.lat;
 						longitude = data.location.lon;
+						
+						//If Locatiion not in UK display error message 
 						if (!(data.location.country == "United Kingdom")) {
 							$("#errorlocation").show();
 							$("#errorlocation").html("Location is not in United Kingdom.");
-						} else {
+						} else { //Display Set URL for API Call
 							if (date == "") {
 								var url = "https://data.police.uk/api/crimes-street/all-crime?lat=" + latitude + "&lng=" + longitude;
 							} else {
 								var url = "https://data.police.uk/api/crimes-street/all-crime?lat=" + latitude + "&lng=" + longitude + "&date=" + date;
 							}
+							//API Call - Obatin Crime Numbers
 							$.ajax({
 								type: "GET",
 								url: url,
 								dataType: "json",
 								success: function (data) {
-									console.log(data)
 
 									arrayLength = data.length;
-									console.log(arrayLength);
 
-									//console.log(arrayLength);
-
+									//Counting all Crimes
 									for (var i = 0; i < arrayLength; i++) {
 										if (data[i].category ==
 											"anti-social-behaviour") {
@@ -139,17 +150,20 @@
 										}
 									}
 								},
+								//If any errors show No Data avialable message
 								error: function (jqXHR, status, errorThrown) {
 									$("#chart-container").html("<br><h1>No Crime Data Avialable</h1>" +
 									"<p>Due to how the Data is being recieved we are not responsible for any Crime Data that is not shown.</p>");
 								},
 								complete: function (data) {
+									//If there was Data then Create and Display Chart
 									if (!(arrayLength == 0)) {
 										var ctx = document.getElementById('myChart').getContext("2d");
 										myChart = new Chart(ctx, {
 											type: 'bar',
 											data: {
 												labels: ["Crime"],
+												//Chart Data
 												datasets: [{
 														label: "Anti-social behaviour",
 														data: [antiSocialBehaviourCount],
@@ -259,20 +273,20 @@
 
 													}]
 											},
+											//Chart Options
 											options: {
 												responsive: true,
 												maintainAspectRatio: false,
 												legend: { position: 'right'},
 											}
 										});
+										//Change Click event trigger depending on Page size
 										var windowWidth = $(window).width();
 										if (windowWidth > 500) {
 											document.getElementById("myChart").onclick = function(evt){
 												var activePoints = myChart.getElementsAtEvent(evt);
 												var firstPoint = activePoints[0];
 												var label = myChart.data.labels[firstPoint._index];
-												//var value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
-												//alert(label + ": " + value);
 												window.open("https://www.met.police.uk/sd/stats-and-data/met/crime-type-definitions/", '_blank');
 							
 											};
@@ -282,12 +296,11 @@
 												var activePoints = myChart.getElementsAtEvent(evt);
 												var firstPoint = activePoints[0];
 												var label = myChart.data.labels[firstPoint._index];
-												//var value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
-												//alert(label + ": " + value);
 												window.open("https://www.met.police.uk/sd/stats-and-data/met/crime-type-definitions/", '_blank');
 							
 											};
 										}
+										//Change Legend Location based on page size
 										if (windowWidth < 1000) {
 											myChart.options.legend.position = 'bottom';
 											myChart.update();
@@ -297,6 +310,7 @@
 											myChart.update();
 										}
 									} else {
+										//Display error mesaage if data was empty
 										$("#chart-container").html("<br><h1>No Crime Data Avialable</h1>" +
 											"<p>Due to how the Data is being recieved we are not responsible for any Crime Data that is not shown.</p>");
 									}
@@ -305,6 +319,8 @@
 						}
 					}
 				});
+
+				//Check and if needed Change Click Trigger and Legend Location depending on Page size when resizing page 
 				$(window).on('resize', function (event) {
 					try {
 						var windowWidth = $(window).width();
@@ -314,8 +330,6 @@
 								var activePoints = myChart.getElementsAtEvent(evt);
 								var firstPoint = activePoints[0];
 								var label = myChart.data.labels[firstPoint._index];
-								//var value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
-								//alert(label + ": " + value);
 								window.open("https://www.met.police.uk/sd/stats-and-data/met/crime-type-definitions/", '_blank');
 			
 							};
@@ -326,8 +340,6 @@
 								var activePoints = myChart.getElementsAtEvent(evt);
 								var firstPoint = activePoints[0];
 								var label = myChart.data.labels[firstPoint._index];
-								//var value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
-								//alert(label + ": " + value);
 								window.open("https://www.met.police.uk/sd/stats-and-data/met/crime-type-definitions/", '_blank');
 			
 							};

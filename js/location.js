@@ -1,33 +1,35 @@
 $(document).ready(function () {
+    //Close location.html Button Function
     $('#GoBack').click(function () {
-        //localStorage.removeItem( 'CountryData' );
-        //location.replace("earthquake.html");
         window.close();
     });
+    //Obtain JSON Location Data from Localstorage
     var myData = JSON.parse(localStorage.getItem('CountryData'));
+
+    //If location is USA then obtain State Data
     if (myData.name == "United States of America") {
         var stateData = JSON.parse(localStorage.getItem('StateData'));
-        console.log(stateData);
     }
 
-    //window.localStorage.clear();
-    console.log(myData);
+    //If location is USA then Create State Data Display Variables
     if (myData.name == "United States of America") {
         var stateHeading = $("<h2 />", {
-        text: "State"
+            text: "State"
         });
-        
+
         var state = $("<p />", {
             text: "State Name: " + stateData.results[0].components.state
         });
 
         var stateTime = $("<p />", {
-        text: "Local Timezone: " + stateData.results[0].annotations.timezone.short_name
+            text: "Local Timezone: " + stateData.results[0].annotations.timezone.short_name
         });
     }
+
+    //Create Country Data Display Variables
     var CountryHeading = $("<h2 />", {
         text: "Country"
-        });
+    });
 
     var country = $("<p />", {
         text: "Country Name: " + myData.name
@@ -44,23 +46,19 @@ $(document).ready(function () {
     var subregion = $("<p />", {
         text: "Subregion: " + myData.subregion
     });
-    // var timezones = $("<p />", {
-    // 	text: ": " + myData.
-    // });
-    // var borders = $("<p />", {
-    // 	text: ": " + myData.
-    // });
-    // var regionBloc = $("<p />", {
-    // 	text: "Capital: " + myData.
-    // });
+
+    //Append Country Display Variables to DIV if location is not USA
     if (!(myData.name == "United States of America")) {
-        $("#Info").append(CountryHeading,country, capital, continent, subregion, demonym);
-    } else {
-        $("#Info").append(stateHeading,state, stateTime,CountryHeading,country, capital, continent, subregion, demonym);
+        $("#Info").append(CountryHeading, country, capital, continent, subregion, demonym);
+    }
+    //Append State and Country Variables to DIV
+    else {
+        $("#Info").append(stateHeading, state, stateTime, CountryHeading, country, capital, continent, subregion, demonym);
 
     }
+
+    //Create Currency Variables depending on amount of Currencies
     var currenciesLength = myData.currencies.length;
-    console.log(currenciesLength);
     for (var i = 0; i < currenciesLength; i++) {
         if (myData.currencies[i].symbol == null) {
             var currencies = $("<p />", {
@@ -77,9 +75,8 @@ $(document).ready(function () {
         }
     }
 
-
+    //Create Languages Variables depending on amount of Languages
     var languagesLength = myData.languages.length;
-    console.log(languagesLength);
     for (var i = 0; i < languagesLength; i++) {
         var languages = $("<p />", {
             text: "Language: " + myData.languages[i].name
@@ -87,8 +84,8 @@ $(document).ready(function () {
         $("#Info").append(languages);
     }
 
+    //Create Timezone Variables depending on amount of Timezones
     var timesLength = myData.timezones.length;
-    console.log(timesLength);
     var time = $("<p />", {
         text: "Timezones:"
     });
@@ -99,8 +96,8 @@ $(document).ready(function () {
     }
     $("#Info").append(time);
 
+    //Create Border Variables depending on amount of Borders
     var bordersLength = myData.borders.length;
-    console.log(bordersLength);
     var border = $("<p />", {
         text: "Borders:"
     });
@@ -112,7 +109,6 @@ $(document).ready(function () {
             dataType: "json",
             async: false,
             success: function (data) {
-                console.log(data);
                 var borders = $("<li />", {});
                 borders.append(data.name);
                 border.append(borders);
@@ -120,9 +116,9 @@ $(document).ready(function () {
         });
     }
     $("#Info").append(border);
-
+    
+    //Create Region Blocs Variables depending on amount of Region Blocs(Unions etc.)
     var regionBlocLength = myData.regionalBlocs.length;
-    console.log(regionBlocLength);
     for (var i = 0; i < regionBlocLength; i++) {
         var regionalBlocs = $("<p />", {
             text: "Region Bloc(Unions etc): " + myData.regionalBlocs[i].name
@@ -130,6 +126,7 @@ $(document).ready(function () {
         $("#Info").append(regionalBlocs);
     }
 
+    //Set Image Src and Alt to Country Flag URL and Name
     document.getElementById('Flag').src = myData.flag;
     document.getElementById('Flag').alt = myData.name + " Flag";
 

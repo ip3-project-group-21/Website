@@ -8,7 +8,7 @@ $(document).ready(function () {
     
     function isIE() {
         ua = navigator.userAgent;
-        // MSIE used to detect old browsers and Trident used to newer ones
+        //MSIE used to detect old browsers and Trident used to newer ones
         var is_ie = ua.indexOf("MSIE ") > -1 || ua.indexOf("Trident/") > -1;
         
         return is_ie; 
@@ -16,7 +16,7 @@ $(document).ready(function () {
       //Create an alert to show if the browser is IE or not
       if (isIE()){
           alert('This Page does not support Internet Explorer');
-      }
+        }
 
 
     //Ajax call for the API data
